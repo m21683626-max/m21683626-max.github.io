@@ -1,5 +1,608 @@
-   <!DOCTYPE html>
-   <html lang="fa" dir="rtl">
-   <head><meta charset="UTF-8"><title>سایت من</title></head>
-   <body><h1>سلام دنیا</h1></body>
-   </html>
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>پاسخ‌یار | سامانه تیکت پشتیبانی با هوش مصنوعی</title>
+<meta name="description" content="افزونه سامانه تیکت پشتیبانی با هوش مصنوعی، پنل جداگانه برای هر مشتری و هر ادمین. پاسخ‌گویی سریع‌تر، تیم منظم‌تر.">
+
+<!-- فونت جایگزین (اگر فایل‌های ایران‌سنس و یکان بخ کنار index.html نبودند) -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vazirmatn@33.0.3/Vazirmatn-font-face.css">
+
+<style>
+/* ================= فونت‌ها =================
+   فایل‌های فونت را داخل پوشه fonts کنار همین فایل بگذارید.
+   اگر نام فایل‌هایتان فرق دارد، فقط مسیرها را اینجا عوض کنید. */
+@font-face{font-family:"Yekan Bakh";font-weight:400;font-display:swap;
+  src:local("Yekan Bakh"),local("YekanBakh-Regular"),url("fonts/YekanBakh-Regular.woff2") format("woff2")}
+@font-face{font-family:"Yekan Bakh";font-weight:700;font-display:swap;
+  src:local("Yekan Bakh Bold"),local("YekanBakh-Bold"),url("fonts/YekanBakh-Bold.woff2") format("woff2")}
+@font-face{font-family:"Yekan Bakh";font-weight:900;font-display:swap;
+  src:local("Yekan Bakh Black"),local("YekanBakh-Black"),url("fonts/YekanBakh-Black.woff2") format("woff2")}
+@font-face{font-family:"IRANSans";font-weight:400;font-display:swap;
+  src:local("IRANSans"),local("IRANSansX"),url("fonts/IRANSans-Regular.woff2") format("woff2")}
+@font-face{font-family:"IRANSans";font-weight:700;font-display:swap;
+  src:local("IRANSans Bold"),url("fonts/IRANSans-Bold.woff2") format("woff2")}
+
+:root{
+  --font-head:"Yekan Bakh","Vazirmatn","IRANSans",Tahoma,sans-serif;
+  --font-body:"IRANSans","Vazirmatn","Yekan Bakh",Tahoma,sans-serif;
+  --brand:#6d5efc; --brand2:#22d3ee; --brand3:#f472b6;
+  --grad:linear-gradient(120deg,#6d5efc 0%,#8b5cf6 45%,#22d3ee 100%);
+  --radius:20px;
+  --ease:cubic-bezier(.2,.7,.2,1);
+}
+[data-theme="dark"]{
+  --bg:#0a0b1a; --bg2:#10122a; --card:rgba(255,255,255,.045); --card-b:rgba(255,255,255,.09);
+  --text:#eef0ff; --muted:#a3a8cc; --line:rgba(255,255,255,.1);
+  --shadow:0 30px 80px -20px rgba(0,0,0,.6); --nav:rgba(10,11,26,.65);
+  --mock:#12142e; --mock2:#171a3a;
+}
+[data-theme="light"]{
+  --bg:#f6f7ff; --bg2:#ffffff; --card:rgba(255,255,255,.8); --card-b:rgba(109,94,252,.14);
+  --text:#14163a; --muted:#5b6090; --line:rgba(20,22,58,.1);
+  --shadow:0 30px 70px -25px rgba(70,60,180,.35); --nav:rgba(246,247,255,.75);
+  --mock:#ffffff; --mock2:#f1f2ff;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{font-family:var(--font-body);background:var(--bg);color:var(--text);line-height:1.9;overflow-x:hidden;transition:background .4s,color .4s}
+h1,h2,h3,h4{font-family:var(--font-head);line-height:1.35;font-weight:900}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit}
+img,svg{display:block;max-width:100%}
+.wrap{width:min(1180px,92%);margin-inline:auto}
+section{position:relative;padding:110px 0}
+.grad-text{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;border-radius:99px;background:var(--card);border:1px solid var(--card-b);font-size:.85rem;color:var(--muted);margin-bottom:18px}
+.eyebrow i{width:8px;height:8px;border-radius:50%;background:#34d399;box-shadow:0 0 0 0 rgba(52,211,153,.6);animation:ping 2s infinite}
+@keyframes ping{70%{box-shadow:0 0 0 10px rgba(52,211,153,0)}100%{box-shadow:0 0 0 0 rgba(52,211,153,0)}}
+.sec-head{text-align:center;max-width:720px;margin:0 auto 60px}
+.sec-head h2{font-size:clamp(1.8rem,4vw,2.8rem);margin-bottom:14px}
+.sec-head p{color:var(--muted);font-size:1.05rem}
+
+/* ============ دکمه‌ها ============ */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 28px;border-radius:14px;font-weight:700;font-size:1rem;transition:transform .3s var(--ease),box-shadow .3s,background .3s;position:relative;overflow:hidden}
+.btn-primary{background:var(--grad);color:#fff;box-shadow:0 12px 30px -8px rgba(109,94,252,.65)}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 18px 38px -8px rgba(109,94,252,.8)}
+.btn-primary::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.35) 50%,transparent 70%);transform:translateX(120%);transition:transform .7s}
+.btn-primary:hover::after{transform:translateX(-120%)}
+.btn-ghost{background:var(--card);border:1px solid var(--card-b)}
+.btn-ghost:hover{transform:translateY(-3px);border-color:var(--brand)}
+
+/* ============ ناوبری ============ */
+nav{position:fixed;inset:0 0 auto 0;z-index:50;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);background:var(--nav);border-bottom:1px solid transparent;transition:border-color .3s}
+nav.scrolled{border-color:var(--line)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:72px}
+.logo{display:flex;align-items:center;gap:10px;font-family:var(--font-head);font-weight:900;font-size:1.4rem}
+.logo-mark{width:38px;height:38px;border-radius:12px;background:var(--grad);display:grid;place-items:center;box-shadow:0 8px 20px -6px rgba(109,94,252,.7)}
+.nav-links{display:flex;gap:30px;font-size:.95rem;color:var(--muted)}
+.nav-links a{position:relative;transition:color .3s}
+.nav-links a::after{content:"";position:absolute;bottom:-4px;right:0;width:0;height:2px;background:var(--grad);transition:width .3s}
+.nav-links a:hover{color:var(--text)}
+.nav-links a:hover::after{width:100%}
+.nav-actions{display:flex;align-items:center;gap:12px}
+.icon-btn{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:var(--card);border:1px solid var(--card-b);transition:transform .3s}
+.icon-btn:hover{transform:rotate(15deg)}
+.burger{display:none}
+@media(max-width:900px){
+  .nav-links,.nav-cta{display:none}
+  .burger{display:grid}
+  .nav-links.open{display:flex;flex-direction:column;position:absolute;top:72px;inset-inline:0;background:var(--bg2);padding:24px 6%;gap:18px;border-bottom:1px solid var(--line)}
+}
+
+/* ============ هیرو ============ */
+.hero{padding:150px 0 90px;overflow:hidden}
+.blob{position:absolute;border-radius:50%;filter:blur(90px);opacity:.5;z-index:0;animation:float 14s ease-in-out infinite}
+.b1{width:480px;height:480px;background:#6d5efc;top:-120px;right:-100px}
+.b2{width:420px;height:420px;background:#22d3ee;top:240px;left:-140px;animation-delay:-5s;opacity:.35}
+.b3{width:300px;height:300px;background:#f472b6;bottom:-60px;right:30%;animation-delay:-9s;opacity:.28}
+[data-theme="light"] .blob{opacity:.28}
+@keyframes float{50%{transform:translate(40px,-50px) scale(1.12)}}
+.grid-bg{position:absolute;inset:0;z-index:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:56px 56px;mask-image:radial-gradient(ellipse at 50% 30%,#000 20%,transparent 70%);-webkit-mask-image:radial-gradient(ellipse at 50% 30%,#000 20%,transparent 70%);opacity:.5}
+.hero-in{position:relative;z-index:1;display:grid;grid-template-columns:1.05fr 1fr;gap:50px;align-items:center}
+.hero h1{font-size:clamp(2.2rem,5.2vw,3.9rem);margin-bottom:20px}
+.hero p.lead{color:var(--muted);font-size:1.12rem;max-width:560px;margin-bottom:34px}
+.hero-btns{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:34px}
+.hero-points{display:flex;flex-wrap:wrap;gap:22px;color:var(--muted);font-size:.92rem}
+.hero-points span{display:flex;align-items:center;gap:8px}
+.hero-points svg{color:#34d399}
+@media(max-width:960px){.hero-in{grid-template-columns:1fr}.hero{padding-top:120px}}
+
+/* ============ ماکاپ داشبورد (تصویر محصول) ============ */
+.stage{position:relative;perspective:1400px}
+.mock{background:var(--mock);border:1px solid var(--card-b);border-radius:22px;box-shadow:var(--shadow);overflow:hidden;transform:rotateY(-7deg) rotateX(3deg);transition:transform .6s var(--ease)}
+.stage:hover .mock{transform:rotateY(0) rotateX(0)}
+.mock-bar{display:flex;align-items:center;gap:7px;padding:14px 18px;border-bottom:1px solid var(--line);background:var(--mock2)}
+.mock-bar i{width:11px;height:11px;border-radius:50%}
+.mock-bar i:nth-child(1){background:#ff5f57}.mock-bar i:nth-child(2){background:#febc2e}.mock-bar i:nth-child(3){background:#28c840}
+.mock-url{margin-inline:auto;padding:3px 40px;border-radius:8px;background:var(--bg);font-size:.72rem;color:var(--muted);direction:ltr}
+.mock-body{display:grid;grid-template-columns:170px 1fr;min-height:400px}
+.m-side{border-left:1px solid var(--line);padding:16px 12px;background:var(--mock2)}
+.m-side .item{display:flex;align-items:center;gap:8px;padding:9px 10px;border-radius:10px;font-size:.78rem;color:var(--muted);margin-bottom:4px}
+.m-side .item.on{background:rgba(109,94,252,.16);color:var(--text)}
+.m-side .item b{margin-inline-start:auto;background:var(--brand);color:#fff;border-radius:99px;font-size:.65rem;padding:0 7px}
+.m-main{padding:16px;display:flex;flex-direction:column;gap:12px}
+.m-title{display:flex;justify-content:space-between;align-items:center;font-size:.85rem;font-weight:700}
+.tag{font-size:.65rem;padding:2px 10px;border-radius:99px;background:rgba(52,211,153,.15);color:#34d399;font-weight:700}
+.chat{flex:1;display:flex;flex-direction:column;gap:10px;min-height:240px;justify-content:flex-end}
+.msg{max-width:84%;padding:10px 14px;border-radius:14px;font-size:.78rem;line-height:1.8;animation:pop .45s var(--ease) both}
+.msg.u{align-self:flex-start;background:var(--mock2);border:1px solid var(--line);border-top-right-radius:4px}
+.msg.a{align-self:flex-end;background:var(--grad);color:#fff;border-top-left-radius:4px}
+.msg small{display:flex;align-items:center;gap:5px;font-size:.62rem;opacity:.85;margin-bottom:2px}
+.typing{align-self:flex-end;display:flex;gap:4px;padding:12px 14px;border-radius:14px;background:var(--mock2);border:1px solid var(--line)}
+.typing i{width:6px;height:6px;border-radius:50%;background:var(--brand);animation:bounce 1s infinite}
+.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
+@keyframes bounce{40%{transform:translateY(-5px);opacity:.5}}
+@keyframes pop{from{opacity:0;transform:translateY(12px) scale(.96)}}
+.m-input{display:flex;gap:8px;align-items:center;padding:8px 12px;border-radius:12px;background:var(--mock2);border:1px solid var(--line);font-size:.72rem;color:var(--muted)}
+.m-input span{margin-inline-start:auto;width:28px;height:28px;border-radius:9px;background:var(--grad);display:grid;place-items:center}
+@media(max-width:560px){.mock-body{grid-template-columns:1fr}.m-side{display:none}.mock{transform:none}}
+
+.chip{position:absolute;display:flex;align-items:center;gap:10px;padding:10px 16px;border-radius:16px;background:var(--mock);border:1px solid var(--card-b);box-shadow:var(--shadow);font-size:.8rem;font-weight:700;animation:bob 6s ease-in-out infinite;z-index:3}
+.chip em{font-style:normal;font-weight:400;color:var(--muted);display:block;font-size:.7rem}
+.chip .ic{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;color:#fff}
+.chip.c1{top:-24px;left:-10px}
+.chip.c2{bottom:40px;right:-24px;animation-delay:-2s}
+.chip.c3{bottom:-26px;left:30px;animation-delay:-4s}
+@keyframes bob{50%{transform:translateY(-12px)}}
+@media(max-width:560px){.chip.c2{right:0}.chip.c1{left:0}}
+
+/* ============ نوار قابلیت‌ها ============ */
+.marquee{padding:28px 0;border-block:1px solid var(--line);overflow:hidden;background:var(--bg2)}
+.track{display:flex;gap:56px;width:max-content;animation:scroll 30s linear infinite}
+.marquee:hover .track{animation-play-state:paused}
+.track span{display:flex;align-items:center;gap:10px;color:var(--muted);font-family:var(--font-head);font-weight:700;white-space:nowrap}
+.track svg{color:var(--brand)}
+@keyframes scroll{to{transform:translateX(50%)}}
+
+/* ============ ویژگی‌ها ============ */
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.fcard{position:relative;padding:32px 28px;border-radius:var(--radius);background:var(--card);border:1px solid var(--card-b);overflow:hidden;transition:transform .4s var(--ease),border-color .3s}
+.fcard::before{content:"";position:absolute;inset:0;background:radial-gradient(380px circle at var(--x,50%) var(--y,0%),rgba(109,94,252,.22),transparent 60%);opacity:0;transition:opacity .3s}
+.fcard:hover{transform:translateY(-8px);border-color:rgba(109,94,252,.5)}
+.fcard:hover::before{opacity:1}
+.fcard>*{position:relative}
+.ficon{width:56px;height:56px;border-radius:16px;display:grid;place-items:center;margin-bottom:20px;color:#fff;transition:transform .5s var(--ease)}
+.fcard:hover .ficon{transform:rotate(-8deg) scale(1.1)}
+.fcard h3{font-size:1.2rem;margin-bottom:8px}
+.fcard p{color:var(--muted);font-size:.95rem}
+.fcard.wide{grid-column:span 2}
+@media(max-width:960px){.features{grid-template-columns:1fr 1fr}.fcard.wide{grid-column:span 2}}
+@media(max-width:620px){.features{grid-template-columns:1fr}.fcard.wide{grid-column:auto}}
+
+/* ============ هوش مصنوعی ============ */
+.ai{background:var(--bg2)}
+.ai-in{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.ai h2{font-size:clamp(1.8rem,4vw,2.7rem);margin-bottom:16px}
+.ai p{color:var(--muted);margin-bottom:24px}
+.checks{list-style:none;display:grid;gap:14px}
+.checks li{display:flex;gap:12px;align-items:flex-start}
+.checks li svg{flex:none;margin-top:5px;color:#34d399}
+.orb-wrap{position:relative;display:grid;place-items:center;min-height:440px}
+.orb{width:230px;height:230px;border-radius:50%;background:radial-gradient(circle at 30% 30%,#a78bfa,#6d5efc 45%,#22d3ee);box-shadow:0 0 90px 10px rgba(109,94,252,.55),inset 0 0 50px rgba(255,255,255,.35);animation:breathe 5s ease-in-out infinite;display:grid;place-items:center;position:relative;z-index:2}
+@keyframes breathe{50%{transform:scale(1.07)}}
+.ring{position:absolute;border-radius:50%;border:1px dashed var(--card-b);animation:spin 30s linear infinite}
+.ring.r1{width:340px;height:340px}.ring.r2{width:450px;height:450px;animation-direction:reverse;animation-duration:44s}
+@keyframes spin{to{transform:rotate(360deg)}}
+.sat{position:absolute;padding:8px 16px;border-radius:99px;background:var(--mock);border:1px solid var(--card-b);font-size:.78rem;font-weight:700;box-shadow:var(--shadow);animation:bob 5s ease-in-out infinite;z-index:3}
+.sat.s1{top:40px;right:8%}.sat.s2{top:160px;left:0;animation-delay:-1.5s}.sat.s3{bottom:60px;right:2%;animation-delay:-3s}.sat.s4{bottom:20px;left:12%;animation-delay:-4s}
+@media(max-width:960px){.ai-in{grid-template-columns:1fr}.orb-wrap{min-height:380px}.ring.r2{width:340px;height:340px}.ring.r1{width:270px;height:270px}}
+
+/* ============ مراحل ============ */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;counter-reset:s;position:relative}
+.steps::before{content:"";position:absolute;top:34px;inset-inline:12%;height:2px;background:repeating-linear-gradient(90deg,var(--brand) 0 8px,transparent 8px 18px);opacity:.5}
+.step{text-align:center;position:relative}
+.step .num{width:68px;height:68px;border-radius:50%;margin:0 auto 18px;display:grid;place-items:center;background:var(--bg);border:2px solid var(--brand);font-family:var(--font-head);font-weight:900;font-size:1.5rem;transition:.4s var(--ease);position:relative;z-index:1}
+.step:hover .num{background:var(--grad);color:#fff;transform:scale(1.12) rotate(8deg);border-color:transparent}
+.step h3{font-size:1.1rem;margin-bottom:6px}
+.step p{color:var(--muted);font-size:.9rem}
+@media(max-width:900px){.steps{grid-template-columns:1fr 1fr}.steps::before{display:none}}
+@media(max-width:520px){.steps{grid-template-columns:1fr}}
+
+/* ============ پنل‌ها (تب‌ها) ============ */
+.panels{background:var(--bg2)}
+.tabs{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin-bottom:38px}
+.tab{padding:12px 24px;border-radius:14px;background:var(--card);border:1px solid var(--card-b);font-weight:700;font-size:.95rem;transition:.3s var(--ease)}
+.tab:hover{transform:translateY(-2px)}
+.tab.on{background:var(--grad);color:#fff;border-color:transparent;box-shadow:0 12px 28px -8px rgba(109,94,252,.6)}
+.panel-view{display:grid;grid-template-columns:1fr 1.15fr;gap:44px;align-items:center;animation:fadeUp .6s var(--ease)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}}
+.panel-view h3{font-size:1.7rem;margin-bottom:12px}
+.panel-view>div>p{color:var(--muted);margin-bottom:20px}
+.mini{background:var(--mock);border:1px solid var(--card-b);border-radius:20px;padding:20px;box-shadow:var(--shadow)}
+.mini-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;font-weight:700;font-size:.9rem}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px}
+.kpi{padding:12px;border-radius:14px;background:var(--mock2);border:1px solid var(--line)}
+.kpi small{color:var(--muted);font-size:.68rem;display:block}
+.kpi b{font-family:var(--font-head);font-size:1.3rem}
+.rows{display:grid;gap:8px}
+.row{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:12px;background:var(--mock2);border:1px solid var(--line);font-size:.8rem;animation:pop .5s var(--ease) both}
+.row:nth-child(2){animation-delay:.08s}.row:nth-child(3){animation-delay:.16s}.row:nth-child(4){animation-delay:.24s}
+.av{width:34px;height:34px;border-radius:50%;flex:none;display:grid;place-items:center;color:#fff;font-weight:700;font-size:.8rem}
+.row .grow{flex:1;min-width:0}
+.row .grow small{display:block;color:var(--muted);font-size:.68rem}
+.st{font-size:.65rem;padding:2px 10px;border-radius:99px;font-weight:700}
+.st.ok{background:rgba(52,211,153,.15);color:#34d399}.st.wait{background:rgba(251,191,36,.15);color:#fbbf24}.st.new{background:rgba(109,94,252,.18);color:#a99dff}.st.hot{background:rgba(244,114,182,.18);color:#f472b6}
+.bars{display:flex;align-items:flex-end;gap:7px;height:70px;margin-bottom:16px;padding:0 4px}
+.bars i{flex:1;border-radius:6px 6px 2px 2px;background:var(--grad);animation:grow 1s var(--ease) both;transform-origin:bottom}
+@keyframes grow{from{transform:scaleY(0)}}
+@media(max-width:960px){.panel-view{grid-template-columns:1fr}}
+
+/* ============ امنیت/اعداد ============ */
+.cta-band{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.band{padding:26px;border-radius:var(--radius);background:var(--card);border:1px solid var(--card-b);text-align:center;transition:.4s var(--ease)}
+.band:hover{transform:translateY(-6px)}
+.band svg{margin:0 auto 12px;color:var(--brand2)}
+.band h4{font-size:1rem;margin-bottom:4px}
+.band p{font-size:.85rem;color:var(--muted)}
+@media(max-width:900px){.cta-band{grid-template-columns:1fr 1fr}}
+
+/* ============ سوالات ============ */
+.faq{background:var(--bg2)}
+.faq-list{max-width:820px;margin:0 auto;display:grid;gap:12px}
+details{border-radius:16px;background:var(--card);border:1px solid var(--card-b);transition:border-color .3s}
+details[open]{border-color:rgba(109,94,252,.55)}
+summary{list-style:none;cursor:pointer;padding:20px 24px;display:flex;justify-content:space-between;align-items:center;font-weight:700;font-family:var(--font-head);font-size:1.05rem}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-size:1.6rem;line-height:1;color:var(--brand);transition:transform .35s var(--ease)}
+details[open] summary::after{transform:rotate(45deg)}
+details p{padding:0 24px 22px;color:var(--muted);animation:fadeUp .4s var(--ease)}
+
+/* ============ فراخوان نهایی ============ */
+.final{padding:90px 0}
+.final-box{position:relative;overflow:hidden;border-radius:32px;padding:70px 40px;text-align:center;background:var(--grad);color:#fff;box-shadow:0 40px 90px -30px rgba(109,94,252,.8)}
+.final-box::before,.final-box::after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.14)}
+.final-box::before{width:340px;height:340px;top:-140px;left:-80px;animation:float 12s ease-in-out infinite}
+.final-box::after{width:260px;height:260px;bottom:-110px;right:-60px;animation:float 15s ease-in-out infinite reverse}
+.final-box>*{position:relative;z-index:1}
+.final-box h2{font-size:clamp(1.8rem,4vw,2.8rem);margin-bottom:14px}
+.final-box p{max-width:560px;margin:0 auto 30px;opacity:.92}
+.final-box .btn{background:#fff;color:#4a3fd6}
+.final-box .btn:hover{transform:translateY(-3px) scale(1.03)}
+.ticket-art{width:150px;margin:0 auto 24px;animation:bob 5s ease-in-out infinite}
+
+footer{padding:50px 0 34px;border-top:1px solid var(--line);color:var(--muted);font-size:.9rem}
+.foot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px}
+.foot .links{display:flex;gap:22px}
+.foot a:hover{color:var(--text)}
+
+/* ============ ظاهر شدن هنگام اسکرول ============ */
+.rv{opacity:0;transform:translateY(34px);transition:opacity .8s var(--ease),transform .8s var(--ease);transition-delay:var(--d,0s)}
+.rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  .rv{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<!-- نمادهای SVG که چند بار استفاده می‌شوند -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-check" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="i-bolt" viewBox="0 0 24 24"><path fill="currentColor" d="M13 2 4 14h7l-1 8 9-12h-7z"/></symbol>
+</svg>
+
+<nav id="nav">
+  <div class="wrap nav-in">
+    <a href="#top" class="logo">
+      <span class="logo-mark"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.5 7.2L3 21l1.8-5.8A8 8 0 1 1 21 12z"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01"/></svg></span>
+      پاسخ‌یار
+    </a>
+    <div class="nav-links" id="links">
+      <a href="#features">قابلیت‌ها</a>
+      <a href="#ai">هوش مصنوعی</a>
+      <a href="#panels">پنل‌ها</a>
+      <a href="#how">راه‌اندازی</a>
+      <a href="#faq">سوالات متداول</a>
+    </div>
+    <div class="nav-actions">
+      <button class="icon-btn" id="theme" aria-label="تغییر تم">
+        <svg id="theme-ic" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      </button>
+      <a href="#contact" class="btn btn-primary nav-cta" style="padding:10px 22px">درخواست دمو</a>
+      <button class="icon-btn burger" id="burger" aria-label="منو">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ======================= هیرو ======================= -->
+<header class="hero" id="top">
+  <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div><div class="grid-bg"></div>
+  <div class="wrap hero-in">
+    <div>
+      <div class="eyebrow rv"><i></i> پشتیبانی هوشمند، ۲۴ ساعته و بدون وقفه</div>
+      <h1 class="rv" style="--d:.08s">مشتری‌هایتان را با <span class="grad-text">پشتیبانی هوشمند</span> خوشحال کنید</h1>
+      <p class="lead rv" style="--d:.16s">پاسخ‌یار یک افزونه کامل سامانه تیکت است که با هوش مصنوعی، به‌جای تیم شما به سوالات تکراری جواب می‌دهد. هر مشتری و هر ادمین هم پنل جدا و اختصاصی خودش را دارد.</p>
+      <div class="hero-btns rv" style="--d:.24s">
+        <a href="#contact" class="btn btn-primary">شروع رایگان
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        </a>
+        <a href="#panels" class="btn btn-ghost">دیدن پنل‌ها</a>
+      </div>
+      <div class="hero-points rv" style="--d:.32s">
+        <span><svg width="18" height="18"><use href="#i-check"/></svg> نصب در چند دقیقه</span>
+        <span><svg width="18" height="18"><use href="#i-check"/></svg> پنل جدا برای هر مشتری</span>
+        <span><svg width="18" height="18"><use href="#i-check"/></svg> دستیار هوشمند فارسی</span>
+      </div>
+    </div>
+
+    <!-- تصویر محصول: داشبورد زنده -->
+    <div class="stage rv" style="--d:.2s">
+      <div class="chip c1"><div class="ic" style="background:linear-gradient(135deg,#34d399,#059669)"><svg width="18" height="18"><use href="#i-check"/></svg></div><div>تیکت حل شد<em>توسط دستیار هوشمند</em></div></div>
+      <div class="chip c2"><div class="ic" style="background:linear-gradient(135deg,#f472b6,#a855f7)"><svg width="18" height="18"><use href="#i-bolt"/></svg></div><div>پاسخ در ۳ ثانیه<em>میانگین زمان پاسخ AI</em></div></div>
+      <div class="chip c3"><div class="ic" style="background:linear-gradient(135deg,#22d3ee,#3b82f6)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9M13.7 21a2 2 0 0 1-3.4 0"/></svg></div><div>۳ تیکت جدید<em>به شما ارجاع شد</em></div></div>
+
+      <div class="mock">
+        <div class="mock-bar"><i></i><i></i><i></i><div class="mock-url">app.pasokhyar.ir/tickets</div></div>
+        <div class="mock-body">
+          <div class="m-side">
+            <div class="item on">📥 صندوق تیکت‌ها <b>12</b></div>
+            <div class="item">🤖 دستیار هوشمند</div>
+            <div class="item">👥 مشتریان</div>
+            <div class="item">📚 پایگاه دانش</div>
+            <div class="item">📊 گزارش‌ها</div>
+            <div class="item">⚙️ تنظیمات</div>
+          </div>
+          <div class="m-main">
+            <div class="m-title"><span>تیکت #۱۴۲۸ · مشکل در پرداخت</span><span class="tag">آنلاین</span></div>
+            <div class="chat" id="chat"></div>
+            <div class="m-input">پاسخ خود را بنویسید...<span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4z"/></svg></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- نوار قابلیت‌ها -->
+<div class="marquee" aria-hidden="true">
+  <div class="track" id="track"></div>
+</div>
+
+<!-- ======================= ویژگی‌ها ======================= -->
+<section id="features">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="eyebrow">قابلیت‌ها</div>
+      <h2>هرچه یک تیم پشتیبانی <span class="grad-text">لازم دارد</span>، در یک افزونه</h2>
+      <p>از دریافت تیکت تا پاسخ هوشمند و گزارش‌گیری، همه‌چیز یک‌جا و با تجربه‌ای روان.</p>
+    </div>
+    <div class="features" id="fgrid"></div>
+  </div>
+</section>
+
+<!-- ======================= هوش مصنوعی ======================= -->
+<section class="ai" id="ai">
+  <div class="wrap ai-in">
+    <div class="rv">
+      <div class="eyebrow">دستیار هوشمند</div>
+      <h2>هوش مصنوعی‌ای که <span class="grad-text">محصول شما را می‌شناسد</span></h2>
+      <p>دستیار از پایگاه دانش و تاریخچه تیکت‌های خودتان یاد می‌گیرد، به زبان فارسی روان جواب می‌دهد و هر وقت لازم بود، گفتگو را با یک خلاصه کامل به تیم انسانی می‌سپارد.</p>
+      <ul class="checks">
+        <li><svg width="20" height="20"><use href="#i-check"/></svg><span>پاسخ خودکار به سوالات پرتکرار، شبانه‌روز</span></li>
+        <li><svg width="20" height="20"><use href="#i-check"/></svg><span>پیشنهاد پاسخ آماده برای کارشناس، فقط با یک کلیک ارسال</span></li>
+        <li><svg width="20" height="20"><use href="#i-check"/></svg><span>خلاصه‌سازی گفتگوهای طولانی و تشخیص اولویت و لحن مشتری</span></li>
+        <li><svg width="20" height="20"><use href="#i-check"/></svg><span>ارجاع هوشمند تیکت به دپارتمان یا کارشناس مناسب</span></li>
+      </ul>
+    </div>
+    <div class="orb-wrap rv" style="--d:.15s">
+      <div class="ring r1"></div><div class="ring r2"></div>
+      <div class="orb"><svg width="96" height="96" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="7" width="16" height="12" rx="4"/><path d="M12 7V4M9 13h.01M15 13h.01M9.5 16.2c1.5 1 3.5 1 5 0M2 13v2M22 13v2"/><circle cx="12" cy="3.5" r="1"/></svg></div>
+      <span class="sat s1">🌐 فارسی روان</span>
+      <span class="sat s2">⚡ پاسخ فوری</span>
+      <span class="sat s3">🧠 یادگیری از تیکت‌ها</span>
+      <span class="sat s4">🤝 تحویل به انسان</span>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= مراحل ======================= -->
+<section id="how">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="eyebrow">راه‌اندازی</div>
+      <h2>در <span class="grad-text">چهار قدم ساده</span> آماده می‌شوید</h2>
+      <p>بدون نیاز به تیم فنی؛ مسیر راه‌اندازی کوتاه و روشن است.</p>
+    </div>
+    <div class="steps">
+      <div class="step rv"><div class="num">۱</div><h3>نصب افزونه</h3><p>افزونه را روی سایت یا سرویس خود نصب و فعال کنید.</p></div>
+      <div class="step rv" style="--d:.1s"><div class="num">۲</div><h3>ساخت پنل‌ها</h3><p>مشتری‌ها و ادمین‌ها را اضافه کنید؛ هرکدام پنل جدا می‌گیرند.</p></div>
+      <div class="step rv" style="--d:.2s"><div class="num">۳</div><h3>آموزش دستیار</h3><p>پایگاه دانش و سوالات پرتکرار را به هوش مصنوعی بدهید.</p></div>
+      <div class="step rv" style="--d:.3s"><div class="num">۴</div><h3>شروع پشتیبانی</h3><p>تیکت‌ها وارد می‌شوند و دستیار پاسخ‌دادن را شروع می‌کند.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= پنل‌ها ======================= -->
+<section class="panels" id="panels">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="eyebrow">پنل‌های مستقل</div>
+      <h2>هر نقش، <span class="grad-text">پنل مخصوص خودش</span></h2>
+      <p>مدیر کل، ادمین مشتری، کارشناس و کاربر نهایی؛ هرکس فقط چیزی را می‌بیند که باید ببیند.</p>
+    </div>
+    <div class="tabs rv" id="tabs"></div>
+    <div id="pview"></div>
+  </div>
+</section>
+
+<!-- ======================= اعتماد ======================= -->
+<section>
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="eyebrow">ساخته‌شده برای تیم‌های جدی</div>
+      <h2>منظم، امن و <span class="grad-text">قابل‌اتکا</span></h2>
+    </div>
+    <div class="cta-band">
+      <div class="band rv"><svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.4 9.2 8 11 4.6-1.8 8-6 8-11V5z"/><path d="m9 12 2 2 4-4"/></svg><h4>جداسازی داده‌ها</h4><p>اطلاعات هر مشتری کاملاً مستقل از دیگری</p></div>
+      <div class="band rv" style="--d:.08s"><svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="3"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg><h4>سطح دسترسی دقیق</h4><p>نقش‌ها و مجوزها را خودتان تعریف می‌کنید</p></div>
+      <div class="band rv" style="--d:.16s"><svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><h4>پیگیری زمان پاسخ</h4><p>هشدار قبل از عبور از زمان تعهدشده</p></div>
+      <div class="band rv" style="--d:.24s"><svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 5-6"/></svg><h4>گزارش‌های زنده</h4><p>عملکرد تیم و رضایت مشتری را ببینید</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= سوالات ======================= -->
+<section class="faq" id="faq">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="eyebrow">سوالات متداول</div>
+      <h2>جواب سوال‌هایی که <span class="grad-text">زیاد می‌پرسید</span></h2>
+    </div>
+    <div class="faq-list">
+      <details class="rv" open><summary>هوش مصنوعی چطور جواب مشتری را می‌دهد؟</summary><p>دستیار از پایگاه دانش و تیکت‌های قبلی شما کمک می‌گیرد. اگر مطمئن نباشد، گفتگو را همراه با خلاصه به کارشناس انسانی می‌سپارد تا پاسخ اشتباه ندهد.</p></details>
+      <details class="rv"><summary>پنل مشتری و ادمین چه فرقی دارند؟</summary><p>ادمین مشتری مدیریت کارشناسان، دپارتمان‌ها و تنظیمات سازمان خودش را دارد. کاربر نهایی فقط تیکت‌های خودش را ثبت و پیگیری می‌کند. مدیر کل هم روی همه چیز نظارت دارد.</p></details>
+      <details class="rv"><summary>آیا می‌توانم چند مشتری را جداگانه مدیریت کنم؟</summary><p>بله. برای هر مشتری یک پنل مستقل ساخته می‌شود که داده‌ها، کاربران و تنظیمات خودش را دارد و چیزی با دیگران مخلوط نمی‌شود.</p></details>
+      <details class="rv"><summary>راه‌اندازی چقدر زمان می‌برد؟</summary><p>نصب و ساخت اولین پنل معمولاً در چند دقیقه انجام می‌شود. بیشتر زمان صرف آموزش دستیار با محتوای خودتان است.</p></details>
+      <details class="rv"><summary>آیا پشتیبانی فارسی و راست‌چین کامل است؟</summary><p>بله. رابط کاربری و دستیار هوشمند از ابتدا برای زبان فارسی و چینش راست‌به‌چپ طراحی شده‌اند.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= فراخوان ======================= -->
+<section class="final" id="contact">
+  <div class="wrap">
+    <div class="final-box rv">
+      <svg class="ticket-art" viewBox="0 0 160 110" fill="none"><rect x="8" y="18" width="144" height="74" rx="14" fill="#fff" fill-opacity=".95"/><circle cx="8" cy="55" r="11" fill="#6d5efc"/><circle cx="152" cy="55" r="11" fill="#6d5efc"/><path d="M104 26v58" stroke="#c4b5fd" stroke-width="2" stroke-dasharray="5 5"/><rect x="26" y="38" width="56" height="8" rx="4" fill="#6d5efc"/><rect x="26" y="54" width="44" height="6" rx="3" fill="#c4b5fd"/><rect x="26" y="66" width="34" height="6" rx="3" fill="#c4b5fd"/><path d="m118 56 8 8 14-16" stroke="#22c55e" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <h2>آماده‌اید پشتیبانی‌تان را متحول کنید؟</h2>
+      <p>یک دمو برای خودتان رزرو کنید و ببینید هوش مصنوعی چطور بار تیمتان را سبک می‌کند.</p>
+      <a href="mailto:hello@example.com" class="btn">درخواست دمو رایگان</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <div class="logo" style="font-size:1.15rem"><span class="logo-mark" style="width:32px;height:32px;border-radius:10px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.5 7.2L3 21l1.8-5.8A8 8 0 1 1 21 12z"/></svg></span>پاسخ‌یار</div>
+    <div class="links"><a href="#features">قابلیت‌ها</a><a href="#panels">پنل‌ها</a><a href="#faq">سوالات</a><a href="#contact">تماس</a></div>
+    <div>© <span id="yr"></span> پاسخ‌یار. همه حقوق محفوظ است.</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var $ = function(s,r){return (r||document).querySelector(s)};
+
+  /* ---------- تم تاریک / روشن ---------- */
+  var root = document.documentElement, themeIc = $("#theme-ic");
+  var moon = '<path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/>';
+  var sun = '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>';
+  function setTheme(t){root.setAttribute("data-theme",t);themeIc.innerHTML = t==="dark"?moon:sun;try{localStorage.setItem("theme",t)}catch(e){}}
+  var saved=null;try{saved=localStorage.getItem("theme")}catch(e){}
+  setTheme(saved||"dark");
+  $("#theme").addEventListener("click",function(){setTheme(root.getAttribute("data-theme")==="dark"?"light":"dark")});
+
+  /* ---------- ناوبری ---------- */
+  var nav=$("#nav"),links=$("#links");
+  window.addEventListener("scroll",function(){nav.classList.toggle("scrolled",scrollY>12)},{passive:true});
+  $("#burger").addEventListener("click",function(){links.classList.toggle("open")});
+  links.addEventListener("click",function(e){if(e.target.tagName==="A")links.classList.remove("open")});
+  $("#yr").textContent = new Intl.DateTimeFormat("fa-IR",{year:"numeric"}).format(new Date());
+
+  /* ---------- نوار متحرک ---------- */
+  var tags=["تیکت‌های هوشمند","دستیار هوش مصنوعی","پنل مستقل برای هر مشتری","پایگاه دانش","گزارش‌های زنده","اعلان لحظه‌ای","ارجاع خودکار","زمان‌سنج پاسخ"];
+  var t=$("#track"),h="";
+  for(var k=0;k<2;k++)tags.forEach(function(x){h+='<span><svg width="18" height="18"><use href="#i-bolt"/></svg>'+x+'</span>'});
+  t.innerHTML=h+h;
+
+  /* ---------- کارت ویژگی‌ها ---------- */
+  var F=[
+    ["🤖","پاسخ‌گویی با هوش مصنوعی","دستیار فارسی‌زبان، سوالات پرتکرار را در چند ثانیه پاسخ می‌دهد و بار تیم را کم می‌کند.","linear-gradient(135deg,#6d5efc,#a855f7)",1],
+    ["🏢","پنل جدا برای هر مشتری","هر مشتری فضای مستقل با کاربران، تنظیمات و داده‌های خودش دارد.","linear-gradient(135deg,#22d3ee,#3b82f6)"],
+    ["👤","ادمین اختصاصی","برای هر پنل یک ادمین تعیین کنید تا تیم و دپارتمان‌های خودش را مدیریت کند.","linear-gradient(135deg,#f472b6,#e11d48)"],
+    ["📥","مدیریت تیکت حرفه‌ای","اولویت، وضعیت، برچسب، یادداشت داخلی و ارجاع؛ همه با ظاهری تمیز و سریع.","linear-gradient(135deg,#34d399,#059669)"],
+    ["📚","پایگاه دانش","مقاله‌های راهنما بنویسید تا مشتری پیش از ثبت تیکت جواب را پیدا کند.","linear-gradient(135deg,#fbbf24,#f97316)"],
+    ["🔔","اعلان لحظه‌ای","هر پیام یا تغییر وضعیت، همان لحظه به کارشناس و مشتری خبر داده می‌شود.","linear-gradient(135deg,#8b5cf6,#6366f1)"],
+    ["📊","گزارش و تحلیل","زمان پاسخ، حجم تیکت‌ها و عملکرد هر کارشناس را در داشبوردهای روشن ببینید.","linear-gradient(135deg,#06b6d4,#6d5efc)",1]
+  ];
+  $("#fgrid").innerHTML=F.map(function(f,i){
+    return '<div class="fcard rv'+(f[4]?' wide':'')+'" style="--d:'+(i%3)*.08+'s"><div class="ficon" style="background:'+f[3]+';font-size:1.6rem">'+f[0]+'</div><h3>'+f[1]+'</h3><p>'+f[2]+'</p></div>';
+  }).join("");
+  document.querySelectorAll(".fcard").forEach(function(c){
+    c.addEventListener("mousemove",function(e){var r=c.getBoundingClientRect();c.style.setProperty("--x",(e.clientX-r.left)+"px");c.style.setProperty("--y",(e.clientY-r.top)+"px")});
+  });
+
+  /* ---------- گفتگوی زنده در هیرو ---------- */
+  var chat=$("#chat");
+  var script=[
+    ["u","سلام، پرداخت من انجام شد ولی سفارش ثبت نشده. ممکنه کمک کنید؟"],
+    ["a","سلام! متوجه شدم. شماره پیگیری پرداخت را بفرمایید تا وضعیتش را بررسی کنم."],
+    ["u","شماره پیگیری: ۸۴۱۲۹۶۳"],
+    ["a","پرداخت شما تأیید شده و سفارش در حال ثبت نهایی است. تا ۲ دقیقه دیگر پیامک تأیید می‌گیرید. ✅"]
+  ];
+  function bubble(w,txt){
+    var d=document.createElement("div");d.className="msg "+w;
+    d.innerHTML=(w==="a"?'<small>✨ دستیار هوشمند</small>':'')+txt;chat.appendChild(d);
+    while(chat.children.length>4)chat.removeChild(chat.firstChild);
+    return d;
+  }
+  function wait(ms){return new Promise(function(r){setTimeout(r,ms)})}
+  async function loop(){
+    if(reduce){script.forEach(function(s){bubble(s[0],s[1])});return}
+    while(true){
+      for(var i=0;i<script.length;i++){
+        var s=script[i];
+        if(s[0]==="a"){
+          var ty=document.createElement("div");ty.className="typing";ty.innerHTML="<i></i><i></i><i></i>";chat.appendChild(ty);
+          await wait(1300);ty.remove();
+        } else await wait(900);
+        bubble(s[0],s[1]);
+        await wait(1500);
+      }
+      await wait(2800);chat.innerHTML="";
+    }
+  }
+  loop();
+
+  /* ---------- تب‌های پنل ---------- */
+  var colors=["linear-gradient(135deg,#6d5efc,#a855f7)","linear-gradient(135deg,#22d3ee,#3b82f6)","linear-gradient(135deg,#f472b6,#e11d48)","linear-gradient(135deg,#34d399,#059669)"];
+  function rowsHtml(list){return list.map(function(r,i){return '<div class="row"><div class="av" style="background:'+colors[i%4]+'">'+r[0].charAt(0)+'</div><div class="grow">'+r[0]+'<small>'+r[1]+'</small></div><span class="st '+r[3]+'">'+r[2]+'</span></div>'}).join("")}
+  function kpiHtml(k){return '<div class="kpis">'+k.map(function(x){return '<div class="kpi"><small>'+x[0]+'</small><b>'+x[1]+'</b></div>'}).join("")+'</div>'}
+  function barsHtml(a){return '<div class="bars">'+a.map(function(v,i){return '<i style="height:'+v+'%;animation-delay:'+i*.07+'s"></i>'}).join("")+'</div>'}
+  var P=[
+    {tab:"مدیر کل",title:"کنترل کامل روی همه پنل‌ها",desc:"همه مشتری‌ها، ادمین‌ها و تنظیمات سراسری را از یک نقطه مدیریت کنید و وضعیت کل سامانه را ببینید.",
+     pts:["ساخت و تعلیق پنل مشتری‌ها","تعریف نقش‌ها و سطح دسترسی","گزارش تجمیعی از همه سازمان‌ها"],
+     head:"نمای کلی سامانه",kpi:[["پنل فعال","۲۴"],["تیکت امروز","۳۱۲"],["رضایت","۹۴٪"]],bars:[40,62,48,80,66,90,74],
+     rows:[["شرکت آرمان","ادمین: سارا محمدی","فعال","ok"],["فروشگاه نیلوفر","ادمین: علی رضایی","فعال","ok"],["آموزشگاه پارس","ادمین: مریم کاظمی","در انتظار","wait"]]},
+    {tab:"ادمین مشتری",title:"هر سازمان، مدیریت مستقل خودش",desc:"ادمین هر مشتری کارشناسان و دپارتمان‌ها را تعریف می‌کند، دستیار هوشمند را تنظیم می‌کند و گزارش تیم خودش را می‌بیند.",
+     pts:["افزودن کارشناس و دپارتمان","آموزش دستیار با پایگاه دانش","تنظیم زمان‌های پاسخ‌گویی"],
+     head:"مدیریت تیم من",kpi:[["کارشناس","۸"],["باز","۲۷"],["حل‌شده","۱۸۴"]],bars:[55,70,45,85,60,72,92],
+     rows:[["نگار احمدی","فروش و مالی","آنلاین","ok"],["رضا کریمی","فنی","مشغول","wait"],["هانیه صادقی","عمومی","آنلاین","ok"]]},
+    {tab:"کارشناس",title:"صندوق تیکت منظم و سریع",desc:"کارشناس تیکت‌های ارجاع‌شده را همراه با خلاصه هوش مصنوعی و پاسخ پیشنهادی می‌بیند و سریع‌تر جواب می‌دهد.",
+     pts:["خلاصه هوشمند هر گفتگو","پاسخ پیشنهادی با یک کلیک","یادداشت داخلی و ارجاع به همکار"],
+     head:"تیکت‌های من",kpi:[["جدید","۵"],["در جریان","۱۲"],["امروز حل شد","۹"]],bars:[30,50,66,40,78,58,84],
+     rows:[["پرداخت ناموفق","اولویت بالا","فوری","hot"],["تغییر رمز عبور","مشتری: آرمان","جدید","new"],["درخواست فاکتور","مشتری: نیلوفر","در جریان","wait"]]},
+    {tab:"کاربر نهایی",title:"ثبت و پیگیری تیکت بی‌دردسر",desc:"مشتری شما تیکت ثبت می‌کند، وضعیت را لحظه‌ای می‌بیند و اغلب همان‌جا جواب دستیار هوشمند را می‌گیرد.",
+     pts:["ثبت تیکت با پیوست فایل","مشاهده وضعیت و تاریخچه","پیشنهاد مقاله راهنما قبل از ثبت"],
+     head:"تیکت‌های من",kpi:[["باز","۲"],["بسته","۱۱"],["مقاله","۳۶"]],bars:[20,35,28,55,40,65,50],
+     rows:[["مشکل ورود به حساب","پاسخ داده شد","حل شد","ok"],["سوال درباره تعرفه","در حال بررسی","در جریان","wait"],["درخواست قابلیت جدید","ثبت شده","جدید","new"]]}
+  ];
+  var tabs=$("#tabs"),pv=$("#pview");
+  tabs.innerHTML=P.map(function(p,i){return '<button class="tab'+(i?'':' on')+'" data-i="'+i+'">'+p.tab+'</button>'}).join("");
+  function show(i){
+    var p=P[i];
+    pv.innerHTML='<div class="panel-view"><div><h3>'+p.title+'</h3><p>'+p.desc+'</p><ul class="checks">'+
+      p.pts.map(function(x){return '<li><svg width="20" height="20"><use href="#i-check"/></svg><span>'+x+'</span></li>'}).join("")+
+      '</ul></div><div class="mini"><div class="mini-head"><span>'+p.head+'</span><span class="tag">زنده</span></div>'+kpiHtml(p.kpi)+barsHtml(p.bars)+'<div class="rows">'+rowsHtml(p.rows)+'</div></div></div>';
+  }
+  show(0);
+  tabs.addEventListener("click",function(e){
+    var b=e.target.closest(".tab");if(!b)return;
+    tabs.querySelectorAll(".tab").forEach(function(x){x.classList.remove("on")});b.classList.add("on");show(+b.dataset.i);
+  });
+
+  /* ---------- ظاهر شدن هنگام اسکرول ---------- */
+  var els=document.querySelectorAll(".rv");
+  if("IntersectionObserver" in window && !reduce){
+    var io=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){x.target.classList.add("in");io.unobserve(x.target)}})},{threshold:.12});
+    els.forEach(function(e){io.observe(e)});
+  } else els.forEach(function(e){e.classList.add("in")});
+})();
+</script>
+</body>
+</html>
