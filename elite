@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>راهکارهای یکپارچه مدیریت سازمان و نرم‌افزار ERP | DMS Pars</title>
+<meta name="description" content="نرم‌افزار ERP، حسابداری صنعتی و بهای تمام‌شده، خدمات مالی، مشاوره و آموزش برای کسب‌وکارهای تولیدی، بازرگانی و خرده‌فروشی؛ DMS Pars.">
+<meta name="theme-color" content="#f6f9ff">
+<link rel="canonical" href="https://dmspars.com/">
+
+<!-- ============ Preload (برای بهینه‌شدن LCP) ============
+     مسیر فونت ایران‌سنس را مطابق فایل‌های خودتان تغییر دهید.
+     وقتی تصویر/ویدئوی Hero را گذاشتید، خط preload تصویر را از حالت کامنت خارج کنید. -->
+<link rel="preload" href="fonts/IRANSansWeb.woff2" as="font" type="font/woff2" crossorigin>
+<!-- <link rel="preload" as="image" href="images/hero.webp" fetchpriority="high"> -->
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://dmspars.com/#organization",
+      "name": "دانش‌پژوهان محاسب سرزمین پارس",
+      "alternateName": "DMS Pars",
+      "url": "https://dmspars.com/",
+      "logo": "https://dmspars.com/images/logo.png",
+      "description": "ارائه‌دهنده راهکارهای نرم‌افزاری سازمانی، خدمات مالی و حسابداری، مشاوره مدیریت و آموزش تخصصی."
+    },
+    {
+      "@type": "SoftwareApplication",
+      "name": "ONYX360",
+      "applicationCategory": "BusinessApplication",
+      "description": "راهکار یکپارچه مدیریت سازمان برای تولید با فرآیندهای پیچیده؛ برنامه‌ریزی و ردیابی تولید، حسابداری صنعتی و تحلیل بهای تمام‌شده.",
+      "publisher": { "@id": "https://dmspars.com/#organization" }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "name": "ELITE 360",
+      "applicationCategory": "BusinessApplication",
+      "description": "راهکار یکپارچه مدیریت برای کسب‌وکارهای تولیدی با پیچیدگی عملیاتی متوسط.",
+      "publisher": { "@id": "https://dmspars.com/#organization" }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "name": "تجار",
+      "applicationCategory": "BusinessApplication",
+      "description": "نرم‌افزار یکپارچه مدیریت کسب‌وکارهای بازرگانی؛ از خرید و فروش تا انبار، حسابداری و گزارش‌گیری مدیریتی.",
+      "publisher": { "@id": "https://dmspars.com/#organization" }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "name": "ویترین",
+      "applicationCategory": "BusinessApplication",
+      "description": "راهکار مدیریت کسب‌وکارهای خرده‌فروشی؛ مدیریت اطلاعات فروش، کالاها و فرآیندهای مرتبط.",
+      "publisher": { "@id": "https://dmspars.com/#organization" }
+    }
+  ]
+}
+</script>
+
+<style>
+/* ===================== فونت ایران‌سنس ===================== */
+@font-face{font-family:"IRANSans";font-weight:400;font-style:normal;font-display:swap;
+  src:local("IRANSans"),local("IRANSansWeb"),url("fonts/IRANSansWeb.woff2") format("woff2")}
+@font-face{font-family:"IRANSans";font-weight:700;font-style:normal;font-display:swap;
+  src:local("IRANSans Bold"),local("IRANSansWeb-Bold"),url("fonts/IRANSansWeb_Bold.woff2") format("woff2")}
+
+/* ===================== توکن‌های رنگ (طرح ۲: روشن و فین‌تک) ===================== */
+:root{
+  --blue:#1d4ed8; --blue-d:#1e3a8a; --navy:#0b1f4d; --navy-2:#13306b;
+  --green:#047857; --green-d:#065f46; --green-l:#34d399; --mint:#e7f8f1;
+  --ink:#0f1f42; --muted:#4a5a78; --bg:#f6f9ff; --soft:#eaf0fb; --line:#dfe7f5; --white:#fff;
+  --r:22px; --shadow:0 14px 34px -18px rgba(15,31,66,.28); --ease:cubic-bezier(.22,.8,.3,1);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;font-family:"IRANSans","IRANSansWeb","Iran Sans",Vazirmatn,Tahoma,"Segoe UI",sans-serif;font-size:1rem;line-height:1.95;color:var(--ink);background:var(--bg);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{max-width:100%;height:auto;display:block}
+ul,ol{list-style:none;margin:0;padding:0}
+h1,h2,h3,p{margin:0}
+a{text-decoration:none;color:inherit}
+button{font-family:inherit}
+:focus-visible{outline:3px solid var(--blue);outline-offset:3px;border-radius:8px}
+section[id]{scroll-margin-top:92px}
+.container{width:100%;max-width:1200px;margin-inline:auto;padding-inline:20px}
+.skip{position:absolute;top:-60px;inset-inline-start:12px;background:var(--green);color:#fff;padding:.5rem 1rem;border-radius:10px;z-index:3000;font-weight:700}
+.skip:focus{top:12px}
+#pg{position:fixed;top:0;inset-inline:0;height:4px;background:linear-gradient(90deg,var(--blue),var(--green-l));transform:scaleX(0);transform-origin:right;z-index:2100}
+
+/* ===================== هدر شناور ===================== */
+.hdr{position:fixed;top:10px;inset-inline:0;z-index:2000}
+.hdr-in{display:flex;align-items:center;justify-content:space-between;gap:1rem;background:rgba(255,255,255,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--line);border-radius:20px;padding:.5rem .6rem .5rem 1rem;box-shadow:0 8px 24px -16px rgba(15,31,66,.35);transition:box-shadow .3s}
+.hdr.scrolled .hdr-in{box-shadow:0 16px 34px -16px rgba(15,31,66,.45)}
+.brand{display:flex;align-items:center;gap:.7rem;min-width:0}
+.logo-frame{position:relative;flex:none;width:44px;height:44px;border-radius:13px;overflow:hidden;border:1.5px dashed #9db0cf;background:#eef3fa}
+.logo-frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+.brand-t{display:flex;flex-direction:column;line-height:1.35;min-width:0}
+.brand-t strong{font-size:1.1rem;color:var(--navy)}
+.brand-t small{font-size:.72rem;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.nav ul{display:flex;gap:.1rem}
+.nav a.lnk{position:relative;display:block;padding:.45rem .75rem;font-size:.9rem;border-radius:12px;color:var(--ink);transition:background .25s,color .25s}
+.nav a.lnk:hover{background:var(--soft)}
+.nav a.lnk.active{background:var(--soft);color:var(--blue-d);font-weight:700}
+.nav-wrap{display:flex;align-items:center;gap:.8rem}
+.hdr-cta{display:inline-flex;align-items:center;gap:.4rem;background:linear-gradient(135deg,var(--green),var(--green-d));color:#fff;font-weight:700;font-size:.88rem;padding:.55rem 1.1rem;border-radius:14px;white-space:nowrap;transition:transform .25s,box-shadow .25s}
+.hdr-cta:hover{transform:translateY(-2px);box-shadow:0 10px 20px -10px rgba(4,120,87,.9)}
+.menu-btn{display:none;width:44px;height:44px;border-radius:14px;border:0;background:var(--soft);color:var(--navy);font-size:1.5rem;cursor:pointer;align-items:center;justify-content:center}
+.scrim{position:fixed;inset:0;background:rgba(11,31,77,.5);opacity:0;pointer-events:none;transition:opacity .3s;z-index:1990}
+@media (max-width:1099px){.brand-t small{display:none}}
+@media (max-width:991px){
+  .menu-btn{display:inline-flex}
+  .nav-wrap{position:fixed;top:0;bottom:0;inset-inline-end:auto;inset-inline-start:0;left:0;right:auto;width:min(86vw,350px);background:#fff;flex-direction:column;align-items:stretch;gap:1rem;padding:5.2rem 1.2rem 1.5rem;transform:translateX(-105%);transition:transform .45s var(--ease);z-index:2001;overflow-y:auto;box-shadow:20px 0 40px -20px rgba(11,31,77,.5);border-radius:0 28px 28px 0}
+  .hdr.open .nav-wrap{transform:none}
+  .hdr.open .scrim{opacity:1;pointer-events:auto}
+  .menu-btn{position:relative;z-index:2002}
+  .nav ul{flex-direction:column;gap:.3rem}
+  .nav a.lnk{padding:.85rem 1rem;font-size:1rem}
+  .hdr-cta{justify-content:center;padding:.9rem;font-size:1rem}
+}
+
+/* ===================== دکمه‌ها ===================== */
+.btn-main,.btn-line,.btn-white,.btn-dark{position:relative;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;gap:.55rem;padding:.85rem 1.6rem;border-radius:16px;font-weight:700;font-size:.96rem;line-height:1.6;border:1.5px solid transparent;cursor:pointer;transition:transform .3s var(--ease),box-shadow .3s,background .3s,color .3s}
+.btn-main i,.btn-line i,.btn-white i,.btn-dark i{transition:transform .3s var(--ease)}
+.btn-main:hover i,.btn-line:hover i,.btn-white:hover i,.btn-dark:hover i{transform:translateX(-5px)}
+.btn-main{background:linear-gradient(135deg,var(--green),var(--green-d));color:#fff;box-shadow:0 14px 26px -14px rgba(4,120,87,.9)}
+.btn-main::before{content:"";position:absolute;top:0;bottom:0;width:60%;inset-inline-start:-80%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.35),transparent);transform:skewX(-20deg);transition:inset-inline-start .7s}
+.btn-main:hover::before{inset-inline-start:130%}
+.btn-main:hover,.btn-white:hover,.btn-dark:hover{transform:translateY(-3px)}
+.btn-line{color:var(--blue-d);border-color:#b8c8e8;background:#fff}
+.btn-line:hover{border-color:var(--blue);background:var(--soft);transform:translateY(-3px)}
+.btn-white{background:#fff;color:var(--navy)}
+.btn-dark{background:var(--navy);color:#fff}
+.cta-row{display:flex;flex-wrap:wrap;gap:.9rem}
+
+/* ===================== جایگاه تصویر ===================== */
+figure{margin:0}
+.ph{position:relative;overflow:hidden;aspect-ratio:var(--ar,16/10);border-radius:var(--r);border:2px dashed #a9bad6;background:linear-gradient(110deg,#eaf0f9 30%,#f8fbff 50%,#eaf0f9 70%);background-size:220% 100%;animation:shimmer 3.2s linear infinite;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem;color:#5a6f93;text-align:center;padding:1rem}
+.ph::before{content:"";width:44px;height:44px;opacity:.75;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48' fill='none' stroke='%235a6f93' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='5' y='8' width='38' height='32' rx='6'/%3E%3Ccircle cx='17' cy='20' r='4'/%3E%3Cpath d='M5 34l11-9 9 7 7-6 11 9'/%3E%3C/svg%3E") center/contain no-repeat}
+.ph::after{content:attr(data-label);font-size:.85rem;font-weight:700}
+.ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2;transition:transform .8s var(--ease)}
+.ph:hover img{transform:scale(1.05)}
+@keyframes shimmer{to{background-position:-220% 0}}
+
+/* ===================== عمومی ===================== */
+.sec{padding:clamp(3.2rem,7vw,6rem) 0;position:relative}
+.eyebrow{display:inline-flex;align-items:center;gap:.5rem;background:var(--mint);color:var(--green-d);font-weight:700;font-size:.82rem;padding:.3rem .9rem;border-radius:99px;margin-bottom:1rem}
+.eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 currentColor;opacity:1}50%{box-shadow:0 0 0 6px transparent;opacity:.6}}
+h2{font-size:clamp(1.35rem,2.9vw,2.1rem);line-height:1.7;font-weight:700;color:var(--navy)}
+h3{font-size:1.15rem;line-height:1.7;font-weight:700;color:var(--navy)}
+.lead{color:var(--muted);max-width:68ch}
+.sec p+p{margin-top:.9rem}
+.sec-head{max-width:820px;margin:0 auto clamp(1.8rem,4vw,3rem);text-align:center}
+.sec-head .lead{margin:1rem auto 0}
+.mt-s{margin-top:1.7rem}
+.center{text-align:center}
+.list-title{font-weight:700;color:var(--navy);margin:1.3rem 0 .8rem}
+.split{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(1.6rem,4vw,4rem);align-items:center}
+@media (max-width:991px){.split{grid-template-columns:1fr}}
+.ticks{display:grid;gap:.5rem;margin-top:1rem}
+.ticks li{position:relative;padding-inline-start:1.7rem;font-size:.95rem;line-height:1.8}
+.ticks li::before{content:"\F26A";font-family:"bootstrap-icons";position:absolute;inset-inline-start:0;top:0;color:var(--green);font-size:1.05rem}
+.more{display:inline-flex;align-items:center;gap:.4rem;font-weight:700;color:var(--blue-d);margin-top:1.2rem}
+.more i{transition:transform .3s var(--ease)}
+.more:hover{color:var(--green-d)}.more:hover i{transform:translateX(-6px)}
+
+/* ===================== Hero ===================== */
+.hero{position:relative;overflow:hidden;padding:clamp(7.2rem,13vw,9.5rem) 0 clamp(2.5rem,6vw,4rem);background:radial-gradient(700px 420px at 90% 0%,rgba(29,78,216,.14),transparent 70%),radial-gradient(600px 400px at 0% 80%,rgba(52,211,153,.2),transparent 70%),var(--bg)}
+.hero::before{content:"";position:absolute;inset:0;background-image:radial-gradient(#c9d6ef 1.2px,transparent 1.2px);background-size:26px 26px;-webkit-mask-image:linear-gradient(180deg,#000 0%,transparent 75%);mask-image:linear-gradient(180deg,#000 0%,transparent 75%);opacity:.7}
+.hero-grid{position:relative;z-index:2;display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(2rem,5vw,4rem);align-items:center}
+.hero h1{font-size:clamp(1.6rem,3.7vw,2.7rem);line-height:1.75;font-weight:700;color:var(--navy);margin-bottom:1.1rem}
+.hero h1 span{background:linear-gradient(90deg,var(--blue),var(--green));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{color:var(--muted);font-size:1.02rem;max-width:62ch}
+.hero p+p{margin-top:.9rem}
+.hero .cta-row{margin-top:1.9rem}
+.hero-vis{position:relative;padding:14px}
+.orbit{position:absolute;inset:-6% -4%;border:2px dashed #b8c8e8;border-radius:50%;animation:spin 50s linear infinite;pointer-events:none}
+@keyframes spin{to{transform:rotate(360deg)}}
+.hero-frame{--ar:4/3.3;border-radius:30px;border:2px dashed #8fa5cc;box-shadow:0 40px 70px -34px rgba(29,78,216,.5);animation:none;background:#eaf0f9;transform:rotate(-1.5deg);transition:transform .6s var(--ease)}
+.hero-vis:hover .hero-frame{transform:rotate(0)}
+.fcard{position:absolute;display:flex;align-items:center;gap:.65rem;background:#fff;color:var(--navy);font-weight:700;font-size:.86rem;padding:.65rem 1rem;border-radius:16px;box-shadow:0 20px 34px -16px rgba(15,31,66,.45);z-index:3;animation:floaty 6s ease-in-out infinite}
+.fcard i{display:grid;place-items:center;width:34px;height:34px;border-radius:11px;background:var(--blue);color:#fff;font-size:1rem}
+.fcard.c1{top:6%;inset-inline-start:-4%}
+.fcard.c2{top:42%;inset-inline-end:-5%;animation-delay:-2s;flex-direction:column;align-items:stretch;gap:.5rem}
+.fcard.c3{bottom:5%;inset-inline-start:4%;animation-delay:-4s}
+.fcard.c3 i{background:var(--green)}
+.bars{display:flex;align-items:flex-end;gap:5px;height:34px}
+.bars span{flex:1;border-radius:4px 4px 0 0;background:linear-gradient(180deg,var(--green-l),var(--green));animation:bar 2.4s ease-in-out infinite}
+.bars span:nth-child(1){height:40%}.bars span:nth-child(2){height:70%;animation-delay:-.4s}.bars span:nth-child(3){height:55%;animation-delay:-.8s}.bars span:nth-child(4){height:90%;animation-delay:-1.2s}.bars span:nth-child(5){height:65%;animation-delay:-1.6s}
+@keyframes bar{0%,100%{transform:scaleY(1)}50%{transform:scaleY(.55)}}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+.qchips{position:relative;z-index:2;display:flex;flex-wrap:wrap;gap:.6rem;margin-top:clamp(2rem,5vw,3.2rem);align-items:center}
+.qchips .lbl{font-weight:700;color:var(--muted);font-size:.88rem;margin-inline-end:.3rem}
+.qchip{display:inline-flex;align-items:center;gap:.5rem;background:#fff;border:1px solid var(--line);border-radius:99px;padding:.45rem 1rem;font-weight:700;font-size:.9rem;color:var(--navy);box-shadow:0 6px 16px -12px rgba(15,31,66,.5);transition:transform .3s var(--ease),border-color .3s,color .3s}
+.qchip:hover{transform:translateY(-3px);border-color:var(--green);color:var(--green-d)}
+@media (max-width:991px){
+  .hero-grid{grid-template-columns:1fr}
+  .hero-vis{max-width:560px;margin-inline:auto;width:100%}
+  .fcard.c1{inset-inline-start:-2%}.fcard.c2{inset-inline-end:-2%}
+}
+@media (max-width:575px){
+  .hero{padding-top:6.4rem}
+  .cta-row .btn-main,.cta-row .btn-line{width:100%}
+  .fcard{font-size:.76rem;padding:.45rem .7rem}.fcard i{width:26px;height:26px;font-size:.85rem}
+  .orbit{display:none}
+  .qchips{flex-wrap:nowrap;overflow-x:auto;margin-inline:-20px;padding:.3rem 20px;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .qchips::-webkit-scrollbar{display:none}
+  .qchip,.qchips .lbl{flex:none;scroll-snap-align:start}
+}
+
+/* ===================== محصولات (تب) ===================== */
+.tabs{display:flex;gap:.4rem;background:var(--soft);padding:.4rem;border-radius:20px;width:fit-content;max-width:100%;margin:0 auto 1.6rem;overflow-x:auto;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex:none;border:0;background:transparent;padding:.7rem 1.3rem;border-radius:15px;font-weight:700;font-size:.95rem;color:var(--navy);cursor:pointer;display:inline-flex;align-items:center;gap:.5rem;transition:background .3s,color .3s,box-shadow .3s}
+.tab:hover{background:rgba(255,255,255,.6)}
+.tab[aria-selected="true"]{background:#fff;color:var(--green-d);box-shadow:0 8px 18px -10px rgba(15,31,66,.5)}
+.panel{display:none;background:#fff;border:1px solid var(--line);border-radius:30px;padding:clamp(1.2rem,3vw,2.4rem);box-shadow:var(--shadow)}
+.panel.active{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(1.4rem,4vw,3rem);align-items:center;animation:fadeUp .6s var(--ease)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.panel h3{font-size:clamp(1.5rem,3vw,2rem);letter-spacing:.5px}
+.panel .sub{font-weight:700;color:var(--green-d);margin-top:.2rem}
+.panel .desc{color:var(--muted);margin-top:.8rem}
+.panel .ph{--ar:4/3.2}
+@media (max-width:991px){.panel.active{grid-template-columns:1fr}.panel .ph{order:-1;--ar:16/9}}
+@media (max-width:575px){.tabs{margin-inline:-20px;border-radius:0;width:auto;max-width:none;padding:.4rem 20px;margin-bottom:1.2rem}.panel{border-radius:24px}}
+
+/* ===================== راهکارها ===================== */
+.panel-soft{background:linear-gradient(160deg,#eaf1ff,#eefaf5);border-radius:36px;padding:clamp(1.4rem,4vw,3.4rem);border:1px solid var(--line)}
+.solu{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.solu li{position:relative;background:#fff;border-radius:22px;padding:1.3rem;box-shadow:0 10px 24px -18px rgba(15,31,66,.5);transition:transform .4s var(--ease),box-shadow .4s}
+.solu li:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+.solu .ic{display:grid;place-items:center;width:50px;height:50px;border-radius:15px;background:linear-gradient(135deg,var(--blue),var(--blue-d));color:#fff;font-size:1.4rem;margin-bottom:.8rem}
+.solu li:nth-child(even) .ic{background:linear-gradient(135deg,var(--green),var(--green-d))}
+.solu strong{display:block;color:var(--navy);line-height:1.7}
+.solu span{display:block;color:var(--muted);font-size:.92rem;margin-top:.3rem;line-height:1.8}
+@media (max-width:575px){.solu{grid-template-columns:1fr}.solu li{display:flex;gap:1rem;align-items:flex-start;padding:1.1rem}.solu .ic{flex:none;margin:0;width:44px;height:44px;font-size:1.2rem}.panel-soft{border-radius:26px;margin-inline:-8px}}
+
+/* ===================== توانمندی + تایم‌لاین ===================== */
+.cap-text{border-inline-start:5px solid var(--green);padding-inline-start:clamp(1rem,2.5vw,1.8rem)}
+.onyx-fig{--ar:4/3.3}
+.tl-box{margin-top:clamp(2rem,5vw,3.4rem);background:#fff;border:1px solid var(--line);border-radius:32px;padding:clamp(1.4rem,3.5vw,2.6rem);box-shadow:var(--shadow)}
+.tl-box h3{text-align:center;font-size:clamp(1.1rem,2.4vw,1.45rem);margin-bottom:2rem}
+.tl{position:relative;display:grid;grid-template-columns:repeat(5,1fr);gap:.6rem;counter-reset:s}
+.tl::before,.tl::after{content:"";position:absolute;top:28px;height:4px;border-radius:4px;inset-inline-start:10%}
+.tl::before{width:80%;background:#dbe5f6}
+.tl::after{width:0;background:linear-gradient(90deg,var(--blue),var(--green-l));transition:width 2.2s var(--ease) .3s}
+.tl.in::after{width:80%}
+.tl li{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;text-align:center;gap:.7rem;font-weight:700;font-size:.92rem;line-height:1.7;color:var(--navy)}
+.tl .node{position:relative;display:grid;place-items:center;width:60px;height:60px;border-radius:50%;background:#fff;border:4px solid var(--blue);color:var(--blue);font-size:1.4rem;transition:transform .4s var(--ease),background .3s,color .3s}
+.tl li:hover .node{transform:scale(1.12);background:var(--blue);color:#fff}
+.tl li:last-child .node{border-color:var(--green);color:var(--green)}
+.tl li:last-child:hover .node{background:var(--green);color:#fff}
+.tl .node::after{counter-increment:s;content:counter(s);position:absolute;top:-8px;inset-inline-end:-8px;width:22px;height:22px;border-radius:50%;background:var(--navy);color:#fff;font-size:.7rem;display:grid;place-items:center}
+.tl-note{max-width:78ch;margin:2rem auto 0;text-align:center;color:var(--muted)}
+@media (max-width:767px){
+  .tl{grid-template-columns:1fr;gap:1.2rem}
+  .tl::before,.tl::after{top:30px;bottom:30px;width:4px;inset-inline-start:28px;height:auto}
+  .tl::before{width:4px}
+  .tl::after{width:4px;height:0;bottom:auto;background:linear-gradient(180deg,var(--blue),var(--green-l));transition:height 2.2s var(--ease) .3s}
+  .tl.in::after{width:4px;height:calc(100% - 60px)}
+  .tl li{flex-direction:row;text-align:start;gap:1rem}
+  .tl .node{flex:none;width:58px;height:58px}
+}
+
+/* ===================== خدمات / آموزش (بنتو) ===================== */
+.bento{display:grid;grid-template-columns:1fr 1.15fr;gap:1.2rem;align-items:stretch}
+.bcard{border-radius:32px;padding:clamp(1.5rem,3.5vw,2.6rem);position:relative;overflow:hidden}
+.bcard.navy{background:linear-gradient(160deg,var(--navy),var(--navy-2));color:#fff}
+.bcard.navy h2{color:#fff}
+.bcard.navy p{color:#d3def5}
+.bcard.green{background:linear-gradient(160deg,var(--green),var(--green-d));color:#fff}
+.bcard.green h2{color:#fff}
+.bcard.green p{color:#e6fff6}
+.bcard::after{content:"";position:absolute;width:260px;height:260px;border-radius:50%;background:rgba(255,255,255,.07);bottom:-110px;inset-inline-end:-80px;pointer-events:none}
+.bcard .ph{--ar:16/8;margin-top:1.4rem;border-radius:20px;background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.4);color:#e6eeff;animation:none}
+.bcard .ph::before{filter:brightness(2)}
+.bcard .btn-white{margin-top:1.4rem}
+.btiles{display:grid;grid-template-columns:1fr 1fr;gap:1rem;align-content:start}
+.btiles .list-title{grid-column:1/-1;margin:0}
+.bt{display:flex;flex-direction:column;gap:.8rem;background:#fff;border:1px solid var(--line);border-radius:24px;padding:1.2rem;font-weight:700;font-size:.95rem;line-height:1.75;color:var(--navy);box-shadow:0 10px 24px -20px rgba(15,31,66,.6);transition:transform .4s var(--ease),border-color .3s,box-shadow .4s}
+.bt:hover{transform:translateY(-6px);border-color:var(--green);box-shadow:var(--shadow)}
+.bt i{display:grid;place-items:center;width:46px;height:46px;border-radius:14px;background:var(--mint);color:var(--green-d);font-size:1.3rem;transition:background .3s,color .3s}
+.bt:hover i{background:var(--green);color:#fff}
+.bt:nth-child(3n) i{background:#e8efff;color:var(--blue)}
+.bt:nth-child(3n):hover i{background:var(--blue);color:#fff}
+.bento.rev .bcard{order:2}
+@media (max-width:991px){.bento{grid-template-columns:1fr}.bento.rev .bcard{order:0}}
+@media (max-width:575px){
+  .btiles{grid-template-columns:1fr}
+  .bt{flex-direction:row;align-items:center;padding:.9rem 1rem}
+  .bt i{flex:none}
+  .bcard{border-radius:26px}
+}
+
+/* ===================== چرا ما ===================== */
+.why{display:flex;flex-wrap:wrap;justify-content:center;gap:1.2rem}
+.why article{position:relative;flex:1 1 calc(33.333% - 1.2rem);max-width:calc(33.333% - .8rem);min-width:270px;background:#fff;border:1px solid var(--line);border-radius:26px;padding:1.7rem 1.4rem 1.5rem;overflow:hidden;box-shadow:var(--shadow);transition:transform .45s var(--ease),border-color .3s}
+.why article:hover{transform:translateY(-8px);border-color:var(--blue)}
+.why .big{position:absolute;top:.4rem;inset-inline-end:1rem;font-size:3.6rem;font-weight:700;line-height:1;color:#eaf0fb;transition:color .4s}
+.why article:hover .big{color:#d6e3fb}
+.why .num{position:relative;display:grid;place-items:center;width:52px;height:52px;border-radius:16px;background:linear-gradient(135deg,var(--blue),var(--blue-d));color:#fff;font-size:1.45rem;margin-bottom:1rem}
+.why h3{position:relative;font-size:1.08rem;margin-bottom:.45rem}
+.why p{position:relative;color:var(--muted);font-size:.94rem}
+@media (max-width:991px){.why article{max-width:none;flex-basis:calc(50% - 1.2rem)}}
+@media (max-width:767px){
+  .why{flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;scroll-snap-type:x mandatory;margin-inline:-20px;padding:.5rem 20px 1.4rem;gap:1rem;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .why::-webkit-scrollbar{display:none}
+  .why article{flex:0 0 82%;min-width:0;scroll-snap-align:center}
+}
+@media (max-width:767px){.js .why .reveal{opacity:1;transform:none}}
+.swipe-hint{display:none;text-align:center;color:var(--muted);font-size:.82rem;margin-top:-.4rem}
+@media (max-width:767px){.swipe-hint{display:block}}
+
+/* ===================== مشتریان (مارکی) ===================== */
+.marq{position:relative;overflow:hidden;margin:2rem 0;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.marq-track{display:flex;gap:1rem;width:max-content;animation:marq 38s linear infinite}
+.marq:hover .marq-track{animation-play-state:paused}
+@keyframes marq{to{transform:translateX(50%)}}
+.logo-cell{position:relative;flex:none;overflow:hidden;width:190px;height:96px;border-radius:18px;border:2px dashed #b3c2dc;background:#fff;display:grid;place-items:center;color:#6a7da1;font-weight:700;font-size:.82rem}
+.logo-cell img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;padding:.8rem;z-index:2;background:#fff}
+.logo-cell span{position:relative;z-index:1}
+@media (max-width:575px){.logo-cell{width:150px;height:78px}.marq-track{animation-duration:30s}}
+@media (prefers-reduced-motion:reduce){.marq{overflow-x:auto}}
+
+/* ===================== مقالات ===================== */
+.acards{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin:1.6rem 0 2rem}
+@media (max-width:991px){.acards{grid-template-columns:repeat(2,1fr)}}
+.acard{background:#fff;border:1px solid var(--line);border-radius:24px;overflow:hidden;box-shadow:var(--shadow);transition:transform .45s var(--ease),border-color .3s}
+.acard:hover{transform:translateY(-7px);border-color:var(--green)}
+.acard .ph{--ar:16/9;border-radius:0;border:0;border-bottom:2px dashed #a9bad6}
+.acard .body{padding:1.1rem 1.2rem 1.3rem}
+.acard h3{font-size:1.04rem}
+.acard .more{margin-top:.6rem;font-size:.9rem}
+@media (max-width:575px){
+  .acards{grid-template-columns:1fr;gap:.8rem}
+  .acard{display:grid;grid-template-columns:104px 1fr;align-items:center;border-radius:20px}
+  .acard .ph{--ar:1/1;height:100%;border-bottom:0;border-inline-end:2px dashed #a9bad6;padding:.4rem}
+  .acard .ph::before{width:28px;height:28px}.acard .ph::after{display:none}
+  .acard .body{padding:.9rem 1rem}
+  .acard h3{font-size:.98rem}
+}
+
+/* ===================== فرم‌ها ===================== */
+.field{margin-bottom:1rem}
+.field label{display:block;font-weight:700;font-size:.9rem;color:var(--navy);margin-bottom:.35rem}
+.form-control,.form-select{display:block;width:100%;font-family:inherit;font-size:1rem;color:var(--ink);background-color:#fff;border:1.5px solid #c5d1e5;border-radius:14px;padding:.75rem 1rem;line-height:1.7;transition:border-color .25s,box-shadow .25s}
+textarea.form-control{min-height:120px;resize:vertical}
+.form-control:focus,.form-select:focus{border-color:var(--blue);box-shadow:0 0 0 4px rgba(29,78,216,.16);outline:0}
+.invalid-feedback{display:none;color:#b91c1c;font-size:.82rem;margin-top:.3rem}
+.was-validated .form-control:invalid,.was-validated .form-select:invalid{border-color:#dc2626}
+.was-validated :invalid~.invalid-feedback{display:block}
+.form-ok{margin-top:1rem;padding:.9rem 1.1rem;border-radius:14px;background:#dcfce7;color:#14532d;font-weight:700;display:flex;gap:.6rem;align-items:center}
+.form-ok[hidden]{display:none}
+.news{background:linear-gradient(135deg,var(--blue),var(--blue-d));color:#fff;overflow:hidden;border-radius:36px;padding:clamp(1.6rem,4vw,3rem);position:relative}
+.news::before{content:"";position:absolute;width:320px;height:320px;border-radius:50%;background:rgba(255,255,255,.07);top:-140px;inset-inline-start:-90px}
+.news h2{color:#fff}
+.news p{color:#dbe6ff}
+.news .eyebrow{background:rgba(255,255,255,.16);color:#fff}
+.news-form{position:relative;z-index:2;background:#fff;color:var(--ink);border-radius:24px;padding:1.4rem}
+.news-form .row-in{display:flex;gap:.7rem;align-items:flex-end}
+.news-form .field{flex:1;margin:0}
+.news-form .btn-main{white-space:nowrap}
+.news .news-form .fine{font-size:.82rem;color:var(--muted);margin-top:.9rem}
+@media (max-width:575px){.news-form .row-in{flex-direction:column;align-items:stretch}.news{border-radius:26px;margin-inline:-8px}}
+.demo-card{background:#fff;border:1px solid var(--line);border-radius:32px;padding:clamp(1.3rem,3vw,2.3rem);box-shadow:0 30px 60px -34px rgba(15,31,66,.5)}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 1rem}
+.form-grid .full{grid-column:1/-1}
+@media (max-width:575px){.form-grid{grid-template-columns:1fr}}
+.demo-card .btn-main{width:100%}
+.demo-points{display:grid;gap:.8rem;margin-top:1.4rem}
+.demo-points li{display:flex;gap:.8rem;align-items:center;font-weight:700;color:var(--navy)}
+.demo-points i{display:grid;place-items:center;flex:none;width:40px;height:40px;border-radius:12px;background:var(--mint);color:var(--green-d)}
+
+/* ===================== پشتیبانی ===================== */
+.support{display:grid;grid-template-columns:auto 1fr;gap:clamp(1.2rem,4vw,3rem);align-items:center;background:#fff;border:1px solid var(--line);border-radius:34px;padding:clamp(1.5rem,4vw,3rem);box-shadow:var(--shadow);position:relative;overflow:hidden}
+.support::after{content:"";position:absolute;width:280px;height:280px;border-radius:50%;background:var(--mint);top:-120px;inset-inline-start:-80px}
+.sup-ico{position:relative;z-index:1;display:grid;place-items:center;width:clamp(86px,13vw,130px);aspect-ratio:1;border-radius:32px;background:linear-gradient(135deg,var(--green),var(--green-d));color:#fff;font-size:clamp(2.4rem,6vw,3.8rem);animation:floaty 6s ease-in-out infinite;box-shadow:0 24px 40px -20px rgba(4,120,87,.8)}
+.support>div:last-child{position:relative;z-index:1}
+.sup-links{display:flex;flex-wrap:wrap;gap:.9rem 1.4rem;align-items:center;margin-top:1.4rem}
+.alt-link{font-weight:700;color:var(--blue-d);border-bottom:2px solid var(--green);padding-bottom:2px}
+@media (max-width:767px){.support{grid-template-columns:1fr;text-align:center}.sup-ico{margin-inline:auto}.sup-links{justify-content:center}.support .btn-main{width:100%}}
+
+/* ===================== فوتر ===================== */
+.footer{background:var(--navy);color:#cbd8f2;padding:clamp(2.8rem,6vw,4.4rem) 0 1.4rem;font-size:.93rem;border-radius:40px 40px 0 0}
+.f-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1.1fr 1.3fr;gap:2rem}
+.f-brand{font-size:1.15rem;font-weight:700;color:#fff;margin-bottom:.6rem}
+.f-toggle{display:flex;width:100%;align-items:center;justify-content:space-between;background:none;border:0;padding:0 0 .5rem;color:#fff;font-weight:700;font-size:1rem;text-align:start;position:relative;margin-bottom:.9rem;cursor:default}
+.f-toggle::after{content:"";position:absolute;bottom:0;inset-inline-start:0;width:30px;height:3px;border-radius:3px;background:var(--green-l)}
+.f-toggle i{display:none;transition:transform .3s}
+.f-links{display:grid;gap:.45rem}
+.f-links a{display:inline-block;transition:color .25s,transform .25s}
+.f-links a:hover{color:var(--green-l);transform:translateX(-5px)}
+address{font-style:normal;display:grid;gap:.5rem;margin-top:1.1rem;line-height:1.8}
+address i{color:var(--green-l);margin-inline-end:.4rem}
+.f-title{font-weight:700;color:#fff;margin-bottom:.9rem;position:relative;padding-bottom:.5rem}
+.f-title::after{content:"";position:absolute;bottom:0;inset-inline-start:0;width:30px;height:3px;border-radius:3px;background:var(--green-l)}
+.badges{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
+.badge-box{position:relative;display:grid;place-items:center;min-height:112px;background:#fff;border-radius:18px;padding:.6rem;overflow:hidden;transition:transform .3s var(--ease)}
+.badge-box:hover{transform:translateY(-4px)}
+.badge-box img{position:relative;z-index:1;max-height:92px;width:auto;margin:auto}
+.badge-box a{position:relative;z-index:1;display:grid;place-items:center;width:100%}
+.badge-ph{font-size:.72rem;font-weight:700;color:#6a7da1;text-align:center;line-height:1.6;border:1.5px dashed #b3c2dc;border-radius:12px;padding:.6rem .4rem;width:100%}
+.copy{margin-top:2.2rem;padding-top:1.2rem;border-top:1px solid rgba(255,255,255,.12);text-align:center;font-size:.85rem}
+@media (max-width:1099px){.f-grid{grid-template-columns:1fr 1fr 1fr}.f-brandcol{grid-column:1/-1}.f-badges{grid-column:span 3}.badges{max-width:340px}}
+@media (max-width:767px){
+  .footer{border-radius:30px 30px 0 0}
+  .f-grid{grid-template-columns:1fr;gap:0}
+  .f-brandcol{order:1;padding-bottom:1.4rem}
+  .f-badges{order:2;grid-column:auto;padding-bottom:1.4rem;border-bottom:1px solid rgba(255,255,255,.12)}
+  .badges{max-width:none}
+  .f-col{order:3;border-bottom:1px solid rgba(255,255,255,.12)}
+  .f-toggle{padding:1rem 0;margin:0;cursor:pointer;min-height:52px}
+  .f-toggle::after{display:none}
+  .f-toggle i{display:block}
+  .f-col.open .f-toggle i{transform:rotate(180deg)}
+  .f-links{max-height:0;overflow:hidden;transition:max-height .4s var(--ease);gap:0}
+  .f-col.open .f-links{max-height:420px;padding-bottom:.8rem}
+  .f-links a{padding:.5rem 0}
+}
+
+/* ===================== نوار پایین موبایل ===================== */
+.mbar{display:none}
+@media (max-width:767px){
+  body{padding-bottom:82px}
+  .mbar{display:flex;gap:.6rem;position:fixed;bottom:0;inset-inline:0;z-index:1800;padding:.6rem .8rem calc(.6rem + env(safe-area-inset-bottom));background:rgba(255,255,255,.94);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid var(--line);transition:transform .35s var(--ease)}
+  .mbar.hide{transform:translateY(110%)}
+  .mbar .btn-main{flex:1;padding:.75rem 1rem}
+  .mbar .btn-line{padding:.75rem 1rem}
+}
+#toTop{position:fixed;bottom:20px;inset-inline-start:16px;z-index:1700;width:46px;height:46px;border-radius:15px;border:0;background:var(--navy);color:#fff;font-size:1.3rem;display:grid;place-items:center;cursor:pointer;box-shadow:0 12px 22px -10px rgba(0,0,0,.5);opacity:0;pointer-events:none;transform:translateY(14px);transition:opacity .3s,transform .3s,bottom .3s}
+#toTop.show{opacity:1;pointer-events:auto;transform:none}
+@media (max-width:767px){#toTop{bottom:96px;width:42px;height:42px}}
+
+/* ===================== ظاهر شدن با اسکرول ===================== */
+.js .reveal{opacity:0;transform:translateY(32px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.js .reveal.from-r{transform:translateX(50px)}
+.js .reveal.from-l{transform:translateX(-50px)}
+.js .reveal.zoom{transform:scale(.94)}
+.js .reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+  .js .reveal{opacity:1;transform:none}
+  .tl::after{width:80%}
+}
+</style>
+<noscript><style>.reveal{opacity:1!important;transform:none!important}.panel{display:grid!important;margin-bottom:1rem}.tabs{display:none}.tl::after{width:80%}</style></noscript>
+</head>
+
+<body>
+<a class="skip" href="#main">پرش به محتوای اصلی</a>
+<div id="pg" aria-hidden="true"></div>
+
+<!-- ============================ هدر ============================ -->
+<header class="hdr" id="hdr">
+  <div class="container">
+    <div class="hdr-in">
+      <a class="brand" href="/" aria-label="DMS Pars - صفحه اصلی">
+        <!-- لوگو: آدرس src را عوض کنید -->
+        <span class="logo-frame"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E" width="44" height="44" alt="لوگوی شرکت نرم افزاری DMS Pars"></span>
+        <span class="brand-t"><strong>DMS Pars</strong><small>دانش‌پژوهان محاسب سرزمین پارس</small></span>
+      </a>
+      <div class="nav-wrap" id="navWrap">
+        <nav class="nav" aria-label="منوی اصلی">
+          <ul>
+            <li><a class="lnk" href="#products">محصولات نرم‌افزاری</a></li>
+            <li><a class="lnk" href="#solutions">راهکارها</a></li>
+            <li><a class="lnk" href="#services">خدمات</a></li>
+            <li><a class="lnk" href="#education">آموزش</a></li>
+            <li><a class="lnk" href="#articles">مقالات</a></li>
+            <li><a class="lnk" href="#support">پشتیبانی</a></li>
+          </ul>
+        </nav>
+        <a class="hdr-cta" href="#demo"><i class="bi bi-headset" aria-hidden="true"></i> درخواست مشاوره و دمو</a>
+      </div>
+      <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="navWrap" aria-label="باز و بسته کردن منو"><i class="bi bi-list" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <div class="scrim" id="scrim"></div>
+</header>
+
+<main id="main">
+
+<!-- ============================ ۱. Hero ============================ -->
+<section class="hero" id="top" aria-labelledby="h1">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="reveal from-r">
+        <span class="eyebrow">دانش‌پژوهان محاسب سرزمین پارس</span>
+        <h1 id="h1"><span>راهکارهای یکپارچه مدیریت سازمان؛</span> از کنترل فرآیندهای تولید تا تصمیم‌گیری‌های مالی و مدیریتی</h1>
+        <p>دانش‌پژوهان محاسب سرزمین پارس با تلفیق دانش مالی و حسابداری، شناخت فرآیندهای صنعتی و بازرگانی و توانمندی توسعه نرم‌افزار، راهکارهایی برای مدیریت یکپارچه اطلاعات و فرآیندهای سازمانی ارائه می‌دهد.</p>
+        <p>محصولات نرم‌افزاری، خدمات تخصصی مالی و حسابداری، مشاوره مدیریت و آموزش، در کنار یکدیگر به کسب‌وکارها کمک می‌کنند تا اطلاعات خود را منسجم‌تر مدیریت کرده و با شناخت دقیق‌تر عملکرد سازمان، تصمیم‌های آگاهانه‌تری بگیرند.</p>
+        <div class="cta-row">
+          <a class="btn-main" href="#products">مشاهده محصولات نرم‌افزاری <i class="bi bi-arrow-left" aria-hidden="true"></i></a>
+          <a class="btn-line" href="#demo">درخواست مشاوره و دمو</a>
+        </div>
+      </div>
+
+      <div class="hero-vis reveal from-l">
+        <span class="orbit" aria-hidden="true"></span>
+        <!-- جای تصویر یا ویدئوی Hero. برای ویدئو، <figure> را با این جایگزین کنید:
+             <video class="hero-video" src="video/hero.mp4" poster="images/hero.webp" autoplay muted loop playsinline></video> -->
+        <figure class="ph hero-frame" data-label="جای تصویر یا ویدئوی Hero">
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 3.3'%3E%3C/svg%3E" width="800" height="660" alt="نمایی از داشبورد نرم‌افزارهای یکپارچه مدیریت مالی، بازرگانی و تولید DMS Pars" fetchpriority="high">
+        </figure>
+        <span class="fcard c1"><i class="bi bi-calculator" aria-hidden="true"></i>مالی و حسابداری</span>
+        <span class="fcard c2"><span class="bars" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></span>تحلیل بهای تمام‌شده</span>
+        <span class="fcard c3"><i class="bi bi-gear-wide-connected" aria-hidden="true"></i>تولید و بازرگانی</span>
+      </div>
+    </div>
+
+    <nav class="qchips reveal" aria-label="دسترسی سریع به محصولات">
+      <span class="lbl">محصولات:</span>
+      <a class="qchip" href="#products" data-tab="onyx"><i class="bi bi-gear-wide-connected" aria-hidden="true"></i>ONYX360</a>
+      <a class="qchip" href="#products" data-tab="elite"><i class="bi bi-diagram-3" aria-hidden="true"></i>ELITE 360</a>
+      <a class="qchip" href="#products" data-tab="tajer"><i class="bi bi-boxes" aria-hidden="true"></i>تجار</a>
+      <a class="qchip" href="#products" data-tab="vitrin"><i class="bi bi-shop" aria-hidden="true"></i>ویترین</a>
+    </nav>
+  </div>
+</section>
+
+<!-- ============================ ۲. محصولات ============================ -->
+<section class="sec" id="products" aria-labelledby="h-products">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="eyebrow">محصولات نرم‌افزاری</span>
+      <h2 id="h-products">راهکارهای نرم‌افزاری متناسب با نیاز و پیچیدگی کسب‌وکار</h2>
+      <p class="lead">هر سازمان با توجه به نوع فعالیت، ساختار عملیاتی و سطح پیچیدگی فرآیندهای خود، به ابزارهای مدیریتی متفاوتی نیاز دارد. محصولات نرم‌افزاری دانش‌پژوهان محاسب سرزمین پارس با هدف یکپارچه‌سازی اطلاعات و پشتیبانی از فرآیندهای مالی، بازرگانی و تولید طراحی و توسعه یافته‌اند.</p>
+    </div>
+
+    <div class="tabs reveal" role="tablist" aria-label="محصولات نرم‌افزاری">
+      <button class="tab" role="tab" id="t-onyx" aria-controls="p-onyx" aria-selected="true" type="button"><i class="bi bi-gear-wide-connected" aria-hidden="true"></i>ONYX360</button>
+      <button class="tab" role="tab" id="t-elite" aria-controls="p-elite" aria-selected="false" tabindex="-1" type="button"><i class="bi bi-diagram-3" aria-hidden="true"></i>ELITE 360</button>
+      <button class="tab" role="tab" id="t-tajer" aria-controls="p-tajer" aria-selected="false" tabindex="-1" type="button"><i class="bi bi-boxes" aria-hidden="true"></i>تجار</button>
+      <button class="tab" role="tab" id="t-vitrin" aria-controls="p-vitrin" aria-selected="false" tabindex="-1" type="button"><i class="bi bi-shop" aria-hidden="true"></i>ویترین</button>
+    </div>
+
+    <div class="reveal">
+      <article class="panel active" role="tabpanel" id="p-onyx" aria-labelledby="t-onyx">
+        <div>
+          <h3>ONYX360</h3>
+          <p class="sub">راهکار یکپارچه مدیریت سازمان برای تولید با فرآیندهای پیچیده</p>
+          <p class="desc">ONYX360 با تمرکز بر برنامه‌ریزی و ردیابی عملیات تولید، حسابداری صنعتی و تحلیل بهای تمام‌شده، به سازمان‌های تولیدی کمک می‌کند ارتباط میان اطلاعات عملیاتی و مالی را بهتر برقرار کنند.</p>
+          <ul class="ticks">
+            <li>برنامه‌ریزی و مدیریت پیشرفته تولید</li>
+            <li>ردیابی مواد، محصولات و عملیات تولید</li>
+            <li>ارتباط اطلاعات ایستگاه‌های کاری با حسابداری صنعتی</li>
+            <li>بررسی بهای تمام‌شده و تحلیل انحرافات</li>
+            <li>پشتیبانی از فرآیندهای کنترل کیفیت و نگهداری و تعمیرات، متناسب با نیاز سازمان</li>
+          </ul>
+          <a class="more" href="#">آشنایی با ONYX360 <i class="bi bi-arrow-left" aria-hidden="true"></i></a>
+        </div>
+        <figure class="ph" data-label="جای تصویر ONYX360"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 3.2'%3E%3C/svg%3E" width="640" height="512" loading="lazy" alt="محیط نرم‌افزار ONYX360 برای مدیریت تولید و حسابداری صنعتی"></figure>
+      </article>
+
+      <article class="panel" role="tabpanel" id="p-elite" aria-labelledby="t-elite">
+        <div>
+          <h3>ELITE 360</h3>
+          <p class="sub">راهکار یکپارچه مدیریت برای کسب‌وکارهای تولیدی با پیچیدگی عملیاتی متوسط</p>
+          <p class="desc">ELITE 360 با فراهم‌کردن امکانات یکپارچه مالی، بازرگانی و برنامه‌ریزی تولید، به کسب‌وکارهای تولیدی کمک می‌کند اطلاعات و فرآیندهای اصلی خود را در یک بستر منسجم مدیریت کنند.</p>
+          <ul class="ticks">
+            <li>مدیریت مالی و حسابداری</li>
+            <li>مدیریت خرید، فروش و انبار</li>
+            <li>برنامه‌ریزی تولید بر اساس ساختار محصول</li>
+            <li>برآورد مواد، نیروی کار و سربار تولید</li>
+            <li>گزارش‌های مدیریتی و مالی</li>
+          </ul>
+          <a class="more" href="#">آشنایی با ELITE 360 <i class="bi bi-arrow-left" aria-hidden="true"></i></a>
+        </div>
+        <figure class="ph" data-label="جای تصویر ELITE 360"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 3.2'%3E%3C/svg%3E" width="640" height="512" loading="lazy" alt="محیط نرم‌افزار ELITE 360 برای مدیریت مالی، بازرگانی و برنامه‌ریزی تولید"></figure>
+      </article>
+
+      <article class="panel" role="tabpanel" id="p-tajer" aria-labelledby="t-tajer">
+        <div>
+          <h3>تجار</h3>
+          <p class="sub">نرم‌افزار یکپارچه مدیریت کسب‌وکارهای بازرگانی</p>
+          <p class="desc">راهکاری برای مدیریت فرآیندهای اصلی بازرگانی، از خرید و فروش تا انبار، حسابداری و گزارش‌گیری مدیریتی.</p>
+          <a class="more" href="#">آشنایی با نرم‌افزار تجار <i class="bi bi-arrow-left" aria-hidden="true"></i></a>
+        </div>
+        <figure class="ph" data-label="جای تصویر تجار"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 3.2'%3E%3C/svg%3E" width="640" height="512" loading="lazy" alt="محیط نرم‌افزار تجار برای مدیریت خرید، فروش، انبار و حسابداری بازرگانی"></figure>
+      </article>
+
+      <article class="panel" role="tabpanel" id="p-vitrin" aria-labelledby="t-vitrin">
+        <div>
+          <h3>ویترین</h3>
+          <p class="sub">راهکار مدیریت کسب‌وکارهای خرده‌فروشی</p>
+          <p class="desc">ویترین با تمرکز بر نیازهای کسب‌وکارهای خرده‌فروشی، امکان مدیریت اطلاعات فروش، کالاها و فرآیندهای مرتبط را فراهم می‌کند.</p>
+          <a class="more" href="#">آشنایی با نرم‌افزار ویترین <i class="bi bi-arrow-left" aria-hidden="true"></i></a>
+        </div>
+        <figure class="ph" data-label="جای تصویر ویترین"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 3.2'%3E%3C/svg%3E" width="640" height="512" loading="lazy" alt="محیط نرم‌افزار ویترین برای مدیریت فروش و کالاهای خرده‌فروشی"></figure>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ ۳. راهکارها ============================ -->
+<section class="sec" id="solutions" aria-labelledby="h-solutions" style="padding-top:0">
+  <div class="container">
+    <div class="panel-soft reveal zoom">
+      <div class="split">
+        <div>
+          <span class="eyebrow">راهکارها بر اساس نوع کسب‌وکار</span>
+          <h2 id="h-solutions">راهکار متناسب با صنعت و ساختار فعالیت شما</h2>
+          <p class="lead" style="margin-top:1rem">نیازهای مدیریتی یک کارخانه تولیدی با یک شرکت بازرگانی یا مجموعه خرده‌فروشی متفاوت است. انتخاب راهکار مناسب، به شناخت فرآیندها، حجم فعالیت و سطح پیچیدگی عملیات سازمان بستگی دارد.</p>
+          <p class="lead">دانش‌پژوهان محاسب سرزمین پارس، با ارائه محصولات و خدمات متناسب با حوزه‌های مختلف کسب‌وکار، به سازمان‌ها کمک می‌کند مسیر مناسب‌تری برای مدیریت اطلاعات و فرآیندهای خود انتخاب کنند.</p>
+          <div class="mt-s"><a class="btn-main" href="#demo">بررسی راهکارهای متناسب با کسب‌وکار من <i class="bi bi-arrow-left" aria-hidden="true"></i></a></div>
+        </div>
+        <ul class="solu stagger">
+          <li><span class="ic" aria-hidden="true"><i class="bi bi-building-gear"></i></span><p><strong>صنایع تولیدی:</strong> <span>مدیریت مالی، انبار، خرید و فروش و برنامه‌ریزی تولید</span></p></li>
+          <li><span class="ic" aria-hidden="true"><i class="bi bi-cpu"></i></span><p><strong>واحدهای تولیدی با فرآیندهای پیچیده:</strong> <span>ردیابی عملیات، تحلیل انحرافات و حسابداری صنعتی</span></p></li>
+          <li><span class="ic" aria-hidden="true"><i class="bi bi-truck"></i></span><p><strong>شرکت‌های بازرگانی:</strong> <span>یکپارچه‌سازی فرآیندهای خرید، فروش، انبار و مالی</span></p></li>
+          <li><span class="ic" aria-hidden="true"><i class="bi bi-bag-check"></i></span><p><strong>کسب‌وکارهای خرده‌فروشی:</strong> <span>مدیریت کالاها، فروش و اطلاعات مالی</span></p></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ ۴. توانمندی تخصصی ============================ -->
+<section class="sec" id="capability" aria-labelledby="h-cap" style="padding-top:clamp(1rem,3vw,2rem)">
+  <div class="container">
+    <div class="split">
+      <div class="cap-text reveal from-r">
+        <span class="eyebrow">توانمندی تخصصی ONYX360</span>
+        <h2 id="h-cap">فقط دانستن بهای تمام‌شده کافی نیست؛ باید عوامل شکل‌گیری آن را نیز شناخت.</h2>
+        <p class="lead" style="margin-top:1rem">در سازمان‌های تولیدی، بررسی بهای تمام‌شده زمانی ارزشمندتر می‌شود که اطلاعات مالی به داده‌های واقعی عملیات تولید متصل باشد.</p>
+        <p class="lead">ONYX360 با ایجاد ارتباط میان اطلاعات تولید و حسابداری صنعتی، امکان بررسی دقیق‌تر هزینه‌ها و عوامل مؤثر بر تغییرات آن‌ها را فراهم می‌کند.</p>
+        <p class="lead">از طریق ثبت و ردیابی اطلاعات عملیات، سازمان می‌تواند مواردی مانند مواد مصرف‌شده، زمان انجام عملیات، عملکرد ایستگاه‌های کاری و انحراف میان مقادیر استاندارد و واقعی را بررسی کند.</p>
+        <p class="lead">این ارتباط، زمینه‌ای برای تحلیل بهتر هزینه‌ها و شناسایی عوامل مؤثر بر عملکرد تولید فراهم می‌سازد.</p>
+      </div>
+      <figure class="ph onyx-fig reveal from-l" data-label="جای تصویر یا اینفوگرافیک ONYX360">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 3.3'%3E%3C/svg%3E" width="720" height="594" loading="lazy" alt="فلوچارت اتصال داده‌های تولید به حسابداری صنعتی در ONYX360: مواد اولیه، ایستگاه‌های کاری، عملیات تولید، محصول نهایی و تحلیل بهای تمام‌شده">
+      </figure>
+    </div>
+
+    <div class="tl-box reveal zoom">
+      <h3>از عملیات تولید تا تحلیل بهای تمام‌شده</h3>
+      <ol class="tl" aria-label="مسیر اطلاعات از مواد اولیه تا تحلیل بهای تمام‌شده">
+        <li><span class="node" aria-hidden="true"><i class="bi bi-box-seam"></i></span><span>مواد اولیه</span></li>
+        <li><span class="node" aria-hidden="true"><i class="bi bi-pc-display-horizontal"></i></span><span>ایستگاه‌های کاری</span></li>
+        <li><span class="node" aria-hidden="true"><i class="bi bi-gear-wide-connected"></i></span><span>عملیات تولید</span></li>
+        <li><span class="node" aria-hidden="true"><i class="bi bi-patch-check"></i></span><span>محصول نهایی</span></li>
+        <li><span class="node" aria-hidden="true"><i class="bi bi-graph-up-arrow"></i></span><span>حسابداری صنعتی و تحلیل بهای تمام‌شده</span></li>
+      </ol>
+      <p class="tl-note">با اتصال اطلاعات عملیاتی به اطلاعات مالی، بررسی انحرافات هزینه‌ای می‌تواند از سطح گزارش نهایی فراتر رفته و به شناخت عوامل ایجادکننده آن‌ها نزدیک‌تر شود.</p>
+      <p class="tl-note" style="margin-top:.8rem">برخی قابلیت‌ها، از جمله ردیابی عملیات، نگهداری و تعمیرات و ارزیابی عملکرد کارکنان، با توجه به ساختار و نیازهای هر سازمان قابل طراحی و پیاده‌سازی هستند.</p>
+      <div class="center mt-s"><a class="btn-main" href="#">مشاهده قابلیت‌های تخصصی ONYX360 <i class="bi bi-arrow-left" aria-hidden="true"></i></a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ ۵. خدمات ============================ -->
+<section class="sec" id="services" aria-labelledby="h-services" style="padding-top:clamp(1rem,3vw,2rem)">
+  <div class="container">
+    <div class="bento">
+      <div class="bcard navy reveal from-r">
+        <span class="eyebrow" style="background:rgba(255,255,255,.14);color:#fff">خدمات مالی، حسابداری و مشاوره</span>
+        <h2 id="h-services">فراتر از ثبت اطلاعات؛ همراهی در تحلیل و بهبود فرآیندهای مالی و مدیریتی</h2>
+        <p style="margin-top:1rem">مدیریت مؤثر سازمان، تنها به نرم‌افزار وابسته نیست. شناخت صحیح اطلاعات مالی، ساختار حسابداری، فرآیندهای سازمانی و نیازهای مدیریتی نیز نقش مهمی در کیفیت تصمیم‌گیری دارد.</p>
+        <p>دانش‌پژوهان محاسب سرزمین پارس با تکیه بر تجربه تخصصی در حوزه‌های مالی، حسابداری و مدیریت، خدمات مشاوره‌ای و اجرایی متناسب با نیاز کسب‌وکارها ارائه می‌دهد.</p>
+        <figure class="ph" data-label="جای تصویر خدمات مالی و مشاوره"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 8'%3E%3C/svg%3E" width="640" height="320" loading="lazy" alt="کارشناسان مالی در حال مشاوره و تحلیل اطلاعات حسابداری سازمان"></figure>
+        <a class="btn-white" href="#">مشاهده خدمات تخصصی <i class="bi bi-arrow-left" aria-hidden="true"></i></a>
+      </div>
+      <div class="reveal from-l">
+        <p class="list-title" style="margin-top:0">زمینه‌های خدمات:</p>
+        <ul class="btiles stagger">
+          <li class="bt"><i class="bi bi-journal-check" aria-hidden="true"></i>خدمات مالی و حسابداری</li>
+          <li class="bt"><i class="bi bi-receipt" aria-hidden="true"></i>مشاوره مالیاتی</li>
+          <li class="bt"><i class="bi bi-bar-chart-line" aria-hidden="true"></i>مدیریت و تحلیل اطلاعات مالی</li>
+          <li class="bt"><i class="bi bi-calculator" aria-hidden="true"></i>حسابداری صنعتی و بهای تمام‌شده</li>
+          <li class="bt"><i class="bi bi-diagram-2" aria-hidden="true"></i>مشاوره استقرار و بهبود فرآیندهای مالی و مدیریتی</li>
+          <li class="bt"><i class="bi bi-pc-display" aria-hidden="true"></i>مشاوره در انتخاب و پیاده‌سازی راهکارهای نرم‌افزاری سازمانی</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ ۶. آموزش ============================ -->
+<section class="sec" id="education" aria-labelledby="h-edu" style="padding-top:0">
+  <div class="container">
+    <div class="bento rev">
+      <div class="bcard green reveal from-l">
+        <span class="eyebrow" style="background:rgba(255,255,255,.18);color:#fff">آموزش</span>
+        <h2 id="h-edu">آموزش کاربردی برای ارتقای دانش و مهارت‌های حرفه‌ای</h2>
+        <p style="margin-top:1rem">دانش‌پژوهان محاسب سرزمین پارس در کنار ارائه راهکارهای نرم‌افزاری و خدمات تخصصی، در زمینه آموزش حسابداری، امور مالی، مالیات و نرم‌افزارهای کاربردی نیز فعالیت می‌کند.</p>
+        <p>برنامه‌های آموزشی با هدف ارتقای دانش تخصصی، تقویت مهارت‌های عملی و آشنایی با نیازهای واقعی محیط کار طراحی می‌شوند.</p>
+        <figure class="ph" data-label="جای تصویر دوره‌های آموزشی"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 8'%3E%3C/svg%3E" width="640" height="320" loading="lazy" alt="کلاس آموزش حسابداری و نرم‌افزارهای مالی با حضور شرکت‌کنندگان"></figure>
+        <a class="btn-white" href="#">مشاهده دوره‌های آموزشی <i class="bi bi-arrow-left" aria-hidden="true"></i></a>
+      </div>
+      <div class="reveal from-r">
+        <p class="list-title" style="margin-top:0">حوزه‌های آموزشی:</p>
+        <ul class="btiles stagger">
+          <li class="bt"><i class="bi bi-mortarboard" aria-hidden="true"></i>آموزش حسابداری و مهارت‌های موردنیاز بازار کار</li>
+          <li class="bt"><i class="bi bi-laptop" aria-hidden="true"></i>آموزش نرم‌افزارهای حسابداری و مدیریتی</li>
+          <li class="bt"><i class="bi bi-percent" aria-hidden="true"></i>آموزش مباحث مالیاتی</li>
+          <li class="bt"><i class="bi bi-calculator" aria-hidden="true"></i>آموزش کاربردی حسابداری صنعتی و بهای تمام‌شده</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ ۷. چرا ما ============================ -->
+<section class="sec" id="why" aria-labelledby="h-why" style="background:#fff">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="eyebrow">چرا دانش‌پژوهان محاسب سرزمین پارس؟</span>
+      <h2 id="h-why">ترکیب دانش مالی، شناخت فرآیندها و توانمندی نرم‌افزاری</h2>
+      <p class="lead">ارائه راهکار مؤثر برای سازمان‌ها، نیازمند درک هم‌زمان ابعاد مالی، عملیاتی و فناوری اطلاعات است. رویکرد دانش‌پژوهان محاسب سرزمین پارس بر پیوند این حوزه‌ها و پاسخ‌گویی به نیازهای واقعی کسب‌وکارها استوار است.</p>
+    </div>
+    <div class="why stagger">
+      <article><span class="big" aria-hidden="true">۱</span><span class="num" aria-hidden="true"><i class="bi bi-diagram-3"></i></span><h3>یکپارچگی اطلاعات سازمانی</h3><p>کمک به ارتباط بهتر میان اطلاعات مالی، بازرگانی و تولیدی و کاهش پراکندگی داده‌ها.</p></article>
+      <article><span class="big" aria-hidden="true">۲</span><span class="num" aria-hidden="true"><i class="bi bi-buildings"></i></span><h3>شناخت فرآیندهای صنعتی و مالی</h3><p>توجه به ساختار عملیاتی سازمان و تأثیر آن بر ثبت، تحلیل و گزارش‌گیری اطلاعات.</p></article>
+      <article><span class="big" aria-hidden="true">۳</span><span class="num" aria-hidden="true"><i class="bi bi-search"></i></span><h3>تحلیل فراتر از گزارش‌های مالی</h3><p>ایجاد زمینه برای بررسی عوامل مؤثر بر هزینه‌ها، عملکرد و تغییرات شاخص‌های مدیریتی.</p></article>
+      <article><span class="big" aria-hidden="true">۴</span><span class="num" aria-hidden="true"><i class="bi bi-bullseye"></i></span><h3>راهکار متناسب با نیاز سازمان</h3><p>توجه به نوع فعالیت، سطح پیچیدگی و فرآیندهای اختصاصی هر کسب‌وکار در انتخاب یا پیاده‌سازی راهکار.</p></article>
+      <article><span class="big" aria-hidden="true">۵</span><span class="num" aria-hidden="true"><i class="bi bi-code-slash"></i></span><h3>تلفیق تجربه مالی و توانمندی فنی</h3><p>بهره‌گیری از دانش حسابداری، مدیریت مالی، مشاوره و توسعه نرم‌افزار در طراحی راهکارهای سازمانی.</p></article>
+    </div>
+    <p class="swipe-hint" aria-hidden="true"><i class="bi bi-arrow-left-right"></i> برای مشاهده بقیه، به کناره بکشید</p>
+  </div>
+</section>
+
+<!-- ============================ ۸. تجربه همکاری ============================ -->
+<section class="sec" id="clients" aria-labelledby="h-clients">
+  <div class="container center">
+    <div class="sec-head reveal" style="margin-bottom:0">
+      <span class="eyebrow">تجربه همکاری با سازمان‌ها</span>
+      <h2 id="h-clients">اعتماد سازمان‌ها، حاصل تجربه و همکاری مستمر</h2>
+      <p class="lead">دانش‌پژوهان محاسب سرزمین پارس در مسیر فعالیت خود با مجموعه‌هایی از صنایع و کسب‌وکارهای مختلف همکاری داشته است. این تجربه‌ها، شناخت ما را از نیازهای متنوع سازمان‌ها در حوزه‌های مالی، حسابداری، نرم‌افزار و مدیریت فرآیندها گسترش داده‌اند.</p>
+      <p class="lead">لوگوهای مشتریان و مجموعه‌های همکار، بخشی از این تجربه و سابقه همکاری را نشان می‌دهند.</p>
+    </div>
+
+    <!-- لوگوها: در هر مورد src را عوض کنید و در alt نام مشتری را بنویسید. (کپی‌های مارکی به‌صورت خودکار ساخته می‌شود) -->
+    <div class="marq" aria-label="لوگوی مشتریان و مجموعه‌های همکار">
+      <ul class="marq-track">
+        <li class="logo-cell"><span>لوگوی مشتری ۱</span><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 2 1'%3E%3C/svg%3E" width="190" height="96" loading="lazy" alt="مشتری ۱ (نام مشتری را جایگزین کنید)"></li>
+        <li class="logo-cell"><span>لوگوی مشتری ۲</span><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 2 1'%3E%3C/svg%3E" width="190" height="96" loading="lazy" alt="مشتری ۲ (نام مشتری را جایگزین کنید)"></li>
+        <li class="logo-cell"><span>لوگوی مشتری ۳</span><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 2 1'%3E%3C/svg%3E" width="190" height="96" loading="lazy" alt="مشتری ۳ (نام مشتری را جایگزین کنید)"></li>
+        <li class="logo-cell"><span>لوگوی مشتری ۴</span><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 2 1'%3E%3C/svg%3E" width="190" height="96" loading="lazy" alt="مشتری ۴ (نام مشتری را جایگزین کنید)"></li>
+        <li class="logo-cell"><span>لوگوی مشتری ۵</span><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 2 1'%3E%3C/svg%3E" width="190" height="96" loading="lazy" alt="مشتری ۵ (نام مشتری را جایگزین کنید)"></li>
+        <li class="logo-cell"><span>لوگوی مشتری ۶</span><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 2 1'%3E%3C/svg%3E" width="190" height="96" loading="lazy" alt="مشتری ۶ (نام مشتری را جایگزین کنید)"></li>
+        <li class="logo-cell"><span>لوگوی مشتری ۷</span><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 2 1'%3E%3C/svg%3E" width="190" height="96" loading="lazy" alt="مشتری ۷ (نام مشتری را جایگزین کنید)"></li>
+        <li class="logo-cell"><span>لوگوی مشتری ۸</span><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 2 1'%3E%3C/svg%3E" width="190" height="96" loading="lazy" alt="مشتری ۸ (نام مشتری را جایگزین کنید)"></li>
+      </ul>
+    </div>
+
+    <div class="reveal">
+      <p class="lead" style="margin-inline:auto">در صورت وجود رضایت و مجوز انتشار، برخی از تجربه‌های همکاری می‌توانند در قالب پروژه‌ها و مطالعات موردی، همراه با شرح مسئله، راهکار اجراشده و نتایج قابل ارائه معرفی شوند.</p>
+      <div class="mt-s"><a class="btn-line" href="#">مشاهده تجربه‌های همکاری <i class="bi bi-arrow-left" aria-hidden="true"></i></a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ ۹. دانش و مقالات ============================ -->
+<section class="sec" id="articles" aria-labelledby="h-articles" style="background:#fff">
+  <div class="container">
+    <div class="sec-head reveal" style="margin-bottom:0">
+      <span class="eyebrow">دانش و مقالات</span>
+      <h2 id="h-articles">دانش تخصصی برای تصمیم‌های بهتر</h2>
+      <p class="lead">در حوزه‌های مالی، حسابداری، مالیات، نرم‌افزارهای سازمانی و مدیریت تولید، دسترسی به اطلاعات دقیق و کاربردی می‌تواند به شناخت بهتر مسائل و انتخاب راهکار مناسب کمک کند.</p>
+      <p class="lead">در بخش دانش و مقالات، مطالب تخصصی و آموزشی با هدف پاسخ‌گویی به پرسش‌های رایج کسب‌وکارها، مدیران، کارشناسان مالی و کاربران نرم‌افزارها منتشر می‌شود.</p>
+    </div>
+    <p class="list-title center" style="margin-top:2rem">موضوعات مقالات:</p>
+    <!-- هر کارت مقاله: تصویر، عنوان و لینک را عوض کنید -->
+    <div class="acards stagger">
+      <article class="acard"><figure class="ph" data-label="جای تصویر مقاله"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 9'%3E%3C/svg%3E" width="480" height="270" loading="lazy" alt="تصویر شاخص مقالات حسابداری و مدیریت مالی"></figure><div class="body"><h3>حسابداری و مدیریت مالی</h3><a class="more" href="#">مشاهده مقالات <i class="bi bi-arrow-left" aria-hidden="true"></i></a></div></article>
+      <article class="acard"><figure class="ph" data-label="جای تصویر مقاله"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 9'%3E%3C/svg%3E" width="480" height="270" loading="lazy" alt="تصویر شاخص مقالات مالیات و قوانین مرتبط"></figure><div class="body"><h3>مالیات و قوانین مرتبط</h3><a class="more" href="#">مشاهده مقالات <i class="bi bi-arrow-left" aria-hidden="true"></i></a></div></article>
+      <article class="acard"><figure class="ph" data-label="جای تصویر مقاله"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 9'%3E%3C/svg%3E" width="480" height="270" loading="lazy" alt="تصویر شاخص مقالات حسابداری صنعتی و بهای تمام‌شده"></figure><div class="body"><h3>حسابداری صنعتی و بهای تمام‌شده</h3><a class="more" href="#">مشاهده مقالات <i class="bi bi-arrow-left" aria-hidden="true"></i></a></div></article>
+      <article class="acard"><figure class="ph" data-label="جای تصویر مقاله"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 9'%3E%3C/svg%3E" width="480" height="270" loading="lazy" alt="تصویر شاخص مقالات ERP و نرم‌افزارهای سازمانی"></figure><div class="body"><h3>ERP و نرم‌افزارهای سازمانی</h3><a class="more" href="#">مشاهده مقالات <i class="bi bi-arrow-left" aria-hidden="true"></i></a></div></article>
+      <article class="acard"><figure class="ph" data-label="جای تصویر مقاله"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 9'%3E%3C/svg%3E" width="480" height="270" loading="lazy" alt="تصویر شاخص مقالات مدیریت تولید و فرآیندهای صنعتی"></figure><div class="body"><h3>مدیریت تولید و فرآیندهای صنعتی</h3><a class="more" href="#">مشاهده مقالات <i class="bi bi-arrow-left" aria-hidden="true"></i></a></div></article>
+      <article class="acard"><figure class="ph" data-label="جای تصویر مقاله"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 9'%3E%3C/svg%3E" width="480" height="270" loading="lazy" alt="تصویر شاخص مقالات آموزش نرم‌افزارها و مهارت‌های کاربردی"></figure><div class="body"><h3>آموزش نرم‌افزارها و مهارت‌های کاربردی</h3><a class="more" href="#">مشاهده مقالات <i class="bi bi-arrow-left" aria-hidden="true"></i></a></div></article>
+    </div>
+    <div class="center"><a class="btn-main" href="#">مشاهده مقالات <i class="bi bi-arrow-left" aria-hidden="true"></i></a></div>
+  </div>
+</section>
+
+<!-- ============================ ۱۰. خبرنامه ============================ -->
+<section class="sec" id="newsletter" aria-labelledby="h-news">
+  <div class="container">
+    <div class="news reveal zoom">
+      <div class="split" style="position:relative;z-index:2">
+        <div>
+          <span class="eyebrow">عضویت در خبرنامه</span>
+          <h2 id="h-news">تازه‌ترین مطالب تخصصی را از دست ندهید</h2>
+          <p style="margin-top:1rem">با عضویت در خبرنامه دانش‌پژوهان محاسب سرزمین پارس، از انتشار مقالات و مطالب آموزشی جدید در حوزه‌های مالی، حسابداری، مالیات، نرم‌افزار و مدیریت کسب‌وکار مطلع شوید.</p>
+        </div>
+        <form class="news-form needs-val" action="#" method="post" novalidate>
+          <div class="row-in">
+            <div class="field">
+              <label for="nl-email">آدرس ایمیل</label>
+              <input class="form-control" type="email" id="nl-email" name="email" autocomplete="email" dir="ltr" placeholder="name@example.com" required>
+              <div class="invalid-feedback">لطفاً یک ایمیل معتبر وارد کنید.</div>
+            </div>
+            <button class="btn-main" type="submit">عضویت در خبرنامه</button>
+          </div>
+          <p class="fine">ایمیل شما برای اطلاع‌رسانی مطالب جدید استفاده می‌شود. امکان لغو عضویت در هر زمان وجود دارد.</p>
+          <div class="form-ok" role="status" hidden><i class="bi bi-check-circle-fill" aria-hidden="true"></i> عضویت شما ثبت شد.</div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ ۱۱. درخواست مشاوره و دمو ============================ -->
+<section class="sec" id="demo" aria-labelledby="h-demo" style="padding-top:0">
+  <div class="container split">
+    <div class="reveal from-r">
+      <span class="eyebrow">درخواست مشاوره و دمو</span>
+      <h2 id="h-demo">برای انتخاب راهکار مناسب کسب‌وکار خود مشورت کنید</h2>
+      <p class="lead" style="margin-top:1rem">انتخاب نرم‌افزار سازمانی، به شناخت فرآیندها، نیازهای اطلاعاتی و سطح پیچیدگی کسب‌وکار وابسته است.</p>
+      <p class="lead">اگر به دنبال راهکاری برای مدیریت مالی، بازرگانی یا فرآیندهای تولیدی سازمان خود هستید، کارشناسان دانش‌پژوهان محاسب سرزمین پارس می‌توانند در بررسی نیازها و معرفی راهکار مناسب همراه شما باشند.</p>
+      <p class="lead">با ثبت درخواست، امکان هماهنگی برای مشاوره یا نمایش نرم‌افزار متناسب با نیاز شما فراهم می‌شود.</p>
+    </div>
+    <div class="demo-card reveal from-l">
+      <form class="needs-val" action="#" method="post" novalidate>
+        <div class="form-grid">
+          <div class="field">
+            <label for="d-name">نام و نام خانوادگی</label>
+            <input class="form-control" type="text" id="d-name" name="name" autocomplete="name" required>
+            <div class="invalid-feedback">لطفاً نام خود را وارد کنید.</div>
+          </div>
+          <div class="field">
+            <label for="d-company">نام شرکت یا سازمان</label>
+            <input class="form-control" type="text" id="d-company" name="company" autocomplete="organization" required>
+            <div class="invalid-feedback">لطفاً نام شرکت یا سازمان را وارد کنید.</div>
+          </div>
+          <div class="field">
+            <label for="d-phone">شماره تماس</label>
+            <input class="form-control" type="tel" id="d-phone" name="phone" autocomplete="tel" dir="ltr" inputmode="tel" pattern="[0-9۰-۹+\- ]{8,15}" required>
+            <div class="invalid-feedback">لطفاً شماره تماس معتبر وارد کنید.</div>
+          </div>
+          <div class="field">
+            <label for="d-field">حوزه فعالیت</label>
+            <select class="form-select" id="d-field" name="field" required>
+              <option value="" selected disabled>انتخاب کنید</option>
+              <option>تولیدی</option><option>بازرگانی</option><option>خرده‌فروشی</option><option>خدمات</option><option>سایر</option>
+            </select>
+            <div class="invalid-feedback">لطفاً حوزه فعالیت را انتخاب کنید.</div>
+          </div>
+          <div class="field full">
+            <label for="d-product">محصول موردنظر</label>
+            <select class="form-select" id="d-product" name="product" required>
+              <option value="" selected disabled>انتخاب کنید</option>
+              <option>ONYX360</option><option>ELITE 360</option><option>تجار</option><option>ویترین</option><option>هنوز مطمئن نیستم</option>
+            </select>
+            <div class="invalid-feedback">لطفاً محصول موردنظر را انتخاب کنید.</div>
+          </div>
+          <div class="field full">
+            <label for="d-msg">شرح مختصر نیاز یا مسئله</label>
+            <textarea class="form-control" id="d-msg" name="message" rows="4"></textarea>
+          </div>
+        </div>
+        <button class="btn-main" type="submit"><i class="bi bi-send" aria-hidden="true"></i> ثبت درخواست مشاوره و دمو</button>
+        <div class="form-ok" role="status" hidden><i class="bi bi-check-circle-fill" aria-hidden="true"></i> درخواست شما ثبت شد.</div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ ۱۲. پشتیبانی ============================ -->
+<section class="sec" id="support" aria-labelledby="h-support" style="padding-top:0">
+  <div class="container">
+    <div class="support reveal zoom">
+      <div class="sup-ico" aria-hidden="true"><i class="bi bi-headset"></i></div>
+      <div>
+        <span class="eyebrow">پشتیبانی کاربران</span>
+        <h2 id="h-support">همراهی با کاربران در مسیر استفاده از نرم‌افزار</h2>
+        <p class="lead" style="margin-top:.9rem">دسترسی به راهنمایی و پیگیری درخواست‌های پشتیبانی، بخشی از تجربه استفاده از نرم‌افزارهای سازمانی است.</p>
+        <p class="lead">کاربران محصولات نرم‌افزاری می‌توانند از طریق سامانه پشتیبانی، درخواست‌ها و مسائل خود را ثبت کرده و روند پیگیری آن‌ها را دنبال کنند.</p>
+        <div class="sup-links">
+          <a class="btn-main" href="#">ورود به سامانه پشتیبانی <i class="bi bi-arrow-left" aria-hidden="true"></i></a>
+          <a class="alt-link" href="#">ورود کاربران</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============================ فوتر ============================ -->
+<footer class="footer">
+  <div class="container">
+    <div class="f-grid">
+      <div class="f-brandcol">
+        <p class="f-brand">دانش‌پژوهان محاسب سرزمین پارس</p>
+        <p>ارائه‌دهنده راهکارهای نرم‌افزاری سازمانی، خدمات مالی و حسابداری، مشاوره مدیریت و آموزش تخصصی.</p>
+        <!-- آدرس و تلفن را جایگزین کنید (برای Local SEO) -->
+        <address>
+          <span><i class="bi bi-geo-alt" aria-hidden="true"></i>[آدرس فیزیکی شرکت]</span>
+          <span><i class="bi bi-telephone" aria-hidden="true"></i><span dir="ltr">[شماره تماس]</span></span>
+          <span><i class="bi bi-envelope" aria-hidden="true"></i><span dir="ltr">[ایمیل شرکت]</span></span>
+        </address>
+      </div>
+
+      <nav class="f-col" aria-label="دسترسی سریع">
+        <button class="f-toggle" type="button" aria-expanded="false">دسترسی سریع <i class="bi bi-chevron-down" aria-hidden="true"></i></button>
+        <ul class="f-links">
+          <li><a href="/">صفحه اصلی</a></li>
+          <li><a href="#">درباره شرکت</a></li>
+          <li><a href="#products">محصولات نرم‌افزاری</a></li>
+          <li><a href="#services">خدمات تخصصی</a></li>
+          <li><a href="#education">دوره‌های آموزشی</a></li>
+          <li><a href="#articles">مقالات و دانش</a></li>
+          <li><a href="#clients">تجربه‌های همکاری</a></li>
+          <li><a href="#">تماس با ما</a></li>
+        </ul>
+      </nav>
+      <nav class="f-col" aria-label="محصولات">
+        <button class="f-toggle" type="button" aria-expanded="false">محصولات <i class="bi bi-chevron-down" aria-hidden="true"></i></button>
+        <ul class="f-links">
+          <li><a href="#">ONYX360</a></li>
+          <li><a href="#">ELITE ERP360</a></li>
+          <li><a href="#">تجار</a></li>
+          <li><a href="#">ویترین</a></li>
+        </ul>
+      </nav>
+      <nav class="f-col" aria-label="ارتباط با ما">
+        <button class="f-toggle" type="button" aria-expanded="false">ارتباط با ما <i class="bi bi-chevron-down" aria-hidden="true"></i></button>
+        <ul class="f-links">
+          <li><a href="#">اطلاعات تماس</a></li>
+          <li><a href="#demo">درخواست مشاوره و دمو</a></li>
+          <li><a href="#support">سامانه پشتیبانی</a></li>
+          <li><a href="#newsletter">عضویت در خبرنامه</a></li>
+        </ul>
+      </nav>
+
+      <!-- ستون جدید: نمادها و مجوزها -->
+      <div class="f-badges">
+        <p class="f-title">نمادها و مجوزها</p>
+        <div class="badges">
+          <!-- اینماد: کد اینماد خود را به‌جای محتوای داخل این div بگذارید (span.badge-ph را پاک کنید) -->
+          <div class="badge-box" id="enamad">
+            <span class="badge-ph">جای کد اینماد<br>(کد را اینجا قرار دهید)</span>
+          </div>
+          <!-- نظام صنفی: آدرس عکس و لینک را عوض کنید -->
+          <div class="badge-box" id="senfi">
+            <a href="#" target="_blank" rel="noopener">
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E" width="92" height="92" loading="lazy" alt="نماد عضویت در نظام صنفی">
+            </a>
+            <span class="badge-ph" style="position:absolute;pointer-events:none;width:calc(100% - 1.2rem);z-index:0">جای عکس نظام صنفی</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="copy">© کلیه حقوق این وب‌سایت متعلق به دانش‌پژوهان محاسب سرزمین پارس است.</p>
+  </div>
+</footer>
+
+<!-- نوار اقدام سریع در موبایل -->
+<div class="mbar" id="mbar">
+  <a class="btn-main" href="#demo"><i class="bi bi-headset" aria-hidden="true"></i> مشاوره و دمو</a>
+  <a class="btn-line" href="#support" aria-label="پشتیبانی"><i class="bi bi-life-preserver" aria-hidden="true"></i> پشتیبانی</a>
+</div>
+<button id="toTop" type="button" aria-label="بازگشت به بالای صفحه"><i class="bi bi-arrow-up" aria-hidden="true"></i></button>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script>
+$(function () {
+  'use strict';
+  var $win = $(window), $hdr = $('#hdr'), $pg = $('#pg'), $top = $('#toTop');
+  var hasIO = 'IntersectionObserver' in window;
+
+  /* ---------- اسکرول: هدر، نوار پیشرفت، دکمه بالا ---------- */
+  function onScroll() {
+    var y = window.pageYOffset || document.documentElement.scrollTop;
+    var max = document.documentElement.scrollHeight - window.innerHeight;
+    $hdr.toggleClass('scrolled', y > 30);
+    $pg.css('transform', 'scaleX(' + (max > 0 ? Math.min(y / max, 1) : 0) + ')');
+    $top.toggleClass('show', y > 700);
+  }
+  $win.on('scroll resize', onScroll); onScroll();
+  $top.on('click', function () { $('html, body').animate({ scrollTop: 0 }, 600); });
+
+  /* ---------- منوی موبایل (کشوی کناری) ---------- */
+  var $btn = $('#menuBtn');
+  function setMenu(open) {
+    $hdr.toggleClass('open', open);
+    $btn.attr('aria-expanded', open ? 'true' : 'false').find('i').attr('class', open ? 'bi bi-x-lg' : 'bi bi-list');
+    $('body').css('overflow', open && window.innerWidth <= 991 ? 'hidden' : '');
+  }
+  $btn.on('click', function () { setMenu(!$hdr.hasClass('open')); });
+  $('#scrim').on('click', function () { setMenu(false); });
+  $('#navWrap a').on('click', function () { setMenu(false); });
+  $(document).on('keydown', function (e) { if (e.key === 'Escape') setMenu(false); });
+  $win.on('resize', function () { if (window.innerWidth > 991) setMenu(false); });
+
+  /* ---------- تب محصولات ---------- */
+  var $tabs = $('.tab');
+  function showTab(key, focus) {
+    $tabs.each(function () {
+      var on = this.id === 't-' + key;
+      $(this).attr({ 'aria-selected': on ? 'true' : 'false', tabindex: on ? 0 : -1 });
+      $('#' + $(this).attr('aria-controls')).toggleClass('active', on);
+      if (on && focus) this.focus();
+    });
+  }
+  $tabs.on('click', function () { showTab(this.id.replace('t-', ''), false); });
+  $tabs.on('keydown', function (e) {
+    var i = $tabs.index(this), n = $tabs.length, k = e.key, t = null;
+    // در RTL فلش چپ = بعدی
+    if (k === 'ArrowLeft') t = (i + 1) % n; else if (k === 'ArrowRight') t = (i - 1 + n) % n;
+    if (t !== null) { e.preventDefault(); showTab($tabs.eq(t).attr('id').replace('t-', ''), true); }
+  });
+  $('.qchip[data-tab]').on('click', function () { showTab($(this).data('tab'), false); });
+
+  /* ---------- مارکی لوگوها: ساخت کپی برای حلقه بی‌پایان ---------- */
+  $('.marq-track').each(function () {
+    var $t = $(this);
+    $t.children().clone().each(function () {
+      $(this).attr('aria-hidden', 'true').find('img').attr({ alt: '', loading: 'lazy' });
+    }).appendTo($t);
+  });
+
+  /* ---------- آکاردئون فوتر (فقط موبایل) ---------- */
+  $('.f-toggle').on('click', function () {
+    if (window.innerWidth > 767) return;
+    var $c = $(this).closest('.f-col'), open = !$c.hasClass('open');
+    $c.toggleClass('open', open);
+    $(this).attr('aria-expanded', open ? 'true' : 'false');
+  });
+
+  /* ---------- انیمیشن ظاهر شدن ---------- */
+  $('.stagger').each(function () {
+    $(this).children().each(function (i) { $(this).addClass('reveal').css('transition-delay', (i * 90) + 'ms'); });
+  });
+  $('.tl').addClass('reveal');
+  $('html').addClass('js');
+  var $items = $('.reveal');
+  if (hasIO) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        var el = en.target;
+        el.classList.add('in');
+        io.unobserve(el);
+        // بعد از پایان انیمیشن، کلاس‌ها حذف می‌شوند تا hover کارت‌ها درست کار کند (تایم‌لاین مستثنی است)
+        if (!el.classList.contains('tl')) {
+          setTimeout(function () {
+            el.classList.remove('reveal', 'in', 'from-r', 'from-l', 'zoom');
+            el.style.transitionDelay = '';
+          }, 1500);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+    $items.each(function () { io.observe(this); });
+  } else { $items.addClass('in'); }
+
+  /* ---------- هایلایت منو + مخفی‌کردن نوار موبایل روی بخش فرم ---------- */
+  var $links = $('.nav a.lnk');
+  if (hasIO) {
+    var spy = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) $links.removeClass('active').filter('[href="#' + en.target.id + '"]').addClass('active');
+      });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    $links.each(function () { var t = document.querySelector($(this).attr('href')); if (t) spy.observe(t); });
+
+    var seen = {};
+    var barIO = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { seen[e.target.id] = e.isIntersecting; });
+      var anyVisible = Object.keys(seen).some(function (k) { return seen[k]; });
+      $('#mbar').toggleClass('hide', anyVisible);
+    }, { threshold: 0.25 });
+    ['demo', 'support'].forEach(function (id) { var el = document.getElementById(id); if (el) barIO.observe(el); });
+  }
+
+  /* ---------- فرم‌ها (اعتبارسنجی سمت کاربر) ----------
+     برای ارسال واقعی، در محل TODO درخواست AJAX به سرور خودتان را بگذارید. */
+  $('form.needs-val').on('submit', function (e) {
+    e.preventDefault();
+    var f = this, $f = $(f);
+    if (!f.checkValidity()) {
+      $f.addClass('was-validated');
+      $f.find(':invalid').first().trigger('focus');
+      return;
+    }
+    // TODO: $.post('/your-endpoint', $f.serialize())
+    $f.removeClass('was-validated');
+    f.reset();
+    var $ok = $f.find('.form-ok');
+    $ok.removeAttr('hidden').hide().slideDown(250);
+    setTimeout(function () { $ok.slideUp(250); }, 5000);
+  });
+});
+</script>
+</body>
+</html>
