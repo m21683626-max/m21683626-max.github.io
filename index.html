@@ -1,608 +1,947 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl" data-theme="dark">
+<html lang="fa" dir="rtl">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>پاسخ‌یار | سامانه تیکت پشتیبانی با هوش مصنوعی</title>
-<meta name="description" content="افزونه سامانه تیکت پشتیبانی با هوش مصنوعی، پنل جداگانه برای هر مشتری و هر ادمین. پاسخ‌گویی سریع‌تر، تیم منظم‌تر.">
+<title>راهکارهای یکپارچه مدیریت سازمان و نرم‌افزار ERP | DMS Pars</title>
+<meta name="description" content="نرم‌افزار ERP، حسابداری صنعتی و بهای تمام‌شده، خدمات مالی، مشاوره و آموزش برای کسب‌وکارهای تولیدی، بازرگانی و خرده‌فروشی؛ DMS Pars.">
+<meta name="theme-color" content="#0a1a33">
+<link rel="canonical" href="https://dmspars.com/">
 
-<!-- فونت جایگزین (اگر فایل‌های ایران‌سنس و یکان بخ کنار index.html نبودند) -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vazirmatn@33.0.3/Vazirmatn-font-face.css">
+<!-- ============ Preload (برای بهینه‌شدن LCP) ============
+     مسیر فونت ایران‌سنس را مطابق فایل‌های خودتان تغییر دهید.
+     وقتی تصویر/ویدئوی Hero را گذاشتید، خط preload تصویر را از حالت کامنت خارج کنید. -->
+<link rel="preload" href="fonts/IRANSansWeb.woff2" as="font" type="font/woff2" crossorigin>
+<!-- <link rel="preload" as="image" href="images/hero.webp" fetchpriority="high"> -->
+
+<!-- Bootstrap 5 (RTL) + Bootstrap Icons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+<!-- ============ اسکیما (JSON-LD) ============ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://dmspars.com/#organization",
+      "name": "دانش‌پژوهان محاسب سرزمین پارس",
+      "alternateName": "DMS Pars",
+      "url": "https://dmspars.com/",
+      "logo": "https://dmspars.com/images/logo.png",
+      "description": "ارائه‌دهنده راهکارهای نرم‌افزاری سازمانی، خدمات مالی و حسابداری، مشاوره مدیریت و آموزش تخصصی."
+    },
+    {
+      "@type": "SoftwareApplication",
+      "name": "ONYX360",
+      "applicationCategory": "BusinessApplication",
+      "description": "راهکار یکپارچه مدیریت سازمان برای تولید با فرآیندهای پیچیده؛ برنامه‌ریزی و ردیابی تولید، حسابداری صنعتی و تحلیل بهای تمام‌شده.",
+      "publisher": { "@id": "https://dmspars.com/#organization" }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "name": "ELITE 360",
+      "applicationCategory": "BusinessApplication",
+      "description": "راهکار یکپارچه مدیریت برای کسب‌وکارهای تولیدی با پیچیدگی عملیاتی متوسط.",
+      "publisher": { "@id": "https://dmspars.com/#organization" }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "name": "تجار",
+      "applicationCategory": "BusinessApplication",
+      "description": "نرم‌افزار یکپارچه مدیریت کسب‌وکارهای بازرگانی؛ از خرید و فروش تا انبار، حسابداری و گزارش‌گیری مدیریتی.",
+      "publisher": { "@id": "https://dmspars.com/#organization" }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "name": "ویترین",
+      "applicationCategory": "BusinessApplication",
+      "description": "راهکار مدیریت کسب‌وکارهای خرده‌فروشی؛ مدیریت اطلاعات فروش، کالاها و فرآیندهای مرتبط.",
+      "publisher": { "@id": "https://dmspars.com/#organization" }
+    }
+  ]
+}
+</script>
 
 <style>
-/* ================= فونت‌ها =================
-   فایل‌های فونت را داخل پوشه fonts کنار همین فایل بگذارید.
-   اگر نام فایل‌هایتان فرق دارد، فقط مسیرها را اینجا عوض کنید. */
-@font-face{font-family:"Yekan Bakh";font-weight:400;font-display:swap;
-  src:local("Yekan Bakh"),local("YekanBakh-Regular"),url("fonts/YekanBakh-Regular.woff2") format("woff2")}
-@font-face{font-family:"Yekan Bakh";font-weight:700;font-display:swap;
-  src:local("Yekan Bakh Bold"),local("YekanBakh-Bold"),url("fonts/YekanBakh-Bold.woff2") format("woff2")}
-@font-face{font-family:"Yekan Bakh";font-weight:900;font-display:swap;
-  src:local("Yekan Bakh Black"),local("YekanBakh-Black"),url("fonts/YekanBakh-Black.woff2") format("woff2")}
-@font-face{font-family:"IRANSans";font-weight:400;font-display:swap;
-  src:local("IRANSans"),local("IRANSansX"),url("fonts/IRANSans-Regular.woff2") format("woff2")}
-@font-face{font-family:"IRANSans";font-weight:700;font-display:swap;
-  src:local("IRANSans Bold"),url("fonts/IRANSans-Bold.woff2") format("woff2")}
+/* ===================== فونت ایران‌سنس =====================
+   فایل‌های فونت را در مسیر زیر بگذارید یا آدرس را عوض کنید */
+@font-face{font-family:"IRANSans";font-weight:400;font-style:normal;font-display:swap;
+  src:local("IRANSans"),local("IRANSansWeb"),url("fonts/IRANSansWeb.woff2") format("woff2")}
+@font-face{font-family:"IRANSans";font-weight:700;font-style:normal;font-display:swap;
+  src:local("IRANSans Bold"),local("IRANSansWeb-Bold"),url("fonts/IRANSansWeb_Bold.woff2") format("woff2")}
 
+/* ===================== توکن‌های رنگ ===================== */
 :root{
-  --font-head:"Yekan Bakh","Vazirmatn","IRANSans",Tahoma,sans-serif;
-  --font-body:"IRANSans","Vazirmatn","Yekan Bakh",Tahoma,sans-serif;
-  --brand:#6d5efc; --brand2:#22d3ee; --brand3:#f472b6;
-  --grad:linear-gradient(120deg,#6d5efc 0%,#8b5cf6 45%,#22d3ee 100%);
-  --radius:20px;
-  --ease:cubic-bezier(.2,.7,.2,1);
+  --navy:#0a1a33; --navy-2:#0f2a52; --navy-3:#07142a;
+  --teal:#0f766e; --teal-2:#115e59; --teal-light:#5eead4;
+  --amber:#fbbf24; --amber-2:#f59e0b;
+  --ink:#12233d; --muted:#475569; --on-dark:#c7d3e8;
+  --bg:#f4f7fb; --white:#fff; --line:#e1e8f2;
+  --r:20px; --shadow:0 10px 30px -12px rgba(15,42,82,.18);
+  --ease:cubic-bezier(.22,.8,.3,1);
 }
-[data-theme="dark"]{
-  --bg:#0a0b1a; --bg2:#10122a; --card:rgba(255,255,255,.045); --card-b:rgba(255,255,255,.09);
-  --text:#eef0ff; --muted:#a3a8cc; --line:rgba(255,255,255,.1);
-  --shadow:0 30px 80px -20px rgba(0,0,0,.6); --nav:rgba(10,11,26,.65);
-  --mock:#12142e; --mock2:#171a3a;
-}
-[data-theme="light"]{
-  --bg:#f6f7ff; --bg2:#ffffff; --card:rgba(255,255,255,.8); --card-b:rgba(109,94,252,.14);
-  --text:#14163a; --muted:#5b6090; --line:rgba(20,22,58,.1);
-  --shadow:0 30px 70px -25px rgba(70,60,180,.35); --nav:rgba(246,247,255,.75);
-  --mock:#ffffff; --mock2:#f1f2ff;
-}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;scroll-padding-top:84px}
-body{font-family:var(--font-body);background:var(--bg);color:var(--text);line-height:1.9;overflow-x:hidden;transition:background .4s,color .4s}
-h1,h2,h3,h4{font-family:var(--font-head);line-height:1.35;font-weight:900}
-a{color:inherit;text-decoration:none}
-button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit}
-img,svg{display:block;max-width:100%}
-.wrap{width:min(1180px,92%);margin-inline:auto}
-section{position:relative;padding:110px 0}
-.grad-text{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
-.eyebrow{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;border-radius:99px;background:var(--card);border:1px solid var(--card-b);font-size:.85rem;color:var(--muted);margin-bottom:18px}
-.eyebrow i{width:8px;height:8px;border-radius:50%;background:#34d399;box-shadow:0 0 0 0 rgba(52,211,153,.6);animation:ping 2s infinite}
-@keyframes ping{70%{box-shadow:0 0 0 10px rgba(52,211,153,0)}100%{box-shadow:0 0 0 0 rgba(52,211,153,0)}}
-.sec-head{text-align:center;max-width:720px;margin:0 auto 60px}
-.sec-head h2{font-size:clamp(1.8rem,4vw,2.8rem);margin-bottom:14px}
-.sec-head p{color:var(--muted);font-size:1.05rem}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:"IRANSans","IRANSansWeb","Iran Sans",Vazirmatn,Tahoma,"Segoe UI",sans-serif;
+  font-size:1rem;line-height:1.95;color:var(--ink);background:var(--white);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{max-width:100%;height:auto;display:block}
+ul,ol{list-style:none;margin:0;padding:0}
+h1,h2,h3,p{margin:0}
+a{text-decoration:none;color:inherit}
+:focus-visible{outline:3px solid var(--amber-2);outline-offset:3px;border-radius:6px}
+section[id]{scroll-margin-top:76px}
+.container{width:100%;max-width:1200px;margin-inline:auto;padding-inline:20px}
+.skip{position:absolute;top:-60px;inset-inline-start:12px;background:var(--amber);color:var(--navy);padding:.5rem 1rem;border-radius:10px;z-index:3000;font-weight:700}
+.skip:focus{top:12px}
 
-/* ============ دکمه‌ها ============ */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 28px;border-radius:14px;font-weight:700;font-size:1rem;transition:transform .3s var(--ease),box-shadow .3s,background .3s;position:relative;overflow:hidden}
-.btn-primary{background:var(--grad);color:#fff;box-shadow:0 12px 30px -8px rgba(109,94,252,.65)}
-.btn-primary:hover{transform:translateY(-3px);box-shadow:0 18px 38px -8px rgba(109,94,252,.8)}
-.btn-primary::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.35) 50%,transparent 70%);transform:translateX(120%);transition:transform .7s}
-.btn-primary:hover::after{transform:translateX(-120%)}
-.btn-ghost{background:var(--card);border:1px solid var(--card-b)}
-.btn-ghost:hover{transform:translateY(-3px);border-color:var(--brand)}
+/* ===================== نوار پیشرفت اسکرول ===================== */
+#pg{position:fixed;top:0;inset-inline:0;height:4px;background:linear-gradient(90deg,var(--amber),var(--teal-light));transform:scaleX(0);transform-origin:right;z-index:2100}
 
-/* ============ ناوبری ============ */
-nav{position:fixed;inset:0 0 auto 0;z-index:50;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);background:var(--nav);border-bottom:1px solid transparent;transition:border-color .3s}
-nav.scrolled{border-color:var(--line)}
-.nav-in{display:flex;align-items:center;justify-content:space-between;height:72px}
-.logo{display:flex;align-items:center;gap:10px;font-family:var(--font-head);font-weight:900;font-size:1.4rem}
-.logo-mark{width:38px;height:38px;border-radius:12px;background:var(--grad);display:grid;place-items:center;box-shadow:0 8px 20px -6px rgba(109,94,252,.7)}
-.nav-links{display:flex;gap:30px;font-size:.95rem;color:var(--muted)}
-.nav-links a{position:relative;transition:color .3s}
-.nav-links a::after{content:"";position:absolute;bottom:-4px;right:0;width:0;height:2px;background:var(--grad);transition:width .3s}
-.nav-links a:hover{color:var(--text)}
-.nav-links a:hover::after{width:100%}
-.nav-actions{display:flex;align-items:center;gap:12px}
-.icon-btn{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:var(--card);border:1px solid var(--card-b);transition:transform .3s}
-.icon-btn:hover{transform:rotate(15deg)}
-.burger{display:none}
-@media(max-width:900px){
-  .nav-links,.nav-cta{display:none}
-  .burger{display:grid}
-  .nav-links.open{display:flex;flex-direction:column;position:absolute;top:72px;inset-inline:0;background:var(--bg2);padding:24px 6%;gap:18px;border-bottom:1px solid var(--line)}
+/* ===================== هدر ===================== */
+.hdr{position:fixed;top:0;inset-inline:0;z-index:2000;color:#fff;transition:background .35s,box-shadow .35s,padding .35s;padding:.9rem 0}
+.hdr-in{display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.hdr.scrolled,.hdr.open{background:rgba(255,255,255,.96);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);color:var(--ink);box-shadow:0 6px 24px -14px rgba(10,26,51,.4);padding:.5rem 0}
+.brand{display:flex;align-items:center;gap:.7rem;min-width:0}
+.logo-frame{position:relative;flex:none;width:46px;height:46px;border-radius:13px;overflow:hidden;border:1.5px dashed rgba(255,255,255,.55);background:rgba(255,255,255,.1)}
+.hdr.scrolled .logo-frame,.hdr.open .logo-frame{border-color:#9db0cf;background:#eef3fa}
+.logo-frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+.brand-t{display:flex;flex-direction:column;line-height:1.35;min-width:0}
+.brand-t strong{font-size:1.15rem;letter-spacing:.3px}
+.brand-t small{font-size:.72rem;opacity:.85;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.nav ul{display:flex;gap:.2rem}
+.nav a.lnk{position:relative;display:block;padding:.5rem .8rem;font-size:.92rem;border-radius:10px;transition:color .25s}
+.nav a.lnk::after{content:"";position:absolute;inset-inline:.8rem;bottom:2px;height:2px;background:var(--amber-2);transform:scaleX(0);transform-origin:right;transition:transform .3s var(--ease)}
+.nav a.lnk:hover::after,.nav a.lnk.active::after{transform:scaleX(1)}
+.nav-wrap{display:flex;align-items:center;gap:1rem}
+.hdr-cta{display:inline-flex;align-items:center;gap:.4rem;background:var(--amber);color:var(--navy);font-weight:700;font-size:.9rem;padding:.55rem 1.1rem;border-radius:12px;transition:transform .25s,box-shadow .25s;white-space:nowrap}
+.hdr-cta:hover{transform:translateY(-2px);box-shadow:0 8px 18px -8px rgba(245,158,11,.8)}
+.menu-btn{display:none;background:none;border:0;color:inherit;font-size:1.8rem;line-height:1;padding:.2rem .4rem;cursor:pointer}
+
+@media (max-width:1099px){
+  .brand-t small{display:none}
+}
+@media (max-width:991px){
+  .menu-btn{display:block}
+  .nav-wrap{position:absolute;top:100%;inset-inline:0;background:#fff;color:var(--ink);flex-direction:column;align-items:stretch;gap:.5rem;padding:0 20px;max-height:0;overflow:hidden;opacity:0;transition:max-height .45s var(--ease),opacity .3s,padding .3s;box-shadow:0 20px 30px -20px rgba(10,26,51,.45)}
+  .hdr.open .nav-wrap{max-height:80vh;opacity:1;padding:.8rem 20px 1.2rem;overflow-y:auto}
+  .nav ul{flex-direction:column;gap:0}
+  .nav a.lnk{padding:.75rem .4rem;border-bottom:1px solid var(--line);border-radius:0}
+  .nav a.lnk::after{display:none}
+  .nav a.lnk.active{color:var(--teal);font-weight:700}
+  .hdr-cta{justify-content:center;padding:.8rem}
 }
 
-/* ============ هیرو ============ */
-.hero{padding:150px 0 90px;overflow:hidden}
-.blob{position:absolute;border-radius:50%;filter:blur(90px);opacity:.5;z-index:0;animation:float 14s ease-in-out infinite}
-.b1{width:480px;height:480px;background:#6d5efc;top:-120px;right:-100px}
-.b2{width:420px;height:420px;background:#22d3ee;top:240px;left:-140px;animation-delay:-5s;opacity:.35}
-.b3{width:300px;height:300px;background:#f472b6;bottom:-60px;right:30%;animation-delay:-9s;opacity:.28}
-[data-theme="light"] .blob{opacity:.28}
-@keyframes float{50%{transform:translate(40px,-50px) scale(1.12)}}
-.grid-bg{position:absolute;inset:0;z-index:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:56px 56px;mask-image:radial-gradient(ellipse at 50% 30%,#000 20%,transparent 70%);-webkit-mask-image:radial-gradient(ellipse at 50% 30%,#000 20%,transparent 70%);opacity:.5}
-.hero-in{position:relative;z-index:1;display:grid;grid-template-columns:1.05fr 1fr;gap:50px;align-items:center}
-.hero h1{font-size:clamp(2.2rem,5.2vw,3.9rem);margin-bottom:20px}
-.hero p.lead{color:var(--muted);font-size:1.12rem;max-width:560px;margin-bottom:34px}
-.hero-btns{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:34px}
-.hero-points{display:flex;flex-wrap:wrap;gap:22px;color:var(--muted);font-size:.92rem}
-.hero-points span{display:flex;align-items:center;gap:8px}
-.hero-points svg{color:#34d399}
-@media(max-width:960px){.hero-in{grid-template-columns:1fr}.hero{padding-top:120px}}
+/* ===================== دکمه‌ها ===================== */
+.btn-main,.btn-ghost,.btn-brand,.btn-line{position:relative;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;gap:.55rem;padding:.85rem 1.6rem;border-radius:14px;font-weight:700;font-size:.97rem;line-height:1.6;border:1.5px solid transparent;cursor:pointer;font-family:inherit;transition:transform .3s var(--ease),box-shadow .3s,background .3s,color .3s}
+.btn-main i,.btn-ghost i,.btn-brand i,.btn-line i{transition:transform .3s var(--ease)}
+.btn-main:hover i,.btn-ghost:hover i,.btn-brand:hover i,.btn-line:hover i{transform:translateX(-5px)}
+.btn-main{background:linear-gradient(135deg,var(--amber),var(--amber-2));color:var(--navy);box-shadow:0 12px 24px -12px rgba(245,158,11,.9)}
+.btn-main::before,.btn-brand::before{content:"";position:absolute;top:0;bottom:0;width:60%;inset-inline-start:-80%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.45),transparent);transform:skewX(-20deg);transition:inset-inline-start .7s}
+.btn-main:hover::before,.btn-brand:hover::before{inset-inline-start:130%}
+.btn-main:hover,.btn-brand:hover{transform:translateY(-3px)}
+.btn-ghost{color:#fff;border-color:rgba(255,255,255,.45);background:rgba(255,255,255,.06)}
+.btn-ghost:hover{background:rgba(255,255,255,.16);transform:translateY(-3px)}
+.btn-brand{background:linear-gradient(135deg,var(--teal),var(--teal-2));color:#fff;box-shadow:0 12px 24px -12px rgba(15,118,110,.8)}
+.btn-line{color:var(--navy-2);border-color:var(--navy-2);background:transparent}
+.btn-line:hover{background:var(--navy-2);color:#fff;transform:translateY(-3px)}
+.cta-row{display:flex;flex-wrap:wrap;gap:.9rem}
 
-/* ============ ماکاپ داشبورد (تصویر محصول) ============ */
-.stage{position:relative;perspective:1400px}
-.mock{background:var(--mock);border:1px solid var(--card-b);border-radius:22px;box-shadow:var(--shadow);overflow:hidden;transform:rotateY(-7deg) rotateX(3deg);transition:transform .6s var(--ease)}
-.stage:hover .mock{transform:rotateY(0) rotateX(0)}
-.mock-bar{display:flex;align-items:center;gap:7px;padding:14px 18px;border-bottom:1px solid var(--line);background:var(--mock2)}
-.mock-bar i{width:11px;height:11px;border-radius:50%}
-.mock-bar i:nth-child(1){background:#ff5f57}.mock-bar i:nth-child(2){background:#febc2e}.mock-bar i:nth-child(3){background:#28c840}
-.mock-url{margin-inline:auto;padding:3px 40px;border-radius:8px;background:var(--bg);font-size:.72rem;color:var(--muted);direction:ltr}
-.mock-body{display:grid;grid-template-columns:170px 1fr;min-height:400px}
-.m-side{border-left:1px solid var(--line);padding:16px 12px;background:var(--mock2)}
-.m-side .item{display:flex;align-items:center;gap:8px;padding:9px 10px;border-radius:10px;font-size:.78rem;color:var(--muted);margin-bottom:4px}
-.m-side .item.on{background:rgba(109,94,252,.16);color:var(--text)}
-.m-side .item b{margin-inline-start:auto;background:var(--brand);color:#fff;border-radius:99px;font-size:.65rem;padding:0 7px}
-.m-main{padding:16px;display:flex;flex-direction:column;gap:12px}
-.m-title{display:flex;justify-content:space-between;align-items:center;font-size:.85rem;font-weight:700}
-.tag{font-size:.65rem;padding:2px 10px;border-radius:99px;background:rgba(52,211,153,.15);color:#34d399;font-weight:700}
-.chat{flex:1;display:flex;flex-direction:column;gap:10px;min-height:240px;justify-content:flex-end}
-.msg{max-width:84%;padding:10px 14px;border-radius:14px;font-size:.78rem;line-height:1.8;animation:pop .45s var(--ease) both}
-.msg.u{align-self:flex-start;background:var(--mock2);border:1px solid var(--line);border-top-right-radius:4px}
-.msg.a{align-self:flex-end;background:var(--grad);color:#fff;border-top-left-radius:4px}
-.msg small{display:flex;align-items:center;gap:5px;font-size:.62rem;opacity:.85;margin-bottom:2px}
-.typing{align-self:flex-end;display:flex;gap:4px;padding:12px 14px;border-radius:14px;background:var(--mock2);border:1px solid var(--line)}
-.typing i{width:6px;height:6px;border-radius:50%;background:var(--brand);animation:bounce 1s infinite}
-.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
-@keyframes bounce{40%{transform:translateY(-5px);opacity:.5}}
-@keyframes pop{from{opacity:0;transform:translateY(12px) scale(.96)}}
-.m-input{display:flex;gap:8px;align-items:center;padding:8px 12px;border-radius:12px;background:var(--mock2);border:1px solid var(--line);font-size:.72rem;color:var(--muted)}
-.m-input span{margin-inline-start:auto;width:28px;height:28px;border-radius:9px;background:var(--grad);display:grid;place-items:center}
-@media(max-width:560px){.mock-body{grid-template-columns:1fr}.m-side{display:none}.mock{transform:none}}
+/* ===================== جایگاه تصویر ===================== */
+figure{margin:0}
+.ph{position:relative;overflow:hidden;aspect-ratio:var(--ar,16/10);border-radius:var(--r);border:2px dashed #a9bad6;
+  background:linear-gradient(110deg,#eaf0f9 30%,#f6f9fe 50%,#eaf0f9 70%);background-size:220% 100%;animation:shimmer 3.2s linear infinite;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem;color:#5a6f93;text-align:center;padding:1rem}
+.ph::before{content:"";width:46px;height:46px;opacity:.75;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48' fill='none' stroke='%235a6f93' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='5' y='8' width='38' height='32' rx='6'/%3E%3Ccircle cx='17' cy='20' r='4'/%3E%3Cpath d='M5 34l11-9 9 7 7-6 11 9'/%3E%3C/svg%3E") center/contain no-repeat}
+.ph::after{content:attr(data-label);font-size:.85rem;font-weight:700}
+.ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2;transition:transform .8s var(--ease)}
+.ph:hover img{transform:scale(1.05)}
+.ph.on-dark{border-color:rgba(255,255,255,.35);color:#b7c6e2;background:linear-gradient(110deg,#102a52 30%,#16356a 50%,#102a52 70%);background-size:220% 100%}
+.ph.on-dark::before{filter:brightness(1.6)}
+@keyframes shimmer{to{background-position:-220% 0}}
 
-.chip{position:absolute;display:flex;align-items:center;gap:10px;padding:10px 16px;border-radius:16px;background:var(--mock);border:1px solid var(--card-b);box-shadow:var(--shadow);font-size:.8rem;font-weight:700;animation:bob 6s ease-in-out infinite;z-index:3}
-.chip em{font-style:normal;font-weight:400;color:var(--muted);display:block;font-size:.7rem}
-.chip .ic{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;color:#fff}
-.chip.c1{top:-24px;left:-10px}
-.chip.c2{bottom:40px;right:-24px;animation-delay:-2s}
-.chip.c3{bottom:-26px;left:30px;animation-delay:-4s}
-@keyframes bob{50%{transform:translateY(-12px)}}
-@media(max-width:560px){.chip.c2{right:0}.chip.c1{left:0}}
+/* ===================== عمومی سکشن‌ها ===================== */
+.sec{padding:clamp(3.5rem,8vw,6.5rem) 0;position:relative}
+.sec.alt{background:var(--bg)}
+.sec.dark{background:linear-gradient(160deg,var(--navy) 0%,var(--navy-2) 100%);color:#fff}
+.eyebrow{display:inline-flex;align-items:center;gap:.5rem;background:rgba(15,118,110,.1);color:var(--teal);font-weight:700;font-size:.82rem;padding:.3rem .9rem;border-radius:99px;margin-bottom:1rem}
+.eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor;animation:pulse 2s infinite}
+.dark .eyebrow,.hero .eyebrow{background:rgba(94,234,212,.12);color:var(--teal-light)}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 currentColor;opacity:1}50%{box-shadow:0 0 0 6px transparent;opacity:.6}}
+h2{font-size:clamp(1.4rem,3vw,2.15rem);line-height:1.65;font-weight:700;color:var(--navy)}
+.dark h2{color:#fff}
+h3{font-size:1.2rem;line-height:1.7;font-weight:700;color:var(--navy)}
+.lead{color:var(--muted);max-width:68ch}
+.dark .lead,.dark p{color:var(--on-dark)}
+.sec p+p{margin-top:.9rem}
+.sec-head{max-width:820px;margin:0 auto clamp(2rem,5vw,3.5rem);text-align:center}
+.sec-head .lead{margin-inline:auto;margin-top:1rem}
+.mt-s{margin-top:1.8rem}
+.list-title{font-weight:700;color:var(--navy);margin:1.4rem 0 .8rem}
+.split{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(1.8rem,4.5vw,4.5rem);align-items:center}
+@media (max-width:991px){.split{grid-template-columns:1fr}}
 
-/* ============ نوار قابلیت‌ها ============ */
-.marquee{padding:28px 0;border-block:1px solid var(--line);overflow:hidden;background:var(--bg2)}
-.track{display:flex;gap:56px;width:max-content;animation:scroll 30s linear infinite}
-.marquee:hover .track{animation-play-state:paused}
-.track span{display:flex;align-items:center;gap:10px;color:var(--muted);font-family:var(--font-head);font-weight:700;white-space:nowrap}
-.track svg{color:var(--brand)}
-@keyframes scroll{to{transform:translateX(50%)}}
+/* ===================== Hero ===================== */
+.hero{position:relative;color:#fff;background:radial-gradient(1200px 600px at 85% -10%,#1b4a8f 0%,transparent 60%),linear-gradient(160deg,var(--navy) 0%,var(--navy-2) 100%);padding:clamp(7.5rem,14vw,10rem) 0 clamp(5.5rem,10vw,8rem);overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:54px 54px;-webkit-mask-image:radial-gradient(ellipse at 70% 30%,#000 10%,transparent 70%);mask-image:radial-gradient(ellipse at 70% 30%,#000 10%,transparent 70%)}
+.hero::after{content:"";position:absolute;bottom:-1px;inset-inline:0;height:70px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 70' preserveAspectRatio='none'%3E%3Cpath fill='%23f4f7fb' d='M0 70V30C240 0 480 0 720 25s480 30 720 5v40z'/%3E%3C/svg%3E") center/100% 100% no-repeat}
+.blob{position:absolute;border-radius:50%;filter:blur(70px);opacity:.5;pointer-events:none}
+.blob.b1{width:340px;height:340px;background:#14b8a6;top:-80px;inset-inline-start:-80px;animation:drift 14s ease-in-out infinite}
+.blob.b2{width:300px;height:300px;background:#3b82f6;bottom:-60px;inset-inline-end:10%;animation:drift 18s ease-in-out infinite reverse}
+@keyframes drift{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(40px,30px) scale(1.15)}}
+.hero-grid{position:relative;z-index:2;display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(2rem,5vw,4rem);align-items:center}
+.hero h1{font-size:clamp(1.65rem,3.9vw,2.85rem);line-height:1.7;font-weight:700;margin-bottom:1.2rem}
+.hero h1 span{background:linear-gradient(90deg,var(--amber),var(--teal-light));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{color:var(--on-dark);font-size:1.02rem;max-width:62ch}
+.hero p+p{margin-top:.9rem}
+.hero .cta-row{margin-top:2rem}
+.hero-vis{position:relative;transform:translateY(var(--py,0px))}
+.hero-frame{--ar:4/3.2;border-width:2px;box-shadow:0 40px 70px -30px rgba(0,0,0,.7);animation:none}
+.chip{position:absolute;display:flex;align-items:center;gap:.6rem;background:rgba(255,255,255,.96);color:var(--navy);font-weight:700;font-size:.88rem;padding:.65rem 1rem;border-radius:14px;box-shadow:0 18px 30px -14px rgba(0,0,0,.55);z-index:3;animation:floaty 6s ease-in-out infinite}
+.chip i{display:grid;place-items:center;width:32px;height:32px;border-radius:10px;background:var(--teal);color:#fff;font-size:1rem}
+.chip.c1{top:8%;inset-inline-start:-6%}
+.chip.c2{top:46%;inset-inline-end:-6%;animation-delay:-2s}
+.chip.c2 i{background:var(--amber-2);color:var(--navy)}
+.chip.c3{bottom:7%;inset-inline-start:6%;animation-delay:-4s}
+.chip.c3 i{background:var(--navy-2)}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+.scroll-hint{position:absolute;bottom:90px;inset-inline-start:50%;transform:translateX(50%);z-index:3;width:26px;height:42px;border:2px solid rgba(255,255,255,.5);border-radius:20px}
+.scroll-hint::after{content:"";position:absolute;top:8px;inset-inline-start:50%;width:4px;height:8px;margin-inline-start:-2px;border-radius:4px;background:#fff;animation:wheel 1.8s infinite}
+@keyframes wheel{0%{opacity:1;transform:translateY(0)}100%{opacity:0;transform:translateY(14px)}}
+@media (max-width:991px){
+  .hero-grid{grid-template-columns:1fr}
+  .hero-vis{max-width:560px;margin-inline:auto;width:100%}
+  .chip.c1{inset-inline-start:-2%}.chip.c2{inset-inline-end:-2%}
+  .scroll-hint{display:none}
+}
+@media (max-width:575px){
+  .chip{font-size:.78rem;padding:.5rem .75rem}.chip i{width:26px;height:26px;font-size:.85rem}
+  .cta-row .btn-main,.cta-row .btn-ghost{width:100%}
+}
 
-/* ============ ویژگی‌ها ============ */
-.features{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-.fcard{position:relative;padding:32px 28px;border-radius:var(--radius);background:var(--card);border:1px solid var(--card-b);overflow:hidden;transition:transform .4s var(--ease),border-color .3s}
-.fcard::before{content:"";position:absolute;inset:0;background:radial-gradient(380px circle at var(--x,50%) var(--y,0%),rgba(109,94,252,.22),transparent 60%);opacity:0;transition:opacity .3s}
-.fcard:hover{transform:translateY(-8px);border-color:rgba(109,94,252,.5)}
-.fcard:hover::before{opacity:1}
-.fcard>*{position:relative}
-.ficon{width:56px;height:56px;border-radius:16px;display:grid;place-items:center;margin-bottom:20px;color:#fff;transition:transform .5s var(--ease)}
-.fcard:hover .ficon{transform:rotate(-8deg) scale(1.1)}
-.fcard h3{font-size:1.2rem;margin-bottom:8px}
-.fcard p{color:var(--muted);font-size:.95rem}
-.fcard.wide{grid-column:span 2}
-@media(max-width:960px){.features{grid-template-columns:1fr 1fr}.fcard.wide{grid-column:span 2}}
-@media(max-width:620px){.features{grid-template-columns:1fr}.fcard.wide{grid-column:auto}}
+/* ===================== محصولات ===================== */
+.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:1.6rem}
+@media (max-width:767px){.grid-2{grid-template-columns:1fr}}
+.pcard{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:24px;padding:1.2rem 1.2rem 1.6rem;box-shadow:var(--shadow);transition:transform .45s var(--ease),box-shadow .45s,border-color .3s}
+.pcard:hover{transform:translateY(-8px);box-shadow:0 28px 50px -22px rgba(15,42,82,.35);border-color:var(--teal)}
+.pcard .ph{--ar:16/8.5;border-radius:16px}
+.p-ico{display:grid;place-items:center;width:52px;height:52px;margin:-1.7rem 1rem .6rem;border-radius:16px;background:linear-gradient(135deg,var(--teal),var(--teal-2));color:#fff;font-size:1.5rem;position:relative;z-index:3;box-shadow:0 10px 20px -8px rgba(15,118,110,.8);transition:transform .5s var(--ease)}
+.pcard:hover .p-ico{transform:rotate(-8deg) scale(1.1)}
+.pcard h3{font-size:1.45rem;padding-inline:1rem;letter-spacing:.5px}
+.pcard .sub{padding-inline:1rem;font-weight:700;color:var(--teal);font-size:.95rem;line-height:1.8;margin-top:.1rem}
+.pcard .desc{padding-inline:1rem;color:var(--muted);font-size:.95rem;margin-top:.7rem}
+.ticks{padding-inline:1rem;margin-top:1rem;display:grid;gap:.45rem}
+.ticks li{position:relative;padding-inline-start:1.7rem;font-size:.93rem;color:var(--ink);line-height:1.8}
+.ticks li::before{content:"\F26A";font-family:"bootstrap-icons";position:absolute;inset-inline-start:0;top:0;color:var(--teal);font-size:1.05rem}
+.more{margin:auto 1rem 0;padding-top:1.2rem;display:inline-flex;align-items:center;gap:.4rem;font-weight:700;color:var(--navy-2);width:fit-content}
+.more i{transition:transform .3s var(--ease)}
+.more:hover{color:var(--teal)}.more:hover i{transform:translateX(-6px)}
+.pcard .desc+.more,.pcard .ticks+.more{margin-top:auto}
 
-/* ============ هوش مصنوعی ============ */
-.ai{background:var(--bg2)}
-.ai-in{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
-.ai h2{font-size:clamp(1.8rem,4vw,2.7rem);margin-bottom:16px}
-.ai p{color:var(--muted);margin-bottom:24px}
-.checks{list-style:none;display:grid;gap:14px}
-.checks li{display:flex;gap:12px;align-items:flex-start}
-.checks li svg{flex:none;margin-top:5px;color:#34d399}
-.orb-wrap{position:relative;display:grid;place-items:center;min-height:440px}
-.orb{width:230px;height:230px;border-radius:50%;background:radial-gradient(circle at 30% 30%,#a78bfa,#6d5efc 45%,#22d3ee);box-shadow:0 0 90px 10px rgba(109,94,252,.55),inset 0 0 50px rgba(255,255,255,.35);animation:breathe 5s ease-in-out infinite;display:grid;place-items:center;position:relative;z-index:2}
-@keyframes breathe{50%{transform:scale(1.07)}}
-.ring{position:absolute;border-radius:50%;border:1px dashed var(--card-b);animation:spin 30s linear infinite}
-.ring.r1{width:340px;height:340px}.ring.r2{width:450px;height:450px;animation-direction:reverse;animation-duration:44s}
-@keyframes spin{to{transform:rotate(360deg)}}
-.sat{position:absolute;padding:8px 16px;border-radius:99px;background:var(--mock);border:1px solid var(--card-b);font-size:.78rem;font-weight:700;box-shadow:var(--shadow);animation:bob 5s ease-in-out infinite;z-index:3}
-.sat.s1{top:40px;right:8%}.sat.s2{top:160px;left:0;animation-delay:-1.5s}.sat.s3{bottom:60px;right:2%;animation-delay:-3s}.sat.s4{bottom:20px;left:12%;animation-delay:-4s}
-@media(max-width:960px){.ai-in{grid-template-columns:1fr}.orb-wrap{min-height:380px}.ring.r2{width:340px;height:340px}.ring.r1{width:270px;height:270px}}
+/* ===================== راهکارها ===================== */
+.solu{display:grid;gap:1rem}
+.solu li{display:flex;gap:1rem;align-items:flex-start;background:var(--bg);border:1px solid var(--line);border-radius:18px;padding:1.1rem 1.2rem;transition:transform .4s var(--ease),background .3s,box-shadow .4s}
+.solu li:hover{transform:translateX(-8px);background:#fff;box-shadow:var(--shadow)}
+.solu .ic{flex:none;display:grid;place-items:center;width:48px;height:48px;border-radius:14px;background:rgba(15,118,110,.12);color:var(--teal);font-size:1.4rem}
+.solu strong{color:var(--navy)}
+.solu span{color:var(--muted);font-size:.95rem;display:block}
 
-/* ============ مراحل ============ */
-.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;counter-reset:s;position:relative}
-.steps::before{content:"";position:absolute;top:34px;inset-inline:12%;height:2px;background:repeating-linear-gradient(90deg,var(--brand) 0 8px,transparent 8px 18px);opacity:.5}
-.step{text-align:center;position:relative}
-.step .num{width:68px;height:68px;border-radius:50%;margin:0 auto 18px;display:grid;place-items:center;background:var(--bg);border:2px solid var(--brand);font-family:var(--font-head);font-weight:900;font-size:1.5rem;transition:.4s var(--ease);position:relative;z-index:1}
-.step:hover .num{background:var(--grad);color:#fff;transform:scale(1.12) rotate(8deg);border-color:transparent}
-.step h3{font-size:1.1rem;margin-bottom:6px}
-.step p{color:var(--muted);font-size:.9rem}
-@media(max-width:900px){.steps{grid-template-columns:1fr 1fr}.steps::before{display:none}}
-@media(max-width:520px){.steps{grid-template-columns:1fr}}
+/* ===================== ONYX360 + فلوچارت ===================== */
+.flow-box{margin-top:clamp(2rem,5vw,3.5rem);background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:26px;padding:clamp(1.3rem,3vw,2.2rem)}
+.flow-box h3{color:#fff;text-align:center;margin-bottom:1.6rem}
+.flow{display:flex;align-items:stretch;justify-content:center;gap:.4rem}
+.flow li{position:relative;flex:1;display:flex;flex-direction:column;align-items:center;gap:.6rem;text-align:center;font-weight:700;font-size:.92rem;line-height:1.7;color:#fff;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:18px;padding:1.1rem .7rem;margin-inline-end:34px;transition:transform .35s var(--ease),background .3s}
+.flow li:last-child{margin-inline-end:0;background:linear-gradient(135deg,rgba(15,118,110,.55),rgba(17,94,89,.4));border-color:var(--teal-light)}
+.flow li:hover{transform:translateY(-6px);background:rgba(255,255,255,.15)}
+.flow li i{display:grid;place-items:center;width:46px;height:46px;border-radius:14px;background:var(--amber);color:var(--navy);font-size:1.3rem}
+.flow li:not(:last-child)::after{content:"\F12F";font-family:"bootstrap-icons";position:absolute;top:50%;inset-inline-end:-30px;transform:translateY(-50%);color:var(--amber);font-size:1.3rem;animation:nudge 1.4s ease-in-out infinite}
+@keyframes nudge{0%,100%{transform:translate(0,-50%)}50%{transform:translate(-7px,-50%)}}
+.flow-note{max-width:78ch;margin:1.6rem auto 0;text-align:center}
+@media (max-width:991px){
+  .flow{flex-direction:column;align-items:stretch}
+  .flow li{flex-direction:row;text-align:start;margin-inline-end:0;margin-bottom:34px;padding:.9rem 1.1rem}
+  .flow li:last-child{margin-bottom:0}
+  .flow li:not(:last-child)::after{content:"\F128";top:auto;bottom:-31px;inset-inline-end:auto;inset-inline-start:50%;margin-inline-start:-10px;transform:none;animation:nudgeY 1.4s ease-in-out infinite}
+}
+@keyframes nudgeY{0%,100%{transform:translateY(0)}50%{transform:translateY(7px)}}
+.onyx-fig{--ar:4/3.4}
 
-/* ============ پنل‌ها (تب‌ها) ============ */
-.panels{background:var(--bg2)}
-.tabs{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin-bottom:38px}
-.tab{padding:12px 24px;border-radius:14px;background:var(--card);border:1px solid var(--card-b);font-weight:700;font-size:.95rem;transition:.3s var(--ease)}
-.tab:hover{transform:translateY(-2px)}
-.tab.on{background:var(--grad);color:#fff;border-color:transparent;box-shadow:0 12px 28px -8px rgba(109,94,252,.6)}
-.panel-view{display:grid;grid-template-columns:1fr 1.15fr;gap:44px;align-items:center;animation:fadeUp .6s var(--ease)}
-@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}}
-.panel-view h3{font-size:1.7rem;margin-bottom:12px}
-.panel-view>div>p{color:var(--muted);margin-bottom:20px}
-.mini{background:var(--mock);border:1px solid var(--card-b);border-radius:20px;padding:20px;box-shadow:var(--shadow)}
-.mini-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;font-weight:700;font-size:.9rem}
-.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px}
-.kpi{padding:12px;border-radius:14px;background:var(--mock2);border:1px solid var(--line)}
-.kpi small{color:var(--muted);font-size:.68rem;display:block}
-.kpi b{font-family:var(--font-head);font-size:1.3rem}
-.rows{display:grid;gap:8px}
-.row{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:12px;background:var(--mock2);border:1px solid var(--line);font-size:.8rem;animation:pop .5s var(--ease) both}
-.row:nth-child(2){animation-delay:.08s}.row:nth-child(3){animation-delay:.16s}.row:nth-child(4){animation-delay:.24s}
-.av{width:34px;height:34px;border-radius:50%;flex:none;display:grid;place-items:center;color:#fff;font-weight:700;font-size:.8rem}
-.row .grow{flex:1;min-width:0}
-.row .grow small{display:block;color:var(--muted);font-size:.68rem}
-.st{font-size:.65rem;padding:2px 10px;border-radius:99px;font-weight:700}
-.st.ok{background:rgba(52,211,153,.15);color:#34d399}.st.wait{background:rgba(251,191,36,.15);color:#fbbf24}.st.new{background:rgba(109,94,252,.18);color:#a99dff}.st.hot{background:rgba(244,114,182,.18);color:#f472b6}
-.bars{display:flex;align-items:flex-end;gap:7px;height:70px;margin-bottom:16px;padding:0 4px}
-.bars i{flex:1;border-radius:6px 6px 2px 2px;background:var(--grad);animation:grow 1s var(--ease) both;transform-origin:bottom}
-@keyframes grow{from{transform:scaleY(0)}}
-@media(max-width:960px){.panel-view{grid-template-columns:1fr}}
+/* ===================== خدمات / آموزش ===================== */
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1rem;margin-top:.6rem}
+.tile{display:flex;align-items:center;gap:.9rem;background:#fff;border:1px solid var(--line);border-radius:16px;padding:1rem 1.1rem;font-weight:700;font-size:.95rem;line-height:1.7;color:var(--navy);box-shadow:0 6px 18px -14px rgba(15,42,82,.4);transition:transform .35s var(--ease),border-color .3s,box-shadow .35s}
+.tile:hover{transform:translateY(-5px);border-color:var(--teal);box-shadow:var(--shadow)}
+.tile i{flex:none;display:grid;place-items:center;width:42px;height:42px;border-radius:12px;background:linear-gradient(135deg,var(--teal),var(--teal-2));color:#fff;font-size:1.15rem}
+.tiles.cols-2{grid-template-columns:repeat(2,1fr)}
+@media (max-width:575px){.tiles.cols-2{grid-template-columns:1fr}}
+.side-fig{--ar:1/1.05}
+@media (max-width:991px){.side-fig{--ar:16/10}}
 
-/* ============ امنیت/اعداد ============ */
-.cta-band{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
-.band{padding:26px;border-radius:var(--radius);background:var(--card);border:1px solid var(--card-b);text-align:center;transition:.4s var(--ease)}
-.band:hover{transform:translateY(-6px)}
-.band svg{margin:0 auto 12px;color:var(--brand2)}
-.band h4{font-size:1rem;margin-bottom:4px}
-.band p{font-size:.85rem;color:var(--muted)}
-@media(max-width:900px){.cta-band{grid-template-columns:1fr 1fr}}
+/* ===================== چرا ما ===================== */
+.why{display:flex;flex-wrap:wrap;justify-content:center;gap:1.3rem}
+.why article{flex:1 1 calc(33.333% - 1.3rem);min-width:260px;position:relative;background:#fff;border:1px solid var(--line);border-radius:22px;padding:1.6rem 1.4rem;box-shadow:var(--shadow);overflow:hidden;transition:transform .45s var(--ease),box-shadow .45s}
+.why article::before{content:"";position:absolute;top:0;inset-inline:0;height:4px;background:linear-gradient(90deg,var(--teal),var(--amber));transform:scaleX(0);transform-origin:right;transition:transform .5s var(--ease)}
+.why article:hover{transform:translateY(-8px);box-shadow:0 28px 50px -24px rgba(15,42,82,.4)}
+.why article:hover::before{transform:scaleX(1)}
+.why .num{display:grid;place-items:center;width:50px;height:50px;border-radius:15px;background:rgba(15,118,110,.12);color:var(--teal);font-size:1.45rem;margin-bottom:1rem;transition:background .3s,color .3s}
+.why article:hover .num{background:var(--teal);color:#fff}
+.why h3{font-size:1.08rem;margin-bottom:.45rem}
+.why p{color:var(--muted);font-size:.94rem}
+@media (min-width:992px){.why article{max-width:calc(33.333% - .9rem)}}
 
-/* ============ سوالات ============ */
-.faq{background:var(--bg2)}
-.faq-list{max-width:820px;margin:0 auto;display:grid;gap:12px}
-details{border-radius:16px;background:var(--card);border:1px solid var(--card-b);transition:border-color .3s}
-details[open]{border-color:rgba(109,94,252,.55)}
-summary{list-style:none;cursor:pointer;padding:20px 24px;display:flex;justify-content:space-between;align-items:center;font-weight:700;font-family:var(--font-head);font-size:1.05rem}
-summary::-webkit-details-marker{display:none}
-summary::after{content:"+";font-size:1.6rem;line-height:1;color:var(--brand);transition:transform .35s var(--ease)}
-details[open] summary::after{transform:rotate(45deg)}
-details p{padding:0 24px 22px;color:var(--muted);animation:fadeUp .4s var(--ease)}
+/* ===================== مشتریان ===================== */
+.logos{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin:2rem 0}
+@media (max-width:767px){.logos{grid-template-columns:repeat(2,1fr)}}
+@media (min-width:768px) and (max-width:991px){.logos{grid-template-columns:repeat(4,1fr)}}
+.logos li{--ar:2/1}
+.logo-cell{position:relative;overflow:hidden;aspect-ratio:2/1;border-radius:16px;border:2px dashed #b3c2dc;background:#fff;display:grid;place-items:center;color:#6a7da1;font-weight:700;font-size:.82rem;transition:transform .35s var(--ease),border-color .3s,box-shadow .35s}
+.logo-cell:hover{transform:translateY(-5px) scale(1.03);border-color:var(--teal);box-shadow:var(--shadow)}
+.logo-cell img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;padding:.8rem;z-index:2;background:#fff}
+.logo-cell span{position:relative;z-index:1}
+.center{text-align:center}
+.center .lead{margin-inline:auto}
 
-/* ============ فراخوان نهایی ============ */
-.final{padding:90px 0}
-.final-box{position:relative;overflow:hidden;border-radius:32px;padding:70px 40px;text-align:center;background:var(--grad);color:#fff;box-shadow:0 40px 90px -30px rgba(109,94,252,.8)}
-.final-box::before,.final-box::after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.14)}
-.final-box::before{width:340px;height:340px;top:-140px;left:-80px;animation:float 12s ease-in-out infinite}
-.final-box::after{width:260px;height:260px;bottom:-110px;right:-60px;animation:float 15s ease-in-out infinite reverse}
-.final-box>*{position:relative;z-index:1}
-.final-box h2{font-size:clamp(1.8rem,4vw,2.8rem);margin-bottom:14px}
-.final-box p{max-width:560px;margin:0 auto 30px;opacity:.92}
-.final-box .btn{background:#fff;color:#4a3fd6}
-.final-box .btn:hover{transform:translateY(-3px) scale(1.03)}
-.ticket-art{width:150px;margin:0 auto 24px;animation:bob 5s ease-in-out infinite}
+/* ===================== مقالات ===================== */
+.acards{display:grid;grid-template-columns:repeat(3,1fr);gap:1.3rem;margin:1.8rem 0 2.2rem}
+@media (max-width:991px){.acards{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:575px){.acards{grid-template-columns:1fr}}
+.acard{background:#fff;border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:var(--shadow);transition:transform .45s var(--ease),box-shadow .45s}
+.acard:hover{transform:translateY(-8px);box-shadow:0 28px 50px -24px rgba(15,42,82,.4)}
+.acard .ph{--ar:16/9;border-radius:0;border:0;border-bottom:2px dashed #a9bad6}
+.acard .body{padding:1.1rem 1.2rem 1.3rem;display:flex;flex-direction:column;gap:.5rem}
+.acard h3{font-size:1.05rem}
+.acard a.more{margin:0;padding:0;font-size:.9rem}
 
-footer{padding:50px 0 34px;border-top:1px solid var(--line);color:var(--muted);font-size:.9rem}
-.foot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px}
-.foot .links{display:flex;gap:22px}
-.foot a:hover{color:var(--text)}
+/* ===================== فرم‌ها ===================== */
+.field{margin-bottom:1rem}
+.field label{display:block;font-weight:700;font-size:.9rem;color:var(--navy);margin-bottom:.35rem}
+.form-control,.form-select{display:block;width:100%;font-family:inherit;font-size:.95rem;color:var(--ink);background-color:#fff;border:1.5px solid #c5d1e5;border-radius:12px;padding:.7rem 1rem;line-height:1.7;transition:border-color .25s,box-shadow .25s}
+.form-select{padding-inline-end:1rem}
+textarea.form-control{min-height:120px;resize:vertical}
+.form-control:focus,.form-select:focus{border-color:var(--teal);box-shadow:0 0 0 4px rgba(15,118,110,.18);outline:0}
+.invalid-feedback{display:none;color:#b91c1c;font-size:.82rem;margin-top:.3rem}
+.was-validated .form-control:invalid,.was-validated .form-select:invalid{border-color:#dc2626}
+.was-validated :invalid~.invalid-feedback{display:block}
+.form-ok{margin-top:1rem;padding:.9rem 1.1rem;border-radius:12px;background:#dcfce7;color:#14532d;font-weight:700;display:flex;gap:.6rem;align-items:center}
+.form-ok[hidden]{display:none}
+.news{background:linear-gradient(135deg,var(--teal) 0%,var(--teal-2) 100%);color:#fff;overflow:hidden}
+.news::before,.news::after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.07);pointer-events:none}
+.news::before{width:340px;height:340px;top:-140px;inset-inline-start:-90px}
+.news::after{width:260px;height:260px;bottom:-120px;inset-inline-end:-60px}
+.news h2{color:#fff}
+.news p{color:#e6fffb}
+.news .eyebrow{background:rgba(255,255,255,.16);color:#fff}
+.news-form{position:relative;z-index:2;background:#fff;color:var(--ink);border-radius:22px;padding:1.5rem;box-shadow:0 30px 50px -26px rgba(0,0,0,.5)}
+.news-form .row-in{display:flex;gap:.7rem}
+.news-form .row-in .field{flex:1;margin:0}
+.news-form .btn-brand{white-space:nowrap}
+.fine,.news .news-form .fine{font-size:.82rem;color:var(--muted);margin-top:.9rem}
+@media (max-width:575px){.news-form .row-in{flex-direction:column}.news-form .btn-brand{width:100%}}
+.demo-card{background:#fff;border:1px solid var(--line);border-radius:26px;padding:clamp(1.3rem,3vw,2.2rem);box-shadow:0 30px 60px -30px rgba(15,42,82,.4)}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 1rem}
+.form-grid .full{grid-column:1/-1}
+@media (max-width:575px){.form-grid{grid-template-columns:1fr}}
+.demo-card .btn-brand{width:100%}
+.demo-points{display:grid;gap:.9rem;margin-top:1.4rem}
+.demo-points li{display:flex;gap:.8rem;align-items:center;font-weight:700;color:var(--navy)}
+.demo-points i{display:grid;place-items:center;flex:none;width:40px;height:40px;border-radius:12px;background:rgba(15,118,110,.12);color:var(--teal)}
 
-/* ============ ظاهر شدن هنگام اسکرول ============ */
-.rv{opacity:0;transform:translateY(34px);transition:opacity .8s var(--ease),transform .8s var(--ease);transition-delay:var(--d,0s)}
-.rv.in{opacity:1;transform:none}
-@media(prefers-reduced-motion:reduce){
-  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
-  .rv{opacity:1;transform:none}
+/* ===================== پشتیبانی ===================== */
+.support{display:grid;grid-template-columns:auto 1fr;gap:clamp(1.2rem,4vw,3rem);align-items:center;background:linear-gradient(135deg,var(--navy),var(--navy-2));border-radius:30px;padding:clamp(1.6rem,4vw,3rem);color:#fff;box-shadow:0 40px 70px -40px rgba(10,26,51,.9);position:relative;overflow:hidden}
+.support::after{content:"";position:absolute;width:300px;height:300px;border-radius:50%;background:rgba(94,234,212,.1);top:-120px;inset-inline-start:-80px}
+.support h2{color:#fff}
+.support p{color:var(--on-dark)}
+.sup-ico{display:grid;place-items:center;width:clamp(90px,14vw,140px);aspect-ratio:1;border-radius:32px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);font-size:clamp(2.6rem,6vw,4.2rem);color:var(--amber);animation:floaty 6s ease-in-out infinite;position:relative;z-index:1}
+.support>div:last-child{position:relative;z-index:1}
+.sup-links{display:flex;flex-wrap:wrap;gap:.9rem 1.4rem;align-items:center;margin-top:1.5rem}
+.sup-links .alt-link{color:#fff;font-weight:700;border-bottom:2px solid var(--amber);padding-bottom:2px}
+.sup-links .alt-link:hover{color:var(--amber)}
+@media (max-width:767px){.support{grid-template-columns:1fr;text-align:center}.sup-ico{margin-inline:auto}.sup-links{justify-content:center}}
+
+/* ===================== فوتر ===================== */
+.footer{background:var(--navy-3);color:var(--on-dark);padding:clamp(3rem,6vw,4.5rem) 0 1.4rem;font-size:.93rem}
+.f-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1.3fr;gap:2rem}
+@media (max-width:991px){.f-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:575px){.f-grid{grid-template-columns:1fr}}
+.f-brand{font-size:1.15rem;font-weight:700;color:#fff;margin-bottom:.6rem}
+.f-title{font-weight:700;color:#fff;margin-bottom:.9rem;position:relative;padding-bottom:.5rem}
+.f-title::after{content:"";position:absolute;bottom:0;inset-inline-start:0;width:30px;height:3px;border-radius:3px;background:var(--amber)}
+.f-links{display:grid;gap:.45rem}
+.f-links a{display:inline-block;transition:color .25s,transform .25s}
+.f-links a:hover{color:var(--amber);transform:translateX(-5px)}
+address{font-style:normal;display:grid;gap:.5rem;margin-top:1.1rem;line-height:1.8}
+address i{color:var(--amber);margin-inline-end:.4rem}
+.copy{margin-top:2.4rem;padding-top:1.2rem;border-top:1px solid rgba(255,255,255,.12);text-align:center;font-size:.85rem}
+
+#toTop{position:fixed;bottom:20px;inset-inline-start:20px;z-index:1500;width:46px;height:46px;border-radius:14px;border:0;background:var(--amber);color:var(--navy);font-size:1.3rem;display:grid;place-items:center;cursor:pointer;box-shadow:0 12px 22px -10px rgba(0,0,0,.5);opacity:0;pointer-events:none;transform:translateY(14px);transition:opacity .3s,transform .3s}
+#toTop.show{opacity:1;pointer-events:auto;transform:none}
+#toTop:hover{transform:translateY(-4px)}
+
+/* ===================== انیمیشن ظاهر شدن با اسکرول ===================== */
+.js .reveal{opacity:0;transform:translateY(32px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.js .reveal.from-r{transform:translateX(50px)}
+.js .reveal.from-l{transform:translateX(-50px)}
+.js .reveal.zoom{transform:scale(.92)}
+.js .reveal.in{opacity:1;transform:none}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+  .js .reveal{opacity:1;transform:none}
 }
 </style>
+<noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
 </head>
+
 <body>
+<a class="skip" href="#main">پرش به محتوای اصلی</a>
+<div id="pg" aria-hidden="true"></div>
 
-<!-- نمادهای SVG که چند بار استفاده می‌شوند -->
-<svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <symbol id="i-check" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="M20 6 9 17l-5-5"/></symbol>
-  <symbol id="i-bolt" viewBox="0 0 24 24"><path fill="currentColor" d="M13 2 4 14h7l-1 8 9-12h-7z"/></symbol>
-</svg>
-
-<nav id="nav">
-  <div class="wrap nav-in">
-    <a href="#top" class="logo">
-      <span class="logo-mark"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.5 7.2L3 21l1.8-5.8A8 8 0 1 1 21 12z"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01"/></svg></span>
-      پاسخ‌یار
+<!-- ============================ هدر ============================ -->
+<header class="hdr" id="hdr">
+  <div class="container hdr-in">
+    <a class="brand" href="/" aria-label="DMS Pars - صفحه اصلی">
+      <!-- لوگو: آدرس src را عوض کنید (مثلاً images/logo.png) -->
+      <span class="logo-frame"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E" width="46" height="46" alt="لوگوی شرکت نرم افزاری DMS Pars"></span>
+      <span class="brand-t"><strong>DMS Pars</strong><small>دانش‌پژوهان محاسب سرزمین پارس</small></span>
     </a>
-    <div class="nav-links" id="links">
-      <a href="#features">قابلیت‌ها</a>
-      <a href="#ai">هوش مصنوعی</a>
-      <a href="#panels">پنل‌ها</a>
-      <a href="#how">راه‌اندازی</a>
-      <a href="#faq">سوالات متداول</a>
-    </div>
-    <div class="nav-actions">
-      <button class="icon-btn" id="theme" aria-label="تغییر تم">
-        <svg id="theme-ic" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
-      </button>
-      <a href="#contact" class="btn btn-primary nav-cta" style="padding:10px 22px">درخواست دمو</a>
-      <button class="icon-btn burger" id="burger" aria-label="منو">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
-      </button>
-    </div>
-  </div>
-</nav>
-
-<!-- ======================= هیرو ======================= -->
-<header class="hero" id="top">
-  <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div><div class="grid-bg"></div>
-  <div class="wrap hero-in">
-    <div>
-      <div class="eyebrow rv"><i></i> پشتیبانی هوشمند، ۲۴ ساعته و بدون وقفه</div>
-      <h1 class="rv" style="--d:.08s">مشتری‌هایتان را با <span class="grad-text">پشتیبانی هوشمند</span> خوشحال کنید</h1>
-      <p class="lead rv" style="--d:.16s">پاسخ‌یار یک افزونه کامل سامانه تیکت است که با هوش مصنوعی، به‌جای تیم شما به سوالات تکراری جواب می‌دهد. هر مشتری و هر ادمین هم پنل جدا و اختصاصی خودش را دارد.</p>
-      <div class="hero-btns rv" style="--d:.24s">
-        <a href="#contact" class="btn btn-primary">شروع رایگان
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-        </a>
-        <a href="#panels" class="btn btn-ghost">دیدن پنل‌ها</a>
-      </div>
-      <div class="hero-points rv" style="--d:.32s">
-        <span><svg width="18" height="18"><use href="#i-check"/></svg> نصب در چند دقیقه</span>
-        <span><svg width="18" height="18"><use href="#i-check"/></svg> پنل جدا برای هر مشتری</span>
-        <span><svg width="18" height="18"><use href="#i-check"/></svg> دستیار هوشمند فارسی</span>
-      </div>
-    </div>
-
-    <!-- تصویر محصول: داشبورد زنده -->
-    <div class="stage rv" style="--d:.2s">
-      <div class="chip c1"><div class="ic" style="background:linear-gradient(135deg,#34d399,#059669)"><svg width="18" height="18"><use href="#i-check"/></svg></div><div>تیکت حل شد<em>توسط دستیار هوشمند</em></div></div>
-      <div class="chip c2"><div class="ic" style="background:linear-gradient(135deg,#f472b6,#a855f7)"><svg width="18" height="18"><use href="#i-bolt"/></svg></div><div>پاسخ در ۳ ثانیه<em>میانگین زمان پاسخ AI</em></div></div>
-      <div class="chip c3"><div class="ic" style="background:linear-gradient(135deg,#22d3ee,#3b82f6)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9M13.7 21a2 2 0 0 1-3.4 0"/></svg></div><div>۳ تیکت جدید<em>به شما ارجاع شد</em></div></div>
-
-      <div class="mock">
-        <div class="mock-bar"><i></i><i></i><i></i><div class="mock-url">app.pasokhyar.ir/tickets</div></div>
-        <div class="mock-body">
-          <div class="m-side">
-            <div class="item on">📥 صندوق تیکت‌ها <b>12</b></div>
-            <div class="item">🤖 دستیار هوشمند</div>
-            <div class="item">👥 مشتریان</div>
-            <div class="item">📚 پایگاه دانش</div>
-            <div class="item">📊 گزارش‌ها</div>
-            <div class="item">⚙️ تنظیمات</div>
-          </div>
-          <div class="m-main">
-            <div class="m-title"><span>تیکت #۱۴۲۸ · مشکل در پرداخت</span><span class="tag">آنلاین</span></div>
-            <div class="chat" id="chat"></div>
-            <div class="m-input">پاسخ خود را بنویسید...<span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4z"/></svg></span></div>
-          </div>
-        </div>
-      </div>
+    <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="navWrap" aria-label="باز و بسته کردن منو"><i class="bi bi-list" aria-hidden="true"></i></button>
+    <div class="nav-wrap" id="navWrap">
+      <nav class="nav" aria-label="منوی اصلی">
+        <ul>
+          <li><a class="lnk" href="#products">محصولات نرم‌افزاری</a></li>
+          <li><a class="lnk" href="#solutions">راهکارها</a></li>
+          <li><a class="lnk" href="#services">خدمات</a></li>
+          <li><a class="lnk" href="#education">آموزش</a></li>
+          <li><a class="lnk" href="#articles">مقالات</a></li>
+          <li><a class="lnk" href="#support">پشتیبانی</a></li>
+        </ul>
+      </nav>
+      <a class="hdr-cta" href="#demo"><i class="bi bi-headset" aria-hidden="true"></i> درخواست مشاوره و دمو</a>
     </div>
   </div>
 </header>
 
-<!-- نوار قابلیت‌ها -->
-<div class="marquee" aria-hidden="true">
-  <div class="track" id="track"></div>
-</div>
+<main id="main">
 
-<!-- ======================= ویژگی‌ها ======================= -->
-<section id="features">
-  <div class="wrap">
-    <div class="sec-head rv">
-      <div class="eyebrow">قابلیت‌ها</div>
-      <h2>هرچه یک تیم پشتیبانی <span class="grad-text">لازم دارد</span>، در یک افزونه</h2>
-      <p>از دریافت تیکت تا پاسخ هوشمند و گزارش‌گیری، همه‌چیز یک‌جا و با تجربه‌ای روان.</p>
+<!-- ============================ ۱. Hero ============================ -->
+<section class="hero" id="top" aria-labelledby="h1">
+  <span class="blob b1" aria-hidden="true"></span><span class="blob b2" aria-hidden="true"></span>
+  <div class="container hero-grid">
+    <div class="reveal from-r">
+      <span class="eyebrow">دانش‌پژوهان محاسب سرزمین پارس</span>
+      <h1 id="h1">راهکارهای یکپارچه مدیریت سازمان؛ از کنترل فرآیندهای تولید تا تصمیم‌گیری‌های مالی و مدیریتی</h1>
+      <p>دانش‌پژوهان محاسب سرزمین پارس با تلفیق دانش مالی و حسابداری، شناخت فرآیندهای صنعتی و بازرگانی و توانمندی توسعه نرم‌افزار، راهکارهایی برای مدیریت یکپارچه اطلاعات و فرآیندهای سازمانی ارائه می‌دهد.</p>
+      <p>محصولات نرم‌افزاری، خدمات تخصصی مالی و حسابداری، مشاوره مدیریت و آموزش، در کنار یکدیگر به کسب‌وکارها کمک می‌کنند تا اطلاعات خود را منسجم‌تر مدیریت کرده و با شناخت دقیق‌تر عملکرد سازمان، تصمیم‌های آگاهانه‌تری بگیرند.</p>
+      <div class="cta-row">
+        <a class="btn-main" href="#products">مشاهده محصولات نرم‌افزاری <i class="bi bi-arrow-left" aria-hidden="true"></i></a>
+        <a class="btn-ghost" href="#demo">درخواست مشاوره و دمو</a>
+      </div>
     </div>
-    <div class="features" id="fgrid"></div>
+
+    <div class="hero-vis reveal from-l" id="heroVis">
+      <!-- جای تصویر یا ویدئوی Hero. برای ویدئو، <figure> را با این جایگزین کنید:
+           <video class="hero-video" src="video/hero.mp4" poster="images/hero.webp" autoplay muted loop playsinline></video> -->
+      <figure class="ph hero-frame on-dark" data-label="جای تصویر یا ویدئوی Hero">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 3'%3E%3C/svg%3E" width="800" height="640" alt="نمایی از داشبورد نرم‌افزارهای یکپارچه مدیریت مالی، بازرگانی و تولید DMS Pars" fetchpriority="high">
+      </figure>
+      <span class="chip c1"><i class="bi bi-calculator" aria-hidden="true"></i>مالی و حسابداری</span>
+      <span class="chip c2"><i class="bi bi-cart-check" aria-hidden="true"></i>بازرگانی</span>
+      <span class="chip c3"><i class="bi bi-gear-wide-connected" aria-hidden="true"></i>تولید</span>
+    </div>
+  </div>
+  <span class="scroll-hint" aria-hidden="true"></span>
+</section>
+
+<!-- ============================ ۲. محصولات ============================ -->
+<section class="sec alt" id="products" aria-labelledby="h-products">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="eyebrow">محصولات نرم‌افزاری</span>
+      <h2 id="h-products">راهکارهای نرم‌افزاری متناسب با نیاز و پیچیدگی کسب‌وکار</h2>
+      <p class="lead">هر سازمان با توجه به نوع فعالیت، ساختار عملیاتی و سطح پیچیدگی فرآیندهای خود، به ابزارهای مدیریتی متفاوتی نیاز دارد. محصولات نرم‌افزاری دانش‌پژوهان محاسب سرزمین پارس با هدف یکپارچه‌سازی اطلاعات و پشتیبانی از فرآیندهای مالی، بازرگانی و تولید طراحی و توسعه یافته‌اند.</p>
+    </div>
+
+    <div class="grid-2 stagger">
+      <article class="pcard">
+        <figure class="ph" data-label="جای تصویر ONYX360"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 8.5'%3E%3C/svg%3E" width="640" height="340" loading="lazy" alt="محیط نرم‌افزار ONYX360 برای مدیریت تولید و حسابداری صنعتی"></figure>
+        <span class="p-ico" aria-hidden="true"><i class="bi bi-gear-wide-connected"></i></span>
+        <h3>ONYX360</h3>
+        <p class="sub">راهکار یکپارچه مدیریت سازمان برای تولید با فرآیندهای پیچیده</p>
+        <p class="desc">ONYX360 با تمرکز بر برنامه‌ریزی و ردیابی عملیات تولید، حسابداری صنعتی و تحلیل بهای تمام‌شده، به سازمان‌های تولیدی کمک می‌کند ارتباط میان اطلاعات عملیاتی و مالی را بهتر برقرار کنند.</p>
+        <ul class="ticks">
+          <li>برنامه‌ریزی و مدیریت پیشرفته تولید</li>
+          <li>ردیابی مواد، محصولات و عملیات تولید</li>
+          <li>ارتباط اطلاعات ایستگاه‌های کاری با حسابداری صنعتی</li>
+          <li>بررسی بهای تمام‌شده و تحلیل انحرافات</li>
+          <li>پشتیبانی از فرآیندهای کنترل کیفیت و نگهداری و تعمیرات، متناسب با نیاز سازمان</li>
+        </ul>
+        <a class="more" href="#">آشنایی با ONYX360 <i class="bi bi-arrow-left" aria-hidden="true"></i></a>
+      </article>
+
+      <article class="pcard">
+        <figure class="ph" data-label="جای تصویر ELITE 360"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 8.5'%3E%3C/svg%3E" width="640" height="340" loading="lazy" alt="محیط نرم‌افزار ELITE 360 برای مدیریت مالی، بازرگانی و برنامه‌ریزی تولید"></figure>
+        <span class="p-ico" aria-hidden="true"><i class="bi bi-diagram-3"></i></span>
+        <h3>ELITE 360</h3>
+        <p class="sub">راهکار یکپارچه مدیریت برای کسب‌وکارهای تولیدی با پیچیدگی عملیاتی متوسط</p>
+        <p class="desc">ELITE 360 با فراهم‌کردن امکانات یکپارچه مالی، بازرگانی و برنامه‌ریزی تولید، به کسب‌وکارهای تولیدی کمک می‌کند اطلاعات و فرآیندهای اصلی خود را در یک بستر منسجم مدیریت کنند.</p>
+        <ul class="ticks">
+          <li>مدیریت مالی و حسابداری</li>
+          <li>مدیریت خرید، فروش و انبار</li>
+          <li>برنامه‌ریزی تولید بر اساس ساختار محصول</li>
+          <li>برآورد مواد، نیروی کار و سربار تولید</li>
+          <li>گزارش‌های مدیریتی و مالی</li>
+        </ul>
+        <a class="more" href="#">آشنایی با ELITE 360 <i class="bi bi-arrow-left" aria-hidden="true"></i></a>
+      </article>
+
+      <article class="pcard">
+        <figure class="ph" data-label="جای تصویر تجار"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 8.5'%3E%3C/svg%3E" width="640" height="340" loading="lazy" alt="محیط نرم‌افزار تجار برای مدیریت خرید، فروش، انبار و حسابداری بازرگانی"></figure>
+        <span class="p-ico" aria-hidden="true"><i class="bi bi-boxes"></i></span>
+        <h3>تجار</h3>
+        <p class="sub">نرم‌افزار یکپارچه مدیریت کسب‌وکارهای بازرگانی</p>
+        <p class="desc">راهکاری برای مدیریت فرآیندهای اصلی بازرگانی، از خرید و فروش تا انبار، حسابداری و گزارش‌گیری مدیریتی.</p>
+        <a class="more" href="#">آشنایی با نرم‌افزار تجار <i class="bi bi-arrow-left" aria-hidden="true"></i></a>
+      </article>
+
+      <article class="pcard">
+        <figure class="ph" data-label="جای تصویر ویترین"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 8.5'%3E%3C/svg%3E" width="640" height="340" loading="lazy" alt="محیط نرم‌افزار ویترین برای مدیریت فروش و کالاهای خرده‌فروشی"></figure>
+        <span class="p-ico" aria-hidden="true"><i class="bi bi-shop"></i></span>
+        <h3>ویترین</h3>
+        <p class="sub">راهکار مدیریت کسب‌وکارهای خرده‌فروشی</p>
+        <p class="desc">ویترین با تمرکز بر نیازهای کسب‌وکارهای خرده‌فروشی، امکان مدیریت اطلاعات فروش، کالاها و فرآیندهای مرتبط را فراهم می‌کند.</p>
+        <a class="more" href="#">آشنایی با نرم‌افزار ویترین <i class="bi bi-arrow-left" aria-hidden="true"></i></a>
+      </article>
+    </div>
   </div>
 </section>
 
-<!-- ======================= هوش مصنوعی ======================= -->
-<section class="ai" id="ai">
-  <div class="wrap ai-in">
-    <div class="rv">
-      <div class="eyebrow">دستیار هوشمند</div>
-      <h2>هوش مصنوعی‌ای که <span class="grad-text">محصول شما را می‌شناسد</span></h2>
-      <p>دستیار از پایگاه دانش و تاریخچه تیکت‌های خودتان یاد می‌گیرد، به زبان فارسی روان جواب می‌دهد و هر وقت لازم بود، گفتگو را با یک خلاصه کامل به تیم انسانی می‌سپارد.</p>
-      <ul class="checks">
-        <li><svg width="20" height="20"><use href="#i-check"/></svg><span>پاسخ خودکار به سوالات پرتکرار، شبانه‌روز</span></li>
-        <li><svg width="20" height="20"><use href="#i-check"/></svg><span>پیشنهاد پاسخ آماده برای کارشناس، فقط با یک کلیک ارسال</span></li>
-        <li><svg width="20" height="20"><use href="#i-check"/></svg><span>خلاصه‌سازی گفتگوهای طولانی و تشخیص اولویت و لحن مشتری</span></li>
-        <li><svg width="20" height="20"><use href="#i-check"/></svg><span>ارجاع هوشمند تیکت به دپارتمان یا کارشناس مناسب</span></li>
+<!-- ============================ ۳. راهکارها بر اساس کسب‌وکار ============================ -->
+<section class="sec" id="solutions" aria-labelledby="h-solutions">
+  <div class="container split">
+    <div class="reveal from-r">
+      <span class="eyebrow">راهکارها بر اساس نوع کسب‌وکار</span>
+      <h2 id="h-solutions">راهکار متناسب با صنعت و ساختار فعالیت شما</h2>
+      <p class="lead" style="margin-top:1rem">نیازهای مدیریتی یک کارخانه تولیدی با یک شرکت بازرگانی یا مجموعه خرده‌فروشی متفاوت است. انتخاب راهکار مناسب، به شناخت فرآیندها، حجم فعالیت و سطح پیچیدگی عملیات سازمان بستگی دارد.</p>
+      <p class="lead">دانش‌پژوهان محاسب سرزمین پارس، با ارائه محصولات و خدمات متناسب با حوزه‌های مختلف کسب‌وکار، به سازمان‌ها کمک می‌کند مسیر مناسب‌تری برای مدیریت اطلاعات و فرآیندهای خود انتخاب کنند.</p>
+      <div class="mt-s"><a class="btn-brand" href="#demo">بررسی راهکارهای متناسب با کسب‌وکار من <i class="bi bi-arrow-left" aria-hidden="true"></i></a></div>
+    </div>
+    <ul class="solu stagger">
+      <li><span class="ic" aria-hidden="true"><i class="bi bi-building-gear"></i></span><p><strong>صنایع تولیدی:</strong> <span>مدیریت مالی، انبار، خرید و فروش و برنامه‌ریزی تولید</span></p></li>
+      <li><span class="ic" aria-hidden="true"><i class="bi bi-cpu"></i></span><p><strong>واحدهای تولیدی با فرآیندهای پیچیده:</strong> <span>ردیابی عملیات، تحلیل انحرافات و حسابداری صنعتی</span></p></li>
+      <li><span class="ic" aria-hidden="true"><i class="bi bi-truck"></i></span><p><strong>شرکت‌های بازرگانی:</strong> <span>یکپارچه‌سازی فرآیندهای خرید، فروش، انبار و مالی</span></p></li>
+      <li><span class="ic" aria-hidden="true"><i class="bi bi-bag-check"></i></span><p><strong>کسب‌وکارهای خرده‌فروشی:</strong> <span>مدیریت کالاها، فروش و اطلاعات مالی</span></p></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============================ ۴. توانمندی تخصصی ONYX360 ============================ -->
+<section class="sec dark" id="capability" aria-labelledby="h-cap">
+  <div class="container">
+    <div class="split">
+      <div class="reveal from-r">
+        <span class="eyebrow">توانمندی تخصصی ONYX360</span>
+        <h2 id="h-cap">فقط دانستن بهای تمام‌شده کافی نیست؛ باید عوامل شکل‌گیری آن را نیز شناخت.</h2>
+        <p style="margin-top:1rem">در سازمان‌های تولیدی، بررسی بهای تمام‌شده زمانی ارزشمندتر می‌شود که اطلاعات مالی به داده‌های واقعی عملیات تولید متصل باشد.</p>
+        <p>ONYX360 با ایجاد ارتباط میان اطلاعات تولید و حسابداری صنعتی، امکان بررسی دقیق‌تر هزینه‌ها و عوامل مؤثر بر تغییرات آن‌ها را فراهم می‌کند.</p>
+        <p>از طریق ثبت و ردیابی اطلاعات عملیات، سازمان می‌تواند مواردی مانند مواد مصرف‌شده، زمان انجام عملیات، عملکرد ایستگاه‌های کاری و انحراف میان مقادیر استاندارد و واقعی را بررسی کند.</p>
+        <p>این ارتباط، زمینه‌ای برای تحلیل بهتر هزینه‌ها و شناسایی عوامل مؤثر بر عملکرد تولید فراهم می‌سازد.</p>
+      </div>
+      <figure class="ph on-dark onyx-fig reveal from-l" data-label="جای تصویر یا اینفوگرافیک ONYX360">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 3.4'%3E%3C/svg%3E" width="720" height="612" loading="lazy" alt="فلوچارت اتصال داده‌های تولید به حسابداری صنعتی در ONYX360: مواد اولیه، ایستگاه‌های کاری، عملیات تولید، محصول نهایی و تحلیل بهای تمام‌شده">
+      </figure>
+    </div>
+
+    <div class="flow-box reveal zoom">
+      <h3>از عملیات تولید تا تحلیل بهای تمام‌شده</h3>
+      <ol class="flow" aria-label="مسیر اطلاعات از مواد اولیه تا تحلیل بهای تمام‌شده">
+        <li><i class="bi bi-box-seam" aria-hidden="true"></i><span>مواد اولیه</span></li>
+        <li><i class="bi bi-pc-display-horizontal" aria-hidden="true"></i><span>ایستگاه‌های کاری</span></li>
+        <li><i class="bi bi-gear-wide-connected" aria-hidden="true"></i><span>عملیات تولید</span></li>
+        <li><i class="bi bi-patch-check" aria-hidden="true"></i><span>محصول نهایی</span></li>
+        <li><i class="bi bi-graph-up-arrow" aria-hidden="true"></i><span>حسابداری صنعتی و تحلیل بهای تمام‌شده</span></li>
+      </ol>
+      <p class="flow-note">با اتصال اطلاعات عملیاتی به اطلاعات مالی، بررسی انحرافات هزینه‌ای می‌تواند از سطح گزارش نهایی فراتر رفته و به شناخت عوامل ایجادکننده آن‌ها نزدیک‌تر شود.</p>
+      <p class="flow-note">برخی قابلیت‌ها، از جمله ردیابی عملیات، نگهداری و تعمیرات و ارزیابی عملکرد کارکنان، با توجه به ساختار و نیازهای هر سازمان قابل طراحی و پیاده‌سازی هستند.</p>
+      <div class="center mt-s"><a class="btn-main" href="#">مشاهده قابلیت‌های تخصصی ONYX360 <i class="bi bi-arrow-left" aria-hidden="true"></i></a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ ۵. خدمات ============================ -->
+<section class="sec alt" id="services" aria-labelledby="h-services">
+  <div class="container split">
+    <figure class="ph side-fig reveal from-r" data-label="جای تصویر خدمات مالی و مشاوره">
+      <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1.05'%3E%3C/svg%3E" width="600" height="630" loading="lazy" alt="کارشناسان مالی در حال مشاوره و تحلیل اطلاعات حسابداری سازمان">
+    </figure>
+    <div class="reveal from-l">
+      <span class="eyebrow">خدمات مالی، حسابداری و مشاوره</span>
+      <h2 id="h-services">فراتر از ثبت اطلاعات؛ همراهی در تحلیل و بهبود فرآیندهای مالی و مدیریتی</h2>
+      <p class="lead" style="margin-top:1rem">مدیریت مؤثر سازمان، تنها به نرم‌افزار وابسته نیست. شناخت صحیح اطلاعات مالی، ساختار حسابداری، فرآیندهای سازمانی و نیازهای مدیریتی نیز نقش مهمی در کیفیت تصمیم‌گیری دارد.</p>
+      <p class="lead">دانش‌پژوهان محاسب سرزمین پارس با تکیه بر تجربه تخصصی در حوزه‌های مالی، حسابداری و مدیریت، خدمات مشاوره‌ای و اجرایی متناسب با نیاز کسب‌وکارها ارائه می‌دهد.</p>
+      <p class="list-title">زمینه‌های خدمات:</p>
+      <ul class="tiles cols-2">
+        <li class="tile"><i class="bi bi-journal-check" aria-hidden="true"></i>خدمات مالی و حسابداری</li>
+        <li class="tile"><i class="bi bi-receipt" aria-hidden="true"></i>مشاوره مالیاتی</li>
+        <li class="tile"><i class="bi bi-bar-chart-line" aria-hidden="true"></i>مدیریت و تحلیل اطلاعات مالی</li>
+        <li class="tile"><i class="bi bi-calculator" aria-hidden="true"></i>حسابداری صنعتی و بهای تمام‌شده</li>
+        <li class="tile"><i class="bi bi-diagram-2" aria-hidden="true"></i>مشاوره استقرار و بهبود فرآیندهای مالی و مدیریتی</li>
+        <li class="tile"><i class="bi bi-pc-display" aria-hidden="true"></i>مشاوره در انتخاب و پیاده‌سازی راهکارهای نرم‌افزاری سازمانی</li>
       </ul>
-    </div>
-    <div class="orb-wrap rv" style="--d:.15s">
-      <div class="ring r1"></div><div class="ring r2"></div>
-      <div class="orb"><svg width="96" height="96" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="7" width="16" height="12" rx="4"/><path d="M12 7V4M9 13h.01M15 13h.01M9.5 16.2c1.5 1 3.5 1 5 0M2 13v2M22 13v2"/><circle cx="12" cy="3.5" r="1"/></svg></div>
-      <span class="sat s1">🌐 فارسی روان</span>
-      <span class="sat s2">⚡ پاسخ فوری</span>
-      <span class="sat s3">🧠 یادگیری از تیکت‌ها</span>
-      <span class="sat s4">🤝 تحویل به انسان</span>
+      <div class="mt-s"><a class="btn-brand" href="#">مشاهده خدمات تخصصی <i class="bi bi-arrow-left" aria-hidden="true"></i></a></div>
     </div>
   </div>
 </section>
 
-<!-- ======================= مراحل ======================= -->
-<section id="how">
-  <div class="wrap">
-    <div class="sec-head rv">
-      <div class="eyebrow">راه‌اندازی</div>
-      <h2>در <span class="grad-text">چهار قدم ساده</span> آماده می‌شوید</h2>
-      <p>بدون نیاز به تیم فنی؛ مسیر راه‌اندازی کوتاه و روشن است.</p>
+<!-- ============================ ۶. آموزش ============================ -->
+<section class="sec" id="education" aria-labelledby="h-edu">
+  <div class="container split">
+    <div class="reveal from-r">
+      <span class="eyebrow">آموزش</span>
+      <h2 id="h-edu">آموزش کاربردی برای ارتقای دانش و مهارت‌های حرفه‌ای</h2>
+      <p class="lead" style="margin-top:1rem">دانش‌پژوهان محاسب سرزمین پارس در کنار ارائه راهکارهای نرم‌افزاری و خدمات تخصصی، در زمینه آموزش حسابداری، امور مالی، مالیات و نرم‌افزارهای کاربردی نیز فعالیت می‌کند.</p>
+      <p class="lead">برنامه‌های آموزشی با هدف ارتقای دانش تخصصی، تقویت مهارت‌های عملی و آشنایی با نیازهای واقعی محیط کار طراحی می‌شوند.</p>
+      <p class="list-title">حوزه‌های آموزشی:</p>
+      <ul class="tiles cols-2">
+        <li class="tile"><i class="bi bi-mortarboard" aria-hidden="true"></i>آموزش حسابداری و مهارت‌های موردنیاز بازار کار</li>
+        <li class="tile"><i class="bi bi-laptop" aria-hidden="true"></i>آموزش نرم‌افزارهای حسابداری و مدیریتی</li>
+        <li class="tile"><i class="bi bi-percent" aria-hidden="true"></i>آموزش مباحث مالیاتی</li>
+        <li class="tile"><i class="bi bi-calculator" aria-hidden="true"></i>آموزش کاربردی حسابداری صنعتی و بهای تمام‌شده</li>
+      </ul>
+      <div class="mt-s"><a class="btn-brand" href="#">مشاهده دوره‌های آموزشی <i class="bi bi-arrow-left" aria-hidden="true"></i></a></div>
     </div>
-    <div class="steps">
-      <div class="step rv"><div class="num">۱</div><h3>نصب افزونه</h3><p>افزونه را روی سایت یا سرویس خود نصب و فعال کنید.</p></div>
-      <div class="step rv" style="--d:.1s"><div class="num">۲</div><h3>ساخت پنل‌ها</h3><p>مشتری‌ها و ادمین‌ها را اضافه کنید؛ هرکدام پنل جدا می‌گیرند.</p></div>
-      <div class="step rv" style="--d:.2s"><div class="num">۳</div><h3>آموزش دستیار</h3><p>پایگاه دانش و سوالات پرتکرار را به هوش مصنوعی بدهید.</p></div>
-      <div class="step rv" style="--d:.3s"><div class="num">۴</div><h3>شروع پشتیبانی</h3><p>تیکت‌ها وارد می‌شوند و دستیار پاسخ‌دادن را شروع می‌کند.</p></div>
+    <figure class="ph side-fig reveal from-l" data-label="جای تصویر دوره‌های آموزشی">
+      <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1.05'%3E%3C/svg%3E" width="600" height="630" loading="lazy" alt="کلاس آموزش حسابداری و نرم‌افزارهای مالی با حضور شرکت‌کنندگان">
+    </figure>
+  </div>
+</section>
+
+<!-- ============================ ۷. چرا ما ============================ -->
+<section class="sec alt" id="why" aria-labelledby="h-why">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="eyebrow">چرا دانش‌پژوهان محاسب سرزمین پارس؟</span>
+      <h2 id="h-why">ترکیب دانش مالی، شناخت فرآیندها و توانمندی نرم‌افزاری</h2>
+      <p class="lead">ارائه راهکار مؤثر برای سازمان‌ها، نیازمند درک هم‌زمان ابعاد مالی، عملیاتی و فناوری اطلاعات است. رویکرد دانش‌پژوهان محاسب سرزمین پارس بر پیوند این حوزه‌ها و پاسخ‌گویی به نیازهای واقعی کسب‌وکارها استوار است.</p>
+    </div>
+    <div class="why stagger">
+      <article><span class="num" aria-hidden="true"><i class="bi bi-diagram-3"></i></span><h3>یکپارچگی اطلاعات سازمانی</h3><p>کمک به ارتباط بهتر میان اطلاعات مالی، بازرگانی و تولیدی و کاهش پراکندگی داده‌ها.</p></article>
+      <article><span class="num" aria-hidden="true"><i class="bi bi-buildings"></i></span><h3>شناخت فرآیندهای صنعتی و مالی</h3><p>توجه به ساختار عملیاتی سازمان و تأثیر آن بر ثبت، تحلیل و گزارش‌گیری اطلاعات.</p></article>
+      <article><span class="num" aria-hidden="true"><i class="bi bi-search"></i></span><h3>تحلیل فراتر از گزارش‌های مالی</h3><p>ایجاد زمینه برای بررسی عوامل مؤثر بر هزینه‌ها، عملکرد و تغییرات شاخص‌های مدیریتی.</p></article>
+      <article><span class="num" aria-hidden="true"><i class="bi bi-bullseye"></i></span><h3>راهکار متناسب با نیاز سازمان</h3><p>توجه به نوع فعالیت، سطح پیچیدگی و فرآیندهای اختصاصی هر کسب‌وکار در انتخاب یا پیاده‌سازی راهکار.</p></article>
+      <article><span class="num" aria-hidden="true"><i class="bi bi-code-slash"></i></span><h3>تلفیق تجربه مالی و توانمندی فنی</h3><p>بهره‌گیری از دانش حسابداری، مدیریت مالی، مشاوره و توسعه نرم‌افزار در طراحی راهکارهای سازمانی.</p></article>
     </div>
   </div>
 </section>
 
-<!-- ======================= پنل‌ها ======================= -->
-<section class="panels" id="panels">
-  <div class="wrap">
-    <div class="sec-head rv">
-      <div class="eyebrow">پنل‌های مستقل</div>
-      <h2>هر نقش، <span class="grad-text">پنل مخصوص خودش</span></h2>
-      <p>مدیر کل، ادمین مشتری، کارشناس و کاربر نهایی؛ هرکس فقط چیزی را می‌بیند که باید ببیند.</p>
+<!-- ============================ ۸. تجربه همکاری ============================ -->
+<section class="sec" id="clients" aria-labelledby="h-clients">
+  <div class="container center">
+    <div class="sec-head reveal" style="margin-bottom:0">
+      <span class="eyebrow">تجربه همکاری با سازمان‌ها</span>
+      <h2 id="h-clients">اعتماد سازمان‌ها، حاصل تجربه و همکاری مستمر</h2>
+      <p class="lead">دانش‌پژوهان محاسب سرزمین پارس در مسیر فعالیت خود با مجموعه‌هایی از صنایع و کسب‌وکارهای مختلف همکاری داشته است. این تجربه‌ها، شناخت ما را از نیازهای متنوع سازمان‌ها در حوزه‌های مالی، حسابداری، نرم‌افزار و مدیریت فرآیندها گسترش داده‌اند.</p>
+      <p class="lead">لوگوهای مشتریان و مجموعه‌های همکار، بخشی از این تجربه و سابقه همکاری را نشان می‌دهند.</p>
     </div>
-    <div class="tabs rv" id="tabs"></div>
-    <div id="pview"></div>
-  </div>
-</section>
 
-<!-- ======================= اعتماد ======================= -->
-<section>
-  <div class="wrap">
-    <div class="sec-head rv">
-      <div class="eyebrow">ساخته‌شده برای تیم‌های جدی</div>
-      <h2>منظم، امن و <span class="grad-text">قابل‌اتکا</span></h2>
-    </div>
-    <div class="cta-band">
-      <div class="band rv"><svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.4 9.2 8 11 4.6-1.8 8-6 8-11V5z"/><path d="m9 12 2 2 4-4"/></svg><h4>جداسازی داده‌ها</h4><p>اطلاعات هر مشتری کاملاً مستقل از دیگری</p></div>
-      <div class="band rv" style="--d:.08s"><svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="3"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg><h4>سطح دسترسی دقیق</h4><p>نقش‌ها و مجوزها را خودتان تعریف می‌کنید</p></div>
-      <div class="band rv" style="--d:.16s"><svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><h4>پیگیری زمان پاسخ</h4><p>هشدار قبل از عبور از زمان تعهدشده</p></div>
-      <div class="band rv" style="--d:.24s"><svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 5-6"/></svg><h4>گزارش‌های زنده</h4><p>عملکرد تیم و رضایت مشتری را ببینید</p></div>
-    </div>
-  </div>
-</section>
+    <!-- لوگوها: در هر مورد src را عوض کنید و در alt نام مشتری را بنویسید. -->
+    <ul class="logos stagger">
+      <li class="logo-cell"><span>لوگوی مشتری ۱</span><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 2 1'%3E%3C/svg%3E" width="240" height="120" loading="lazy" alt="مشتری ۱ (نام مشتری را جایگزین کنید)"></li>
+      <li class="logo-cell"><span>لوگوی مشتری ۲</span><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 2 1'%3E%3C/svg%3E" width="240" height="120" loading="lazy" alt="مشتری ۲ (نام مشتری را جایگزین کنید)"></li>
+      <li class="logo-cell"><span>لوگوی مشتری ۳</span><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 2 1'%3E%3C/svg%3E" width="240" height="120" loading="lazy" alt="مشتری ۳ (نام مشتری را جایگزین کنید)"></li>
+      <li class="logo-cell"><span>لوگوی مشتری ۴</span><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 2 1'%3E%3C/svg%3E" width="240" height="120" loading="lazy" alt="مشتری ۴ (نام مشتری را جایگزین کنید)"></li>
+      <li class="logo-cell"><span>لوگوی مشتری ۵</span><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 2 1'%3E%3C/svg%3E" width="240" height="120" loading="lazy" alt="مشتری ۵ (نام مشتری را جایگزین کنید)"></li>
+      <li class="logo-cell"><span>لوگوی مشتری ۶</span><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 2 1'%3E%3C/svg%3E" width="240" height="120" loading="lazy" alt="مشتری ۶ (نام مشتری را جایگزین کنید)"></li>
+      <li class="logo-cell"><span>لوگوی مشتری ۷</span><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 2 1'%3E%3C/svg%3E" width="240" height="120" loading="lazy" alt="مشتری ۷ (نام مشتری را جایگزین کنید)"></li>
+      <li class="logo-cell"><span>لوگوی مشتری ۸</span><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 2 1'%3E%3C/svg%3E" width="240" height="120" loading="lazy" alt="مشتری ۸ (نام مشتری را جایگزین کنید)"></li>
+    </ul>
 
-<!-- ======================= سوالات ======================= -->
-<section class="faq" id="faq">
-  <div class="wrap">
-    <div class="sec-head rv">
-      <div class="eyebrow">سوالات متداول</div>
-      <h2>جواب سوال‌هایی که <span class="grad-text">زیاد می‌پرسید</span></h2>
-    </div>
-    <div class="faq-list">
-      <details class="rv" open><summary>هوش مصنوعی چطور جواب مشتری را می‌دهد؟</summary><p>دستیار از پایگاه دانش و تیکت‌های قبلی شما کمک می‌گیرد. اگر مطمئن نباشد، گفتگو را همراه با خلاصه به کارشناس انسانی می‌سپارد تا پاسخ اشتباه ندهد.</p></details>
-      <details class="rv"><summary>پنل مشتری و ادمین چه فرقی دارند؟</summary><p>ادمین مشتری مدیریت کارشناسان، دپارتمان‌ها و تنظیمات سازمان خودش را دارد. کاربر نهایی فقط تیکت‌های خودش را ثبت و پیگیری می‌کند. مدیر کل هم روی همه چیز نظارت دارد.</p></details>
-      <details class="rv"><summary>آیا می‌توانم چند مشتری را جداگانه مدیریت کنم؟</summary><p>بله. برای هر مشتری یک پنل مستقل ساخته می‌شود که داده‌ها، کاربران و تنظیمات خودش را دارد و چیزی با دیگران مخلوط نمی‌شود.</p></details>
-      <details class="rv"><summary>راه‌اندازی چقدر زمان می‌برد؟</summary><p>نصب و ساخت اولین پنل معمولاً در چند دقیقه انجام می‌شود. بیشتر زمان صرف آموزش دستیار با محتوای خودتان است.</p></details>
-      <details class="rv"><summary>آیا پشتیبانی فارسی و راست‌چین کامل است؟</summary><p>بله. رابط کاربری و دستیار هوشمند از ابتدا برای زبان فارسی و چینش راست‌به‌چپ طراحی شده‌اند.</p></details>
+    <div class="reveal">
+      <p class="lead">در صورت وجود رضایت و مجوز انتشار، برخی از تجربه‌های همکاری می‌توانند در قالب پروژه‌ها و مطالعات موردی، همراه با شرح مسئله، راهکار اجراشده و نتایج قابل ارائه معرفی شوند.</p>
+      <div class="mt-s"><a class="btn-line" href="#">مشاهده تجربه‌های همکاری <i class="bi bi-arrow-left" aria-hidden="true"></i></a></div>
     </div>
   </div>
 </section>
 
-<!-- ======================= فراخوان ======================= -->
-<section class="final" id="contact">
-  <div class="wrap">
-    <div class="final-box rv">
-      <svg class="ticket-art" viewBox="0 0 160 110" fill="none"><rect x="8" y="18" width="144" height="74" rx="14" fill="#fff" fill-opacity=".95"/><circle cx="8" cy="55" r="11" fill="#6d5efc"/><circle cx="152" cy="55" r="11" fill="#6d5efc"/><path d="M104 26v58" stroke="#c4b5fd" stroke-width="2" stroke-dasharray="5 5"/><rect x="26" y="38" width="56" height="8" rx="4" fill="#6d5efc"/><rect x="26" y="54" width="44" height="6" rx="3" fill="#c4b5fd"/><rect x="26" y="66" width="34" height="6" rx="3" fill="#c4b5fd"/><path d="m118 56 8 8 14-16" stroke="#22c55e" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      <h2>آماده‌اید پشتیبانی‌تان را متحول کنید؟</h2>
-      <p>یک دمو برای خودتان رزرو کنید و ببینید هوش مصنوعی چطور بار تیمتان را سبک می‌کند.</p>
-      <a href="mailto:hello@example.com" class="btn">درخواست دمو رایگان</a>
+<!-- ============================ ۹. دانش و مقالات ============================ -->
+<section class="sec alt" id="articles" aria-labelledby="h-articles">
+  <div class="container">
+    <div class="sec-head reveal" style="margin-bottom:0">
+      <span class="eyebrow">دانش و مقالات</span>
+      <h2 id="h-articles">دانش تخصصی برای تصمیم‌های بهتر</h2>
+      <p class="lead">در حوزه‌های مالی، حسابداری، مالیات، نرم‌افزارهای سازمانی و مدیریت تولید، دسترسی به اطلاعات دقیق و کاربردی می‌تواند به شناخت بهتر مسائل و انتخاب راهکار مناسب کمک کند.</p>
+      <p class="lead">در بخش دانش و مقالات، مطالب تخصصی و آموزشی با هدف پاسخ‌گویی به پرسش‌های رایج کسب‌وکارها، مدیران، کارشناسان مالی و کاربران نرم‌افزارها منتشر می‌شود.</p>
+    </div>
+    <p class="list-title center" style="margin-top:2rem">موضوعات مقالات:</p>
+
+    <!-- هر کارت مقاله: تصویر، عنوان و لینک را عوض کنید -->
+    <div class="acards stagger">
+      <article class="acard"><figure class="ph" data-label="جای تصویر مقاله"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 9'%3E%3C/svg%3E" width="480" height="270" loading="lazy" alt="تصویر شاخص مقالات حسابداری و مدیریت مالی"></figure><div class="body"><h3>حسابداری و مدیریت مالی</h3><a class="more" href="#">مشاهده مقالات <i class="bi bi-arrow-left" aria-hidden="true"></i></a></div></article>
+      <article class="acard"><figure class="ph" data-label="جای تصویر مقاله"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 9'%3E%3C/svg%3E" width="480" height="270" loading="lazy" alt="تصویر شاخص مقالات مالیات و قوانین مرتبط"></figure><div class="body"><h3>مالیات و قوانین مرتبط</h3><a class="more" href="#">مشاهده مقالات <i class="bi bi-arrow-left" aria-hidden="true"></i></a></div></article>
+      <article class="acard"><figure class="ph" data-label="جای تصویر مقاله"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 9'%3E%3C/svg%3E" width="480" height="270" loading="lazy" alt="تصویر شاخص مقالات حسابداری صنعتی و بهای تمام‌شده"></figure><div class="body"><h3>حسابداری صنعتی و بهای تمام‌شده</h3><a class="more" href="#">مشاهده مقالات <i class="bi bi-arrow-left" aria-hidden="true"></i></a></div></article>
+      <article class="acard"><figure class="ph" data-label="جای تصویر مقاله"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 9'%3E%3C/svg%3E" width="480" height="270" loading="lazy" alt="تصویر شاخص مقالات ERP و نرم‌افزارهای سازمانی"></figure><div class="body"><h3>ERP و نرم‌افزارهای سازمانی</h3><a class="more" href="#">مشاهده مقالات <i class="bi bi-arrow-left" aria-hidden="true"></i></a></div></article>
+      <article class="acard"><figure class="ph" data-label="جای تصویر مقاله"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 9'%3E%3C/svg%3E" width="480" height="270" loading="lazy" alt="تصویر شاخص مقالات مدیریت تولید و فرآیندهای صنعتی"></figure><div class="body"><h3>مدیریت تولید و فرآیندهای صنعتی</h3><a class="more" href="#">مشاهده مقالات <i class="bi bi-arrow-left" aria-hidden="true"></i></a></div></article>
+      <article class="acard"><figure class="ph" data-label="جای تصویر مقاله"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 9'%3E%3C/svg%3E" width="480" height="270" loading="lazy" alt="تصویر شاخص مقالات آموزش نرم‌افزارها و مهارت‌های کاربردی"></figure><div class="body"><h3>آموزش نرم‌افزارها و مهارت‌های کاربردی</h3><a class="more" href="#">مشاهده مقالات <i class="bi bi-arrow-left" aria-hidden="true"></i></a></div></article>
+    </div>
+    <div class="center"><a class="btn-brand" href="#">مشاهده مقالات <i class="bi bi-arrow-left" aria-hidden="true"></i></a></div>
+  </div>
+</section>
+
+<!-- ============================ ۱۰. خبرنامه ============================ -->
+<section class="sec news" id="newsletter" aria-labelledby="h-news">
+  <div class="container split" style="position:relative;z-index:2">
+    <div class="reveal from-r">
+      <span class="eyebrow">عضویت در خبرنامه</span>
+      <h2 id="h-news">تازه‌ترین مطالب تخصصی را از دست ندهید</h2>
+      <p style="margin-top:1rem">با عضویت در خبرنامه دانش‌پژوهان محاسب سرزمین پارس، از انتشار مقالات و مطالب آموزشی جدید در حوزه‌های مالی، حسابداری، مالیات، نرم‌افزار و مدیریت کسب‌وکار مطلع شوید.</p>
+    </div>
+    <div class="reveal from-l">
+      <form class="news-form needs-val" action="#" method="post" novalidate>
+        <div class="row-in">
+          <div class="field">
+            <label for="nl-email">آدرس ایمیل</label>
+            <input class="form-control" type="email" id="nl-email" name="email" autocomplete="email" dir="ltr" placeholder="name@example.com" required>
+            <div class="invalid-feedback">لطفاً یک ایمیل معتبر وارد کنید.</div>
+          </div>
+          <button class="btn-brand" type="submit" style="align-self:flex-start;margin-top:1.72rem">عضویت در خبرنامه</button>
+        </div>
+        <p class="fine">ایمیل شما برای اطلاع‌رسانی مطالب جدید استفاده می‌شود. امکان لغو عضویت در هر زمان وجود دارد.</p>
+        <div class="form-ok" role="status" hidden><i class="bi bi-check-circle-fill" aria-hidden="true"></i> عضویت شما ثبت شد.</div>
+      </form>
     </div>
   </div>
 </section>
 
-<footer>
-  <div class="wrap foot">
-    <div class="logo" style="font-size:1.15rem"><span class="logo-mark" style="width:32px;height:32px;border-radius:10px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.5 7.2L3 21l1.8-5.8A8 8 0 1 1 21 12z"/></svg></span>پاسخ‌یار</div>
-    <div class="links"><a href="#features">قابلیت‌ها</a><a href="#panels">پنل‌ها</a><a href="#faq">سوالات</a><a href="#contact">تماس</a></div>
-    <div>© <span id="yr"></span> پاسخ‌یار. همه حقوق محفوظ است.</div>
+<!-- ============================ ۱۱. درخواست مشاوره و دمو ============================ -->
+<section class="sec" id="demo" aria-labelledby="h-demo">
+  <div class="container split">
+    <div class="reveal from-r">
+      <span class="eyebrow">درخواست مشاوره و دمو</span>
+      <h2 id="h-demo">برای انتخاب راهکار مناسب کسب‌وکار خود مشورت کنید</h2>
+      <p class="lead" style="margin-top:1rem">انتخاب نرم‌افزار سازمانی، به شناخت فرآیندها، نیازهای اطلاعاتی و سطح پیچیدگی کسب‌وکار وابسته است.</p>
+      <p class="lead">اگر به دنبال راهکاری برای مدیریت مالی، بازرگانی یا فرآیندهای تولیدی سازمان خود هستید، کارشناسان دانش‌پژوهان محاسب سرزمین پارس می‌توانند در بررسی نیازها و معرفی راهکار مناسب همراه شما باشند.</p>
+      <p class="lead">با ثبت درخواست، امکان هماهنگی برای مشاوره یا نمایش نرم‌افزار متناسب با نیاز شما فراهم می‌شود.</p>
+    </div>
+
+    <div class="demo-card reveal from-l">
+      <form class="needs-val" action="#" method="post" novalidate>
+        <div class="form-grid">
+          <div class="field">
+            <label for="d-name">نام و نام خانوادگی</label>
+            <input class="form-control" type="text" id="d-name" name="name" autocomplete="name" required>
+            <div class="invalid-feedback">لطفاً نام خود را وارد کنید.</div>
+          </div>
+          <div class="field">
+            <label for="d-company">نام شرکت یا سازمان</label>
+            <input class="form-control" type="text" id="d-company" name="company" autocomplete="organization" required>
+            <div class="invalid-feedback">لطفاً نام شرکت یا سازمان را وارد کنید.</div>
+          </div>
+          <div class="field">
+            <label for="d-phone">شماره تماس</label>
+            <input class="form-control" type="tel" id="d-phone" name="phone" autocomplete="tel" dir="ltr" inputmode="tel" pattern="[0-9۰-۹+\- ]{8,15}" required>
+            <div class="invalid-feedback">لطفاً شماره تماس معتبر وارد کنید.</div>
+          </div>
+          <div class="field">
+            <label for="d-field">حوزه فعالیت</label>
+            <select class="form-select" id="d-field" name="field" required>
+              <option value="" selected disabled>انتخاب کنید</option>
+              <option>تولیدی</option>
+              <option>بازرگانی</option>
+              <option>خرده‌فروشی</option>
+              <option>خدمات</option>
+              <option>سایر</option>
+            </select>
+            <div class="invalid-feedback">لطفاً حوزه فعالیت را انتخاب کنید.</div>
+          </div>
+          <div class="field full">
+            <label for="d-product">محصول موردنظر</label>
+            <select class="form-select" id="d-product" name="product" required>
+              <option value="" selected disabled>انتخاب کنید</option>
+              <option>ONYX360</option>
+              <option>ELITE 360</option>
+              <option>تجار</option>
+              <option>ویترین</option>
+              <option>هنوز مطمئن نیستم</option>
+            </select>
+            <div class="invalid-feedback">لطفاً محصول موردنظر را انتخاب کنید.</div>
+          </div>
+          <div class="field full">
+            <label for="d-msg">شرح مختصر نیاز یا مسئله</label>
+            <textarea class="form-control" id="d-msg" name="message" rows="4"></textarea>
+          </div>
+        </div>
+        <button class="btn-brand" type="submit"><i class="bi bi-send" aria-hidden="true"></i> ثبت درخواست مشاوره و دمو</button>
+        <div class="form-ok" role="status" hidden><i class="bi bi-check-circle-fill" aria-hidden="true"></i> درخواست شما ثبت شد.</div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ ۱۲. پشتیبانی ============================ -->
+<section class="sec alt" id="support" aria-labelledby="h-support" style="padding-block:clamp(3rem,6vw,5rem)">
+  <div class="container">
+    <div class="support reveal zoom">
+      <div class="sup-ico" aria-hidden="true"><i class="bi bi-headset"></i></div>
+      <div>
+        <span class="eyebrow">پشتیبانی کاربران</span>
+        <h2 id="h-support">همراهی با کاربران در مسیر استفاده از نرم‌افزار</h2>
+        <p style="margin-top:.9rem">دسترسی به راهنمایی و پیگیری درخواست‌های پشتیبانی، بخشی از تجربه استفاده از نرم‌افزارهای سازمانی است.</p>
+        <p>کاربران محصولات نرم‌افزاری می‌توانند از طریق سامانه پشتیبانی، درخواست‌ها و مسائل خود را ثبت کرده و روند پیگیری آن‌ها را دنبال کنند.</p>
+        <div class="sup-links">
+          <a class="btn-main" href="#">ورود به سامانه پشتیبانی <i class="bi bi-arrow-left" aria-hidden="true"></i></a>
+          <a class="alt-link" href="#">ورود کاربران</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============================ فوتر ============================ -->
+<footer class="footer">
+  <div class="container">
+    <div class="f-grid">
+      <div>
+        <p class="f-brand">دانش‌پژوهان محاسب سرزمین پارس</p>
+        <p>ارائه‌دهنده راهکارهای نرم‌افزاری سازمانی، خدمات مالی و حسابداری، مشاوره مدیریت و آموزش تخصصی.</p>
+        <!-- آدرس و تلفن را جایگزین کنید (برای Local SEO) -->
+        <address>
+          <span><i class="bi bi-geo-alt" aria-hidden="true"></i>[آدرس فیزیکی شرکت]</span>
+          <span><i class="bi bi-telephone" aria-hidden="true"></i><span dir="ltr">[شماره تماس]</span></span>
+          <span><i class="bi bi-envelope" aria-hidden="true"></i><span dir="ltr">[ایمیل شرکت]</span></span>
+        </address>
+      </div>
+      <nav aria-label="دسترسی سریع">
+        <p class="f-title">دسترسی سریع</p>
+        <ul class="f-links">
+          <li><a href="/">صفحه اصلی</a></li>
+          <li><a href="#">درباره شرکت</a></li>
+          <li><a href="#products">محصولات نرم‌افزاری</a></li>
+          <li><a href="#services">خدمات تخصصی</a></li>
+          <li><a href="#education">دوره‌های آموزشی</a></li>
+          <li><a href="#articles">مقالات و دانش</a></li>
+          <li><a href="#clients">تجربه‌های همکاری</a></li>
+          <li><a href="#">تماس با ما</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="محصولات">
+        <p class="f-title">محصولات</p>
+        <ul class="f-links">
+          <li><a href="#">ONYX360</a></li>
+          <li><a href="#">ELITE ERP360</a></li>
+          <li><a href="#">تجار</a></li>
+          <li><a href="#">ویترین</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="ارتباط با ما">
+        <p class="f-title">ارتباط با ما</p>
+        <ul class="f-links">
+          <li><a href="#">اطلاعات تماس</a></li>
+          <li><a href="#demo">درخواست مشاوره و دمو</a></li>
+          <li><a href="#support">سامانه پشتیبانی</a></li>
+          <li><a href="#newsletter">عضویت در خبرنامه</a></li>
+        </ul>
+      </nav>
+    </div>
+    <p class="copy">© کلیه حقوق این وب‌سایت متعلق به دانش‌پژوهان محاسب سرزمین پارس است.</p>
   </div>
 </footer>
 
+<button id="toTop" type="button" aria-label="بازگشت به بالای صفحه"><i class="bi bi-arrow-up" aria-hidden="true"></i></button>
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script>
-(function(){
-  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var $ = function(s,r){return (r||document).querySelector(s)};
+$(function () {
+  'use strict';
+  var $win = $(window), $hdr = $('#hdr'), $pg = $('#pg'), $top = $('#toTop'), $vis = $('#heroVis');
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ---------- تم تاریک / روشن ---------- */
-  var root = document.documentElement, themeIc = $("#theme-ic");
-  var moon = '<path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/>';
-  var sun = '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>';
-  function setTheme(t){root.setAttribute("data-theme",t);themeIc.innerHTML = t==="dark"?moon:sun;try{localStorage.setItem("theme",t)}catch(e){}}
-  var saved=null;try{saved=localStorage.getItem("theme")}catch(e){}
-  setTheme(saved||"dark");
-  $("#theme").addEventListener("click",function(){setTheme(root.getAttribute("data-theme")==="dark"?"light":"dark")});
-
-  /* ---------- ناوبری ---------- */
-  var nav=$("#nav"),links=$("#links");
-  window.addEventListener("scroll",function(){nav.classList.toggle("scrolled",scrollY>12)},{passive:true});
-  $("#burger").addEventListener("click",function(){links.classList.toggle("open")});
-  links.addEventListener("click",function(e){if(e.target.tagName==="A")links.classList.remove("open")});
-  $("#yr").textContent = new Intl.DateTimeFormat("fa-IR",{year:"numeric"}).format(new Date());
-
-  /* ---------- نوار متحرک ---------- */
-  var tags=["تیکت‌های هوشمند","دستیار هوش مصنوعی","پنل مستقل برای هر مشتری","پایگاه دانش","گزارش‌های زنده","اعلان لحظه‌ای","ارجاع خودکار","زمان‌سنج پاسخ"];
-  var t=$("#track"),h="";
-  for(var k=0;k<2;k++)tags.forEach(function(x){h+='<span><svg width="18" height="18"><use href="#i-bolt"/></svg>'+x+'</span>'});
-  t.innerHTML=h+h;
-
-  /* ---------- کارت ویژگی‌ها ---------- */
-  var F=[
-    ["🤖","پاسخ‌گویی با هوش مصنوعی","دستیار فارسی‌زبان، سوالات پرتکرار را در چند ثانیه پاسخ می‌دهد و بار تیم را کم می‌کند.","linear-gradient(135deg,#6d5efc,#a855f7)",1],
-    ["🏢","پنل جدا برای هر مشتری","هر مشتری فضای مستقل با کاربران، تنظیمات و داده‌های خودش دارد.","linear-gradient(135deg,#22d3ee,#3b82f6)"],
-    ["👤","ادمین اختصاصی","برای هر پنل یک ادمین تعیین کنید تا تیم و دپارتمان‌های خودش را مدیریت کند.","linear-gradient(135deg,#f472b6,#e11d48)"],
-    ["📥","مدیریت تیکت حرفه‌ای","اولویت، وضعیت، برچسب، یادداشت داخلی و ارجاع؛ همه با ظاهری تمیز و سریع.","linear-gradient(135deg,#34d399,#059669)"],
-    ["📚","پایگاه دانش","مقاله‌های راهنما بنویسید تا مشتری پیش از ثبت تیکت جواب را پیدا کند.","linear-gradient(135deg,#fbbf24,#f97316)"],
-    ["🔔","اعلان لحظه‌ای","هر پیام یا تغییر وضعیت، همان لحظه به کارشناس و مشتری خبر داده می‌شود.","linear-gradient(135deg,#8b5cf6,#6366f1)"],
-    ["📊","گزارش و تحلیل","زمان پاسخ، حجم تیکت‌ها و عملکرد هر کارشناس را در داشبوردهای روشن ببینید.","linear-gradient(135deg,#06b6d4,#6d5efc)",1]
-  ];
-  $("#fgrid").innerHTML=F.map(function(f,i){
-    return '<div class="fcard rv'+(f[4]?' wide':'')+'" style="--d:'+(i%3)*.08+'s"><div class="ficon" style="background:'+f[3]+';font-size:1.6rem">'+f[0]+'</div><h3>'+f[1]+'</h3><p>'+f[2]+'</p></div>';
-  }).join("");
-  document.querySelectorAll(".fcard").forEach(function(c){
-    c.addEventListener("mousemove",function(e){var r=c.getBoundingClientRect();c.style.setProperty("--x",(e.clientX-r.left)+"px");c.style.setProperty("--y",(e.clientY-r.top)+"px")});
-  });
-
-  /* ---------- گفتگوی زنده در هیرو ---------- */
-  var chat=$("#chat");
-  var script=[
-    ["u","سلام، پرداخت من انجام شد ولی سفارش ثبت نشده. ممکنه کمک کنید؟"],
-    ["a","سلام! متوجه شدم. شماره پیگیری پرداخت را بفرمایید تا وضعیتش را بررسی کنم."],
-    ["u","شماره پیگیری: ۸۴۱۲۹۶۳"],
-    ["a","پرداخت شما تأیید شده و سفارش در حال ثبت نهایی است. تا ۲ دقیقه دیگر پیامک تأیید می‌گیرید. ✅"]
-  ];
-  function bubble(w,txt){
-    var d=document.createElement("div");d.className="msg "+w;
-    d.innerHTML=(w==="a"?'<small>✨ دستیار هوشمند</small>':'')+txt;chat.appendChild(d);
-    while(chat.children.length>4)chat.removeChild(chat.firstChild);
-    return d;
+  /* ---------- هدر، نوار پیشرفت، دکمه بالا، پارالاکس ---------- */
+  function onScroll() {
+    var y = window.pageYOffset || document.documentElement.scrollTop;
+    var max = document.documentElement.scrollHeight - window.innerHeight;
+    $hdr.toggleClass('scrolled', y > 40);
+    $pg.css('transform', 'scaleX(' + (max > 0 ? Math.min(y / max, 1) : 0) + ')');
+    $top.toggleClass('show', y > 700);
+    if (!reduce && y < 900 && window.innerWidth > 991) { $vis.css('--py', (y * -0.07) + 'px'); }
   }
-  function wait(ms){return new Promise(function(r){setTimeout(r,ms)})}
-  async function loop(){
-    if(reduce){script.forEach(function(s){bubble(s[0],s[1])});return}
-    while(true){
-      for(var i=0;i<script.length;i++){
-        var s=script[i];
-        if(s[0]==="a"){
-          var ty=document.createElement("div");ty.className="typing";ty.innerHTML="<i></i><i></i><i></i>";chat.appendChild(ty);
-          await wait(1300);ty.remove();
-        } else await wait(900);
-        bubble(s[0],s[1]);
-        await wait(1500);
-      }
-      await wait(2800);chat.innerHTML="";
+  $win.on('scroll resize', onScroll); onScroll();
+
+  $top.on('click', function () { $('html, body').animate({ scrollTop: 0 }, 600); });
+
+  /* ---------- منوی موبایل ---------- */
+  var $btn = $('#menuBtn');
+  function setMenu(open) {
+    $hdr.toggleClass('open', open);
+    $btn.attr('aria-expanded', open ? 'true' : 'false')
+        .find('i').attr('class', open ? 'bi bi-x-lg' : 'bi bi-list');
+  }
+  $btn.on('click', function () { setMenu(!$hdr.hasClass('open')); });
+  $('#navWrap a').on('click', function () { setMenu(false); });
+  $(document).on('keydown', function (e) { if (e.key === 'Escape') setMenu(false); });
+  $win.on('resize', function () { if (window.innerWidth > 991) setMenu(false); });
+
+  /* ---------- انیمیشن ظاهر شدن با اسکرول ---------- */
+  $('.stagger').each(function () {
+    $(this).children().each(function (i) {
+      $(this).addClass('reveal').css('transition-delay', (i * 90) + 'ms');
+    });
+  });
+  $('html').addClass('js');
+  var $items = $('.reveal');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        var el = en.target;
+        el.classList.add('in');
+        io.unobserve(el);
+        // بعد از پایان انیمیشن ورود، کلاس‌ها حذف می‌شوند تا افکت‌های hover کارت‌ها درست کار کنند
+        setTimeout(function () {
+          el.classList.remove('reveal', 'in', 'from-r', 'from-l', 'zoom');
+          el.style.transitionDelay = '';
+        }, 1500);
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+    $items.each(function () { io.observe(this); });
+  } else { $items.addClass('in'); }
+
+  /* ---------- هایلایت منو بر اساس بخش فعال ---------- */
+  var $links = $('.nav a.lnk');
+  if ('IntersectionObserver' in window) {
+    var spy = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) {
+          var id = en.target.id;
+          $links.removeClass('active').filter('[href="#' + id + '"]').addClass('active');
+        }
+      });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    $links.each(function () {
+      var t = document.querySelector($(this).attr('href'));
+      if (t) spy.observe(t);
+    });
+  }
+
+  /* ---------- فرم‌ها (اعتبارسنجی سمت کاربر) ----------
+     برای ارسال واقعی، داخل تابع زیر (محل TODO) درخواست AJAX/fetch به سرور خودتان را بگذارید. */
+  $('form.needs-val').on('submit', function (e) {
+    e.preventDefault();
+    var f = this, $f = $(f);
+    if (!f.checkValidity()) {
+      $f.addClass('was-validated');
+      $f.find(':invalid').first().trigger('focus');
+      return;
     }
-  }
-  loop();
-
-  /* ---------- تب‌های پنل ---------- */
-  var colors=["linear-gradient(135deg,#6d5efc,#a855f7)","linear-gradient(135deg,#22d3ee,#3b82f6)","linear-gradient(135deg,#f472b6,#e11d48)","linear-gradient(135deg,#34d399,#059669)"];
-  function rowsHtml(list){return list.map(function(r,i){return '<div class="row"><div class="av" style="background:'+colors[i%4]+'">'+r[0].charAt(0)+'</div><div class="grow">'+r[0]+'<small>'+r[1]+'</small></div><span class="st '+r[3]+'">'+r[2]+'</span></div>'}).join("")}
-  function kpiHtml(k){return '<div class="kpis">'+k.map(function(x){return '<div class="kpi"><small>'+x[0]+'</small><b>'+x[1]+'</b></div>'}).join("")+'</div>'}
-  function barsHtml(a){return '<div class="bars">'+a.map(function(v,i){return '<i style="height:'+v+'%;animation-delay:'+i*.07+'s"></i>'}).join("")+'</div>'}
-  var P=[
-    {tab:"مدیر کل",title:"کنترل کامل روی همه پنل‌ها",desc:"همه مشتری‌ها، ادمین‌ها و تنظیمات سراسری را از یک نقطه مدیریت کنید و وضعیت کل سامانه را ببینید.",
-     pts:["ساخت و تعلیق پنل مشتری‌ها","تعریف نقش‌ها و سطح دسترسی","گزارش تجمیعی از همه سازمان‌ها"],
-     head:"نمای کلی سامانه",kpi:[["پنل فعال","۲۴"],["تیکت امروز","۳۱۲"],["رضایت","۹۴٪"]],bars:[40,62,48,80,66,90,74],
-     rows:[["شرکت آرمان","ادمین: سارا محمدی","فعال","ok"],["فروشگاه نیلوفر","ادمین: علی رضایی","فعال","ok"],["آموزشگاه پارس","ادمین: مریم کاظمی","در انتظار","wait"]]},
-    {tab:"ادمین مشتری",title:"هر سازمان، مدیریت مستقل خودش",desc:"ادمین هر مشتری کارشناسان و دپارتمان‌ها را تعریف می‌کند، دستیار هوشمند را تنظیم می‌کند و گزارش تیم خودش را می‌بیند.",
-     pts:["افزودن کارشناس و دپارتمان","آموزش دستیار با پایگاه دانش","تنظیم زمان‌های پاسخ‌گویی"],
-     head:"مدیریت تیم من",kpi:[["کارشناس","۸"],["باز","۲۷"],["حل‌شده","۱۸۴"]],bars:[55,70,45,85,60,72,92],
-     rows:[["نگار احمدی","فروش و مالی","آنلاین","ok"],["رضا کریمی","فنی","مشغول","wait"],["هانیه صادقی","عمومی","آنلاین","ok"]]},
-    {tab:"کارشناس",title:"صندوق تیکت منظم و سریع",desc:"کارشناس تیکت‌های ارجاع‌شده را همراه با خلاصه هوش مصنوعی و پاسخ پیشنهادی می‌بیند و سریع‌تر جواب می‌دهد.",
-     pts:["خلاصه هوشمند هر گفتگو","پاسخ پیشنهادی با یک کلیک","یادداشت داخلی و ارجاع به همکار"],
-     head:"تیکت‌های من",kpi:[["جدید","۵"],["در جریان","۱۲"],["امروز حل شد","۹"]],bars:[30,50,66,40,78,58,84],
-     rows:[["پرداخت ناموفق","اولویت بالا","فوری","hot"],["تغییر رمز عبور","مشتری: آرمان","جدید","new"],["درخواست فاکتور","مشتری: نیلوفر","در جریان","wait"]]},
-    {tab:"کاربر نهایی",title:"ثبت و پیگیری تیکت بی‌دردسر",desc:"مشتری شما تیکت ثبت می‌کند، وضعیت را لحظه‌ای می‌بیند و اغلب همان‌جا جواب دستیار هوشمند را می‌گیرد.",
-     pts:["ثبت تیکت با پیوست فایل","مشاهده وضعیت و تاریخچه","پیشنهاد مقاله راهنما قبل از ثبت"],
-     head:"تیکت‌های من",kpi:[["باز","۲"],["بسته","۱۱"],["مقاله","۳۶"]],bars:[20,35,28,55,40,65,50],
-     rows:[["مشکل ورود به حساب","پاسخ داده شد","حل شد","ok"],["سوال درباره تعرفه","در حال بررسی","در جریان","wait"],["درخواست قابلیت جدید","ثبت شده","جدید","new"]]}
-  ];
-  var tabs=$("#tabs"),pv=$("#pview");
-  tabs.innerHTML=P.map(function(p,i){return '<button class="tab'+(i?'':' on')+'" data-i="'+i+'">'+p.tab+'</button>'}).join("");
-  function show(i){
-    var p=P[i];
-    pv.innerHTML='<div class="panel-view"><div><h3>'+p.title+'</h3><p>'+p.desc+'</p><ul class="checks">'+
-      p.pts.map(function(x){return '<li><svg width="20" height="20"><use href="#i-check"/></svg><span>'+x+'</span></li>'}).join("")+
-      '</ul></div><div class="mini"><div class="mini-head"><span>'+p.head+'</span><span class="tag">زنده</span></div>'+kpiHtml(p.kpi)+barsHtml(p.bars)+'<div class="rows">'+rowsHtml(p.rows)+'</div></div></div>';
-  }
-  show(0);
-  tabs.addEventListener("click",function(e){
-    var b=e.target.closest(".tab");if(!b)return;
-    tabs.querySelectorAll(".tab").forEach(function(x){x.classList.remove("on")});b.classList.add("on");show(+b.dataset.i);
+    // TODO: ارسال داده‌ها به سرور  →  $.post('/your-endpoint', $f.serialize())
+    $f.removeClass('was-validated');
+    f.reset();
+    var $ok = $f.find('.form-ok');
+    $ok.removeAttr('hidden').hide().slideDown(250);
+    setTimeout(function () { $ok.slideUp(250); }, 5000);
   });
-
-  /* ---------- ظاهر شدن هنگام اسکرول ---------- */
-  var els=document.querySelectorAll(".rv");
-  if("IntersectionObserver" in window && !reduce){
-    var io=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){x.target.classList.add("in");io.unobserve(x.target)}})},{threshold:.12});
-    els.forEach(function(e){io.observe(e)});
-  } else els.forEach(function(e){e.classList.add("in")});
-})();
+});
 </script>
 </body>
 </html>
