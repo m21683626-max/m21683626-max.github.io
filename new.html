@@ -12,9 +12,7 @@
      مسیر فونت ایران‌سنس را مطابق فایل‌های خودتان تغییر دهید.
      وقتی تصویر/ویدئوی Hero را گذاشتید، خط preload تصویر را از حالت کامنت خارج کنید. -->
 <link rel="preload" href="fonts/IRANSansWeb.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" as="image" href="video/poster.jpg" fetchpriority="high">
-<script>/* اگر کاربر انیمیشن را در سیستم خاموش کرده، اینترو اسکرولی فعال نمی‌شود */
-if(!(window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches)){document.documentElement.className+=" has-intro"}</script>
+<!-- <link rel="preload" as="image" href="images/hero.webp" fetchpriority="high"> -->
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -171,58 +169,61 @@ h3{font-size:1.15rem;line-height:1.7;font-weight:700;color:var(--navy)}
 .more i{transition:transform .3s var(--ease)}
 .more:hover{color:var(--green-d)}.more:hover i{transform:translateX(-6px)}
 
-/* ===================== اینترو ویدئویی (اسکرول = فریم) ===================== */
-.intro{position:relative;background:var(--navy-3)}
-.has-intro .intro{height:var(--intro-h,460vh)}
-.intro-stick{position:relative;min-height:100vh;min-height:100svh;overflow:hidden;color:#fff;display:flex}
-.has-intro .intro-stick{position:sticky;top:0;height:100vh;height:100svh;min-height:0}
-.intro-video,.intro-poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:var(--navy-3)}
-.intro-shade{position:absolute;inset:0;background:linear-gradient(to left,rgba(7,20,42,.9) 0%,rgba(7,20,42,.6) 42%,rgba(7,20,42,.08) 100%),linear-gradient(0deg,rgba(7,20,42,.8) 0%,transparent 38%),linear-gradient(180deg,rgba(7,20,42,.55) 0%,transparent 22%)}
-.intro-copy{position:relative;z-index:2;display:flex;align-items:center;width:100%}
-.copy-in{max-width:660px;padding:7rem 0 4rem}
-.intro .eyebrow{background:rgba(94,234,212,.14);color:var(--teal-light)}
-.intro h1{font-size:clamp(1.6rem,3.8vw,2.9rem);line-height:1.75;font-weight:700;margin-bottom:1rem;text-shadow:0 2px 24px rgba(0,0,0,.45)}
-.intro h1 span{background:linear-gradient(90deg,var(--amber),var(--teal-light));-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:none}
-.beats{display:grid;gap:1rem}
-.beat p{color:#d9e3f5;font-size:1.03rem;max-width:56ch;text-shadow:0 1px 14px rgba(0,0,0,.5)}
-.beat .cta-row{margin-top:1.6rem}
-.has-intro .beats{gap:0}
-.has-intro .beat{grid-area:1/1;opacity:0;transform:translateY(22px);transition:opacity .55s var(--ease),transform .55s var(--ease);pointer-events:none;visibility:hidden}
-.has-intro .beat.on{opacity:1;transform:none;pointer-events:auto;visibility:visible}
-.btn-ghost{color:#fff;border-color:rgba(255,255,255,.5);background:rgba(255,255,255,.08);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);position:relative;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;gap:.55rem;padding:.85rem 1.6rem;border-radius:16px;font-weight:700;font-size:.96rem;line-height:1.6;border-width:1.5px;border-style:solid;transition:transform .3s var(--ease),background .3s}
-.btn-ghost:hover{background:rgba(255,255,255,.2);transform:translateY(-3px)}
-.intro-hint{position:absolute;z-index:3;bottom:26px;inset-inline-start:50%;transform:translateX(50%);display:none;flex-direction:column;align-items:center;gap:.5rem;font-size:.8rem;color:#d9e3f5;transition:opacity .4s}
-.has-intro .intro-hint{display:flex}
-.intro-hint.gone{opacity:0;pointer-events:none}
-.intro-hint i{display:block;width:26px;height:42px;border:2px solid rgba(255,255,255,.6);border-radius:20px;position:relative}
-.intro-hint i::after{content:"";position:absolute;top:8px;inset-inline-start:50%;width:4px;height:8px;margin-inline-start:-2px;border-radius:4px;background:var(--amber);animation:wheel 1.8s infinite}
+/* ===================== Hero (بدون ویدئو) ===================== */
+.hero{position:relative;overflow:hidden;color:#fff;padding:clamp(7.5rem,13vw,10rem) 0 clamp(5.5rem,10vw,8rem);background:radial-gradient(1200px 600px at 85% -10%,#1b4a8f 0%,transparent 60%),linear-gradient(160deg,var(--navy) 0%,var(--navy-2) 100%)}
+.hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:54px 54px;-webkit-mask-image:radial-gradient(ellipse at 70% 30%,#000 10%,transparent 70%);mask-image:radial-gradient(ellipse at 70% 30%,#000 10%,transparent 70%)}
+.hero::after{content:"";position:absolute;bottom:-1px;inset-inline:0;height:70px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 70' preserveAspectRatio='none'%3E%3Cpath fill='%23f4f7fb' d='M0 70V30C240 0 480 0 720 25s480 30 720 5v40z'/%3E%3C/svg%3E") center/100% 100% no-repeat}
+.blob{position:absolute;border-radius:50%;filter:blur(70px);opacity:.5;pointer-events:none}
+.blob.b1{width:340px;height:340px;background:#14b8a6;top:-80px;inset-inline-start:-80px;animation:drift 14s ease-in-out infinite}
+.blob.b2{width:300px;height:300px;background:#3b82f6;bottom:-60px;inset-inline-end:10%;animation:drift 18s ease-in-out infinite reverse}
+@keyframes drift{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(40px,30px) scale(1.15)}}
+.hero-grid{position:relative;z-index:2;display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(2rem,5vw,4rem);align-items:center}
+.hero .eyebrow{background:rgba(94,234,212,.12);color:var(--teal-light)}
+.hero h1{font-size:clamp(1.6rem,3.8vw,2.8rem);line-height:1.75;font-weight:700;margin-bottom:1.1rem}
+.hero h1 span{background:linear-gradient(90deg,var(--amber),var(--teal-light));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{color:var(--on-dark);font-size:1.02rem;max-width:62ch}
+.hero p+p{margin-top:.9rem}
+.hero .cta-row{margin-top:1.9rem}
+.btn-ghost{color:#fff;border:1.5px solid rgba(255,255,255,.45);background:rgba(255,255,255,.07);position:relative;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;gap:.55rem;padding:.85rem 1.6rem;border-radius:16px;font-weight:700;font-size:.96rem;line-height:1.6;transition:transform .3s var(--ease),background .3s}
+.btn-ghost:hover{background:rgba(255,255,255,.18);transform:translateY(-3px)}
+.hero-vis{position:relative;padding:14px}
+.orbit{position:absolute;inset:-6% -4%;border:2px dashed rgba(255,255,255,.22);border-radius:50%;animation:spin 50s linear infinite;pointer-events:none}
+@keyframes spin{to{transform:rotate(360deg)}}
+.hero-frame{--ar:4/3.3;border-radius:30px;border:2px dashed rgba(255,255,255,.4);box-shadow:0 40px 70px -30px rgba(0,0,0,.7);animation:none;transform:rotate(-1.5deg);transition:transform .6s var(--ease);color:#b7c6e2;background:linear-gradient(110deg,#102a52 30%,#16356a 50%,#102a52 70%);background-size:220% 100%}
+.hero-frame::before{filter:brightness(1.6)}
+.hero-vis:hover .hero-frame{transform:rotate(0)}
+.fcard{position:absolute;display:flex;align-items:center;gap:.65rem;background:rgba(255,255,255,.97);color:var(--navy);font-weight:700;font-size:.86rem;padding:.65rem 1rem;border-radius:16px;box-shadow:0 20px 34px -16px rgba(0,0,0,.6);z-index:3;animation:floaty 6s ease-in-out infinite}
+.fcard i{display:grid;place-items:center;width:34px;height:34px;border-radius:11px;background:var(--teal);color:#fff;font-size:1rem}
+.fcard.c1{top:6%;inset-inline-start:-4%}
+.fcard.c2{top:42%;inset-inline-end:-5%;animation-delay:-2s;flex-direction:column;align-items:stretch;gap:.5rem}
+.fcard.c3{bottom:5%;inset-inline-start:4%;animation-delay:-4s}
+.fcard.c3 i{background:var(--amber-2);color:var(--navy)}
+.bars{display:flex;align-items:flex-end;gap:5px;height:34px}
+.bars span{flex:1;border-radius:4px 4px 0 0;background:linear-gradient(180deg,var(--amber),var(--amber-2));animation:bar 2.4s ease-in-out infinite}
+.bars span:nth-child(1){height:40%}.bars span:nth-child(2){height:70%;animation-delay:-.4s}.bars span:nth-child(3){height:55%;animation-delay:-.8s}.bars span:nth-child(4){height:90%;animation-delay:-1.2s}.bars span:nth-child(5){height:65%;animation-delay:-1.6s}
+@keyframes bar{0%,100%{transform:scaleY(1)}50%{transform:scaleY(.55)}}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+.scroll-hint{position:absolute;bottom:88px;inset-inline-start:50%;transform:translateX(50%);z-index:3;width:26px;height:42px;border:2px solid rgba(255,255,255,.5);border-radius:20px}
+.scroll-hint::after{content:"";position:absolute;top:8px;inset-inline-start:50%;width:4px;height:8px;margin-inline-start:-2px;border-radius:4px;background:var(--amber);animation:wheel 1.8s infinite}
 @keyframes wheel{0%{opacity:1;transform:translateY(0)}100%{opacity:0;transform:translateY(14px)}}
-.intro-skip{position:absolute;z-index:3;bottom:26px;inset-inline-end:22px;display:none;align-items:center;gap:.4rem;font-size:.82rem;font-weight:700;color:#fff;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.3);padding:.45rem .95rem;border-radius:99px;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);transition:background .3s}
-.has-intro .intro-skip{display:inline-flex}
-.intro-skip:hover{background:rgba(255,255,255,.24)}
-.intro-rail{position:absolute;z-index:3;inset-inline-start:22px;top:50%;transform:translateY(-50%);width:4px;height:140px;border-radius:4px;background:rgba(255,255,255,.22);display:none;overflow:hidden}
-.has-intro .intro-rail{display:block}
-.intro-rail::after{content:"";position:absolute;top:0;inset-inline:0;height:calc(var(--p,0)*100%);background:linear-gradient(180deg,var(--amber),var(--teal-light))}
-@media (max-width:767px){
-  .has-intro .intro{--intro-h:380vh}
-  .intro-stick{align-items:flex-end}
-  .intro-copy{align-items:flex-end}
-  .copy-in{padding:6rem 0 5.2rem;max-width:none}
-  .intro h1{font-size:1.4rem;line-height:1.8}
-  .beat p{font-size:.95rem}
-  .intro-shade{background:linear-gradient(0deg,rgba(7,20,42,.94) 0%,rgba(7,20,42,.78) 45%,rgba(7,20,42,.1) 78%),linear-gradient(180deg,rgba(7,20,42,.6) 0%,transparent 20%)}
-  .intro-rail{display:none!important}
-  .intro-skip{font-size:.78rem}
-  .intro-hint{bottom:18px}
-  .beat .cta-row .btn-main,.beat .cta-row .btn-ghost{width:100%}
+@media (max-width:991px){
+  .hero-grid{grid-template-columns:1fr}
+  .hero-vis{max-width:560px;margin-inline:auto;width:100%}
+  .fcard.c1{inset-inline-start:-2%}.fcard.c2{inset-inline-end:-2%}
+  .scroll-hint{display:none}
 }
-.strip{position:relative;z-index:3;background:var(--bg);border-radius:34px 34px 0 0;margin-top:-34px;padding:1.6rem 0 .4rem}
+@media (max-width:575px){
+  .hero{padding-top:6.6rem}
+  .cta-row .btn-main,.cta-row .btn-ghost{width:100%}
+  .fcard{font-size:.76rem;padding:.45rem .7rem}.fcard i{width:26px;height:26px;font-size:.85rem}
+  .orbit{display:none}
+}
+.strip{position:relative;z-index:3;background:var(--bg);padding:1.2rem 0 .4rem}
 .qchips{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;justify-content:center}
 .qchips .lbl{font-weight:700;color:var(--muted);font-size:.88rem;margin-inline-end:.3rem}
 .qchip{display:inline-flex;align-items:center;gap:.5rem;background:#fff;border:1px solid var(--line);border-radius:99px;padding:.45rem 1rem;font-weight:700;font-size:.9rem;color:var(--navy);box-shadow:0 6px 16px -12px rgba(15,42,82,.5);transition:transform .3s var(--ease),border-color .3s,color .3s}
 .qchip:hover{transform:translateY(-3px);border-color:var(--teal);color:var(--teal)}
 @media (max-width:575px){
-  .strip{border-radius:26px 26px 0 0;margin-top:-26px}
   .qchips{flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;margin-inline:-20px;padding:.3rem 20px;scroll-snap-type:x proximity;scrollbar-width:none}
   .qchips::-webkit-scrollbar{display:none}
   .qchip,.qchips .lbl{flex:none;scroll-snap-align:start}
@@ -521,13 +522,11 @@ address i{color:var(--amber)}
 @media (max-width:767px){
   #capability .tl::after{background:linear-gradient(180deg,var(--amber),var(--teal-light))}
 }
+
 main,.footer{overflow-x:clip}
 @media (max-width:767px){
   .js .reveal.from-r,.js .reveal.from-l{transform:translateY(28px)}
-  .intro-skip{top:84px;bottom:auto;inset-inline-end:16px}
 }
-.in-intro .mbar{transform:translateY(110%)}
-.in-intro #toTop{opacity:0;pointer-events:none}
 </style>
 <noscript><style>.reveal{opacity:1!important;transform:none!important}.panel{display:grid!important;margin-bottom:1rem}.tabs{display:none}.tl::after{width:80%}</style></noscript>
 </head>
@@ -566,37 +565,32 @@ main,.footer{overflow-x:clip}
 
 <main id="main">
 
-<!-- ============================ ۱. Hero (اینترو ویدئویی با اسکرول) ============================
-     ویدئو بی‌صدا است و با اسکرول فریم‌به‌فریم جلو/عقب می‌رود.
-     فایل‌ها: video/intro.mp4 (دسکتاپ) ، video/intro-m.mp4 (موبایل) ، video/poster.jpg -->
-<section class="intro" id="top" aria-labelledby="h1">
-  <div class="intro-stick" id="introStick">
-    <video class="intro-video" id="introVideo" muted playsinline preload="auto" poster="video/poster.jpg" aria-hidden="true" tabindex="-1" disablepictureinpicture></video>
-    <div class="intro-shade" aria-hidden="true"></div>
-    <div class="intro-copy">
-      <div class="container">
-        <div class="copy-in">
-          <span class="eyebrow">دانش‌پژوهان محاسب سرزمین پارس</span>
-          <h1 id="h1"><span>راهکارهای یکپارچه مدیریت سازمان؛</span> از کنترل فرآیندهای تولید تا تصمیم‌گیری‌های مالی و مدیریتی</h1>
-          <div class="beats">
-            <div class="beat" data-from="0.16" data-to="0.62">
-              <p>دانش‌پژوهان محاسب سرزمین پارس با تلفیق دانش مالی و حسابداری، شناخت فرآیندهای صنعتی و بازرگانی و توانمندی توسعه نرم‌افزار، راهکارهایی برای مدیریت یکپارچه اطلاعات و فرآیندهای سازمانی ارائه می‌دهد.</p>
-            </div>
-            <div class="beat" data-from="0.62" data-to="1.01">
-              <p>محصولات نرم‌افزاری، خدمات تخصصی مالی و حسابداری، مشاوره مدیریت و آموزش، در کنار یکدیگر به کسب‌وکارها کمک می‌کنند تا اطلاعات خود را منسجم‌تر مدیریت کرده و با شناخت دقیق‌تر عملکرد سازمان، تصمیم‌های آگاهانه‌تری بگیرند.</p>
-              <div class="cta-row">
-                <a class="btn-main" href="#products">مشاهده محصولات نرم‌افزاری <i class="bi bi-arrow-left" aria-hidden="true"></i></a>
-                <a class="btn-ghost" href="#demo">درخواست مشاوره و دمو</a>
-              </div>
-            </div>
-          </div>
-        </div>
+<!-- ============================ ۱. Hero ============================ -->
+<section class="hero" id="top" aria-labelledby="h1">
+  <span class="blob b1" aria-hidden="true"></span><span class="blob b2" aria-hidden="true"></span>
+  <div class="container hero-grid">
+    <div class="reveal from-r">
+      <span class="eyebrow">دانش‌پژوهان محاسب سرزمین پارس</span>
+      <h1 id="h1"><span>راهکارهای یکپارچه مدیریت سازمان؛</span> از کنترل فرآیندهای تولید تا تصمیم‌گیری‌های مالی و مدیریتی</h1>
+      <p>دانش‌پژوهان محاسب سرزمین پارس با تلفیق دانش مالی و حسابداری، شناخت فرآیندهای صنعتی و بازرگانی و توانمندی توسعه نرم‌افزار، راهکارهایی برای مدیریت یکپارچه اطلاعات و فرآیندهای سازمانی ارائه می‌دهد.</p>
+      <p>محصولات نرم‌افزاری، خدمات تخصصی مالی و حسابداری، مشاوره مدیریت و آموزش، در کنار یکدیگر به کسب‌وکارها کمک می‌کنند تا اطلاعات خود را منسجم‌تر مدیریت کرده و با شناخت دقیق‌تر عملکرد سازمان، تصمیم‌های آگاهانه‌تری بگیرند.</p>
+      <div class="cta-row">
+        <a class="btn-main" href="#products">مشاهده محصولات نرم‌افزاری <i class="bi bi-arrow-left" aria-hidden="true"></i></a>
+        <a class="btn-ghost" href="#demo">درخواست مشاوره و دمو</a>
       </div>
     </div>
-    <span class="intro-rail" id="introRail" aria-hidden="true"></span>
-    <span class="intro-hint" id="introHint" aria-hidden="true"><i></i>برای ادامه اسکرول کنید</span>
-    <a class="intro-skip" href="#qstrip">رد شدن از ویدئو <i class="bi bi-chevron-double-down" aria-hidden="true"></i></a>
+    <div class="hero-vis reveal from-l">
+      <span class="orbit" aria-hidden="true"></span>
+      <!-- جای تصویر Hero: آدرس src را عوض کنید -->
+      <figure class="ph hero-frame" data-label="جای تصویر Hero">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 3.3'%3E%3C/svg%3E" width="800" height="660" alt="نمایی از داشبورد نرم‌افزارهای یکپارچه مدیریت مالی، بازرگانی و تولید DMS Pars" fetchpriority="high">
+      </figure>
+      <span class="fcard c1"><i class="bi bi-calculator" aria-hidden="true"></i>مالی و حسابداری</span>
+      <span class="fcard c2"><span class="bars" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></span>تحلیل بهای تمام‌شده</span>
+      <span class="fcard c3"><i class="bi bi-gear-wide-connected" aria-hidden="true"></i>تولید و بازرگانی</span>
+    </div>
   </div>
+  <span class="scroll-hint" aria-hidden="true"></span>
 </section>
 
 <section class="strip" id="qstrip" aria-label="دسترسی سریع به محصولات">
@@ -1045,68 +1039,6 @@ main,.footer{overflow-x:clip}
   <a class="btn-line" href="#support" aria-label="پشتیبانی"><i class="bi bi-life-preserver" aria-hidden="true"></i> پشتیبانی</a>
 </div>
 <button id="toTop" type="button" aria-label="بازگشت به بالای صفحه"><i class="bi bi-arrow-up" aria-hidden="true"></i></button>
-
-<!-- اسکرول = فریم ویدئو (بدون وابستگی به jQuery؛ ویدئو کاملاً بی‌صدا) -->
-<script>
-(function () {
-  var root = document.documentElement;
-  if (!root.classList.contains('has-intro')) return;
-  var intro = document.getElementById('top'), v = document.getElementById('introVideo');
-  if (!intro || !v) return;
-  var beats = [].slice.call(intro.querySelectorAll('.beat'));
-  var hint = document.getElementById('introHint'), rail = document.getElementById('introRail');
-  var mobile = window.matchMedia('(max-width: 767px)').matches;
-
-  v.muted = true; v.defaultMuted = true; v.volume = 0;
-  v.setAttribute('muted', ''); v.setAttribute('playsinline', '');
-  v.src = mobile ? 'video/intro-m.mp4' : 'video/intro.mp4';
-  v.load();
-
-  var dur = 0, p = 0, cur = 0, raf = 0;
-  v.addEventListener('loadedmetadata', function () { dur = v.duration || 0; onScroll(); });
-  v.addEventListener('loadeddata', function () { v.pause(); onScroll(); });
-
-  // iOS/Safari: یک‌بار play/pause بعد از اولین تعامل تا فریم‌ها با seek نمایش داده شوند
-  var unlocked = false;
-  function unlock() {
-    if (unlocked) return; unlocked = true;
-    var pr = v.play();
-    if (pr && pr.then) pr.then(function () { v.pause(); onScroll(); }).catch(function () {});
-  }
-  ['touchstart', 'pointerdown', 'wheel', 'keydown'].forEach(function (ev) {
-    window.addEventListener(ev, unlock, { once: true, passive: true });
-  });
-
-  function measure() {
-    var total = intro.offsetHeight - window.innerHeight;
-    var top = intro.getBoundingClientRect().top;
-    p = total > 0 ? Math.min(1, Math.max(0, -top / total)) : 0;
-  }
-  function paint() {
-    beats.forEach(function (b) {
-      var f = parseFloat(b.getAttribute('data-from')), t = parseFloat(b.getAttribute('data-to'));
-      b.classList.toggle('on', p >= f && p < t);
-    });
-    if (hint) hint.classList.toggle('gone', p > 0.03);
-    if (rail) rail.style.setProperty('--p', p.toFixed(3));
-    root.classList.toggle('in-intro', p < 0.97);
-  }
-  function tick() {
-    raf = 0;
-    if (dur) {
-      var target = Math.min(p * dur, dur - 0.04);
-      cur += (target - cur) * 0.22;
-      if (Math.abs(target - cur) < 0.006) cur = target;
-      if (!v.seeking && Math.abs(v.currentTime - cur) > 0.004) { try { v.currentTime = cur; } catch (e) {} }
-      if (Math.abs(target - cur) >= 0.006 || v.seeking) raf = requestAnimationFrame(tick);
-    }
-  }
-  function onScroll() { measure(); paint(); if (!raf) raf = requestAnimationFrame(tick); }
-  window.addEventListener('scroll', onScroll, { passive: true });
-  window.addEventListener('resize', onScroll);
-  onScroll();
-})();
-</script>
 
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script>
