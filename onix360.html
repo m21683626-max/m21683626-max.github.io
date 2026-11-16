@@ -1,0 +1,753 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ONYX360 (اونیکس ۳۶۰) | ERP صنعتی برای مدیریت فرآیندهای تولید</title>
+<meta name="description" content="ONYX360 (اونیکس ۳۶۰)، ERP صنعتی برای کارخانه‌های چندمرحله‌ای: برنامه‌ریزی تولید، ردیابی، بهای تمام‌شده و گزارش‌های مدیریتی یکپارچه.">
+<meta name="theme-color" content="#0b0e13">
+<link rel="canonical" href="https://dmspars.com/onyx360/"><!-- آدرس نهایی صفحه را اصلاح کنید -->
+<meta property="og:type" content="website"><meta property="og:locale" content="fa_IR">
+<meta property="og:title" content="ONYX360 (اونیکس ۳۶۰) | ERP صنعتی"><meta property="og:description" content="ONYX360 (اونیکس ۳۶۰)، ERP صنعتی برای کارخانه‌های چندمرحله‌ای: برنامه‌ریزی تولید، ردیابی، بهای تمام‌شده و گزارش‌های مدیریتی یکپارچه.">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<!-- فونت: فایل‌های IRANSans را در پوشه fonts قرار دهید -->
+<style>
+@font-face{font-family:"IRANSans";font-weight:400;font-style:normal;font-display:swap;src:local("IRANSans"),local("IRANSansWeb"),url("fonts/IRANSansWeb.woff2") format("woff2")}
+@font-face{font-family:"IRANSans";font-weight:700;font-style:normal;font-display:swap;src:local("IRANSans Bold"),local("IRANSansWeb-Bold"),url("fonts/IRANSansWeb_Bold.woff2") format("woff2")}
+
+:root{
+  --k0:#06080b;--k1:#0b0e13;--k2:#11161d;--k3:#18202a;--k4:#232d3b;
+  --st1:#f3f6fa;--st2:#c8d0dc;--st3:#93a0b3;--st4:#5f6b7d;
+  --plat:#eef1f6;--plat2:#e1e6ee;--ink:#10151c;--muted:#475264;
+  --on:#5aa0ff;--n3:#ff6367;
+  --ease:cubic-bezier(.22,.8,.3,1);
+  --metal:linear-gradient(180deg,#ffffff 0%,#d3dae5 38%,#8e9aac 50%,#e4e9f0 66%,#a4afbf 100%);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;font-family:"IRANSans","IRANSansWeb","Iran Sans",Vazirmatn,Tahoma,"Segoe UI",sans-serif;font-size:1rem;line-height:2;color:var(--st2);background:var(--k1);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{max-width:100%;height:auto;display:block}
+ul,ol{list-style:none;margin:0;padding:0}
+h1,h2,h3,p{margin:0}
+a{text-decoration:none;color:inherit}
+button{font-family:inherit}
+:focus-visible{outline:3px solid #ffb020;outline-offset:3px;border-radius:8px}
+section[id]{scroll-margin-top:20px}
+.container{width:100%;max-width:1200px;margin-inline:auto;padding-inline:20px}
+.skip{position:absolute;top:-60px;inset-inline-start:12px;background:#fff;color:#000;padding:.5rem 1rem;border-radius:10px;z-index:3000;font-weight:700}
+.skip:focus{top:12px}
+main{overflow-x:clip}
+
+/* ---------- برند: ONYX آبی، 360 قرمز ---------- */
+.brand,.brand-fa{font-weight:700;white-space:nowrap;unicode-bidi:isolate}
+.brand{letter-spacing:.02em}
+.bn{color:var(--on);font-weight:700}
+.b3{color:var(--n3);font-weight:700}
+.light{--on:#1c5ed6;--n3:#d3262c}
+
+/* ---------- زمینه سکشن‌ها ---------- */
+.sec{position:relative;padding:clamp(3.6rem,8vw,6.5rem) 0}
+.sec.dk{background:radial-gradient(900px 500px at 90% 0%,rgba(79,152,255,.08),transparent 60%),radial-gradient(700px 500px at 0% 100%,rgba(255,99,103,.05),transparent 60%),var(--k1);color:var(--st2)}
+.sec.dk::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;background:repeating-linear-gradient(90deg,rgba(255,255,255,.018) 0 1px,transparent 1px 4px)}
+.sec.lt{background:linear-gradient(180deg,#f4f6fa,#e4e9f1);color:var(--ink);--on:#1c5ed6;--n3:#d3262c}
+.sec.lt::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.6;background:repeating-linear-gradient(90deg,rgba(16,21,28,.025) 0 1px,transparent 1px 3px)}
+.sec>.container{position:relative;z-index:1}
+.sec.dk p,.sec.dk li{color:var(--st2)}
+.sec.lt p,.sec.lt li{color:var(--muted)}
+
+/* ---------- تایپوگرافی ---------- */
+h2{font-size:clamp(1.45rem,2.8vw,2.15rem);line-height:1.7;font-weight:700;color:#fff}
+.lt h2{color:var(--ink)}
+h3{font-size:1.15rem;line-height:1.75;font-weight:700;color:#fff}
+.lt h3{color:var(--ink)}
+.dk h2.metal,.metal{background:var(--metal);-webkit-background-clip:text;background-clip:text;color:transparent}
+.eyebrow{display:inline-flex;align-items:center;gap:.55rem;font-size:.82rem;font-weight:700;letter-spacing:.02em;padding:.3rem .95rem;border-radius:99px;margin-bottom:1rem;border:1px solid rgba(255,255,255,.18);background:linear-gradient(180deg,rgba(255,255,255,.1),rgba(255,255,255,.02));color:var(--st1)}
+.eyebrow b{display:inline-grid;place-items:center;min-width:24px;height:24px;border-radius:50%;background:var(--metal);color:#10151c;font-size:.72rem}
+.lt .eyebrow{border-color:rgba(16,21,28,.18);background:linear-gradient(180deg,#fff,#e6ebf2);color:var(--ink)}
+.lead{font-size:1.06rem;max-width:70ch;font-weight:400}
+.sec p+p{margin-top:1rem}
+.sec-head{max-width:860px;margin-bottom:clamp(1.8rem,4vw,3rem)}
+.sec-head.c{margin-inline:auto;text-align:center}
+.sec-head .lead{margin-top:1.1rem}
+.sub{margin-top:clamp(2.4rem,5vw,4rem)}
+.sub h3{font-size:clamp(1.15rem,2vw,1.4rem);margin-bottom:.9rem;display:flex;align-items:center;gap:.7rem}
+.sub h3::before{content:"";flex:none;width:28px;height:4px;border-radius:4px;background:linear-gradient(90deg,var(--on),var(--n3))}
+.split{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(1.6rem,4vw,3.6rem);align-items:center}
+.split.rev{grid-template-columns:.95fr 1.05fr}
+@media (max-width:991px){.split,.split.rev{grid-template-columns:1fr}}
+.center{text-align:center}
+
+/* ---------- دکمه‌ها ---------- */
+.btn-chrome,.btn-ghost,.btn-blue{position:relative;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;gap:.6rem;padding:.9rem 1.6rem;border-radius:14px;font-weight:700;font-size:.97rem;line-height:1.7;cursor:pointer;border:1px solid transparent;transition:transform .35s var(--ease),box-shadow .35s,background .3s}
+.btn-chrome{--on:#1c5ed6;--n3:#d3262c;color:#0d1117;background:linear-gradient(180deg,#fdfefe 0%,#dfe5ed 46%,#b6c0ce 54%,#eef1f6 100%);border-color:#8d99ab;box-shadow:0 10px 26px -12px rgba(120,160,255,.6),inset 0 1px 0 #fff}
+.btn-chrome::before,.btn-blue::before{content:"";position:absolute;top:0;bottom:0;width:55%;inset-inline-start:-80%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.7),transparent);transform:skewX(-20deg);transition:inset-inline-start .8s}
+.btn-chrome:hover::before,.btn-blue:hover::before{inset-inline-start:130%}
+.btn-chrome:hover,.btn-ghost:hover,.btn-blue:hover{transform:translateY(-3px)}
+.btn-chrome:hover{box-shadow:0 16px 34px -12px rgba(90,160,255,.85),inset 0 1px 0 #fff}
+.btn-ghost{color:#fff;border-color:rgba(255,255,255,.32);background:rgba(255,255,255,.05);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.btn-ghost:hover{background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.6)}
+.btn-blue{color:#fff;background:linear-gradient(180deg,#2a6df0,#1747b8);border-color:#4a86ff;--on:#cfe0ff;--n3:#ffd0d2}
+.cta-row{display:flex;flex-wrap:wrap;gap:.9rem}
+.txt-link{display:inline-flex;align-items:center;gap:.4rem;font-weight:700;color:var(--st1);border-bottom:2px solid var(--n3);padding-bottom:2px;transition:color .3s,gap .3s}
+.txt-link:hover{color:#fff;gap:.8rem}
+
+/* ---------- جای تصویر / ویدئو ---------- */
+figure{margin:0}
+.ph{position:relative;overflow:hidden;aspect-ratio:var(--ar,16/10);border-radius:22px;border:1.5px dashed rgba(255,255,255,.28);background:linear-gradient(110deg,#141a23 30%,#1c2531 50%,#141a23 70%);background-size:220% 100%;animation:shimmer 3.4s linear infinite;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.55rem;color:#9fb0c8;text-align:center;padding:1rem}
+.lt .ph{border-color:#9aa8bd;background:linear-gradient(110deg,#e1e7f0 30%,#f3f6fa 50%,#e1e7f0 70%);background-size:220% 100%;color:#5a6a82}
+.ph::before{content:"";width:44px;height:44px;opacity:.8;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48' fill='none' stroke='%239fb0c8' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='5' y='8' width='38' height='32' rx='6'/%3E%3Ccircle cx='17' cy='20' r='4'/%3E%3Cpath d='M5 34l11-9 9 7 7-6 11 9'/%3E%3C/svg%3E") center/contain no-repeat}
+.lt .ph::before{filter:brightness(.7)}
+.ph::after{content:attr(data-label);font-size:.85rem;font-weight:700;max-width:90%}
+.ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2;transition:transform .9s var(--ease)}
+.ph:hover img{transform:scale(1.05)}
+.ph.vid::before{display:none}
+.ph.vid .play{position:relative;z-index:1;display:grid;place-items:center;width:72px;height:72px;border-radius:50%;background:var(--metal);color:#10151c;font-size:2rem;box-shadow:0 0 0 0 rgba(90,160,255,.6);animation:ring 2.4s infinite}
+.ph.vid .play i{margin-inline-start:-4px}
+@keyframes ring{0%{box-shadow:0 0 0 0 rgba(90,160,255,.55)}100%{box-shadow:0 0 0 28px rgba(90,160,255,0)}}
+@keyframes shimmer{to{background-position:-220% 0}}
+
+/* ---------- کارت متالیک با درخشش دنبال‌کننده موس ---------- */
+.mc{position:relative;border-radius:22px;padding:1.5rem 1.4rem;background:linear-gradient(165deg,#18202a,#0e1319);border:1px solid rgba(255,255,255,.09);box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 20px 40px -26px rgba(0,0,0,.9);overflow:hidden;transition:transform .45s var(--ease),border-color .3s}
+.lt .mc{background:linear-gradient(165deg,#ffffff,#eef1f6);border-color:#cfd7e3;box-shadow:inset 0 1px 0 #fff,0 18px 34px -24px rgba(16,21,28,.4)}
+.mc::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .35s;background:radial-gradient(260px circle at var(--mx,50%) var(--my,50%),rgba(120,170,255,.2),transparent 60%)}
+.lt .mc::before{background:radial-gradient(260px circle at var(--mx,50%) var(--my,50%),rgba(28,94,214,.12),transparent 60%)}
+.mc:hover::before{opacity:1}
+.mc:hover{transform:translateY(-5px);border-color:rgba(120,170,255,.45)}
+.ico{display:grid;place-items:center;width:52px;height:52px;border-radius:15px;font-size:1.45rem;color:#10151c;background:var(--metal);box-shadow:inset 0 1px 0 #fff,0 8px 18px -8px rgba(0,0,0,.6);flex:none;transition:transform .5s var(--ease)}
+.mc:hover .ico{transform:rotate(-8deg) scale(1.08)}
+.chip{display:inline-flex;align-items:center;gap:.5rem;padding:.45rem 1rem;border-radius:99px;font-size:.9rem;font-weight:700;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.05);color:var(--st1)}
+.lt .chip{border-color:#bcc7d6;background:#fff;color:var(--ink)}
+figcaption.note,.note{font-size:.8rem;color:var(--st3);margin-top:.7rem}
+.lt .note{color:#5c6879}
+
+/* ---------- Hero ---------- */
+.hero{position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:center;overflow:hidden;color:#fff;background:radial-gradient(1000px 600px at 80% 10%,rgba(60,120,255,.22),transparent 60%),radial-gradient(800px 500px at 10% 90%,rgba(255,80,90,.12),transparent 60%),linear-gradient(160deg,#05070a,#0d1218 60%,#06080b);padding:6rem 0 5rem}
+.plate{position:absolute;inset:0;background:repeating-linear-gradient(90deg,rgba(255,255,255,.03) 0 1px,transparent 1px 3px),repeating-linear-gradient(0deg,rgba(255,255,255,.015) 0 1px,transparent 1px 5px);-webkit-mask-image:radial-gradient(ellipse at 60% 40%,#000 20%,transparent 75%);mask-image:radial-gradient(ellipse at 60% 40%,#000 20%,transparent 75%)}
+.beam{position:absolute;top:-20%;bottom:-20%;width:34%;inset-inline-start:-40%;background:linear-gradient(100deg,transparent,rgba(160,200,255,.14),rgba(255,255,255,.22),rgba(160,200,255,.14),transparent);transform:skewX(-18deg);animation:beam 7s ease-in-out infinite;pointer-events:none}
+@keyframes beam{0%{inset-inline-start:-45%}55%,100%{inset-inline-start:130%}}
+.hero-grid{position:relative;z-index:2;display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(2rem,5vw,4.5rem);align-items:center}
+.hero .eyebrow{margin-bottom:1.3rem}
+.hero h1{margin-bottom:1.3rem;line-height:1.5}
+.h1-brand{display:block;font-size:clamp(2.2rem,6vw,4.4rem);font-weight:700;line-height:1.35;--on:#5aa0ff;--n3:#ff6367}
+.h1-brand .brand{text-shadow:0 0 40px rgba(90,160,255,.45)}
+.h1-brand .brand-fa{font-size:.42em;vertical-align:middle;color:var(--st2)}
+.h1-rest{display:block;font-size:clamp(1.25rem,2.6vw,1.9rem);line-height:1.7;font-weight:700;background:var(--metal);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p.lead{color:var(--st2);font-size:1.05rem}
+.hero .cta-row{margin-top:2rem}
+.hero-vis{position:relative}
+.hero-vis .ph{--ar:4/3.4;border-radius:28px;border-color:rgba(255,255,255,.3);box-shadow:0 40px 80px -30px rgba(40,100,255,.5)}
+.orbit{position:absolute;inset:-7% -5%;border:1.5px dashed rgba(140,180,255,.35);border-radius:50%;animation:spin 60s linear infinite;pointer-events:none}
+.orbit::after{content:"";position:absolute;top:8%;inset-inline-start:14%;width:14px;height:14px;border-radius:50%;background:var(--n3);box-shadow:0 0 18px var(--n3)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.fchip{position:absolute;z-index:3;display:flex;align-items:center;gap:.6rem;padding:.6rem 1rem;border-radius:14px;font-weight:700;font-size:.85rem;color:#fff;background:rgba(14,19,26,.78);border:1px solid rgba(255,255,255,.22);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 18px 30px -16px rgba(0,0,0,.8);animation:floaty 6s ease-in-out infinite}
+.fchip i{display:grid;place-items:center;width:30px;height:30px;border-radius:9px;background:var(--metal);color:#10151c}
+.fchip.a{top:7%;inset-inline-start:-5%}
+.fchip.b{top:46%;inset-inline-end:-6%;animation-delay:-2s}
+.fchip.c{bottom:6%;inset-inline-start:5%;animation-delay:-4s}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+.cue{position:absolute;z-index:3;bottom:22px;inset-inline-start:50%;transform:translateX(50%);width:26px;height:42px;border:2px solid rgba(255,255,255,.5);border-radius:20px}
+.cue::after{content:"";position:absolute;top:8px;inset-inline-start:50%;width:4px;height:8px;margin-inline-start:-2px;border-radius:4px;background:var(--on);animation:wheel 1.8s infinite}
+@keyframes wheel{0%{opacity:1;transform:translateY(0)}100%{opacity:0;transform:translateY(14px)}}
+@media (max-width:991px){
+  .hero{padding:5.5rem 0 4.5rem;min-height:0}
+  .hero-grid{grid-template-columns:1fr}
+  .hero-vis{max-width:560px;margin-inline:auto;width:100%}
+  .fchip.a{inset-inline-start:-2%}.fchip.b{inset-inline-end:-2%}
+  .cue{display:none}
+}
+@media (max-width:575px){
+  .cta-row .btn-chrome,.cta-row .btn-ghost{width:100%}
+  .fchip{font-size:.74rem;padding:.4rem .65rem}.fchip i{width:24px;height:24px}
+  .orbit{display:none}
+}
+
+/* ---------- ۲. چالش‌ها ---------- */
+.chal-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(1.6rem,4vw,4rem);align-items:start}
+.stick{position:sticky;top:90px}
+.spot-i{transition:opacity .5s,transform .5s var(--ease),border-color .4s,box-shadow .4s}
+.js .spot .spot-i{opacity:.55}
+.js .spot .spot-i.active{opacity:1}
+.chal{display:grid;grid-template-columns:auto 1fr;gap:1.1rem;margin-bottom:1.1rem;padding:1.3rem 1.3rem 1.4rem}
+.chal .num{font-size:2.6rem;font-weight:700;line-height:1;background:var(--metal);-webkit-background-clip:text;background-clip:text;color:transparent;min-width:2.2rem;text-align:center}
+.lt .chal .num{background:linear-gradient(180deg,#5a6578,#1a2230);-webkit-background-clip:text;background-clip:text}
+.chal h3{font-size:1.08rem;margin-bottom:.4rem;display:flex;gap:.6rem;align-items:center}
+.chal h3 i{color:var(--on);font-size:1.25rem}
+.chal p{font-size:.97rem}
+.chal.active{border-color:var(--on);box-shadow:0 0 0 1px var(--on),0 26px 50px -26px rgba(28,94,214,.55);transform:translateX(-6px)}
+.statement{margin-top:clamp(2.2rem,5vw,3.6rem);padding:clamp(1.4rem,3vw,2.4rem);border-radius:26px;border:1px solid rgba(255,255,255,.12);background:linear-gradient(135deg,rgba(255,255,255,.06),rgba(255,255,255,.01));font-size:clamp(1.15rem,2.2vw,1.6rem);line-height:2;font-weight:700;position:relative}
+.lt .statement{border-color:#c6d0de;background:linear-gradient(135deg,#fff,#eef1f6)}
+.statement::before{content:"";position:absolute;inset-inline-start:0;top:18%;bottom:18%;width:5px;border-radius:5px;background:linear-gradient(180deg,var(--on),var(--n3))}
+.statement.big{font-size:clamp(1.2rem,2.4vw,1.75rem)}
+@media (max-width:991px){.chal-grid{grid-template-columns:1fr}.stick{position:static}.chal.active{transform:none}}
+@media (max-width:575px){.chal{grid-template-columns:1fr;gap:.4rem}.chal .num{text-align:start;font-size:2rem}}
+
+/* متن پیشرونده با اسکرول */
+.w{transition:color .35s,text-shadow .35s}
+.js .scrub .w{color:#7a879b}
+.js .lt .scrub .w{color:#7b879a}
+.js .scrub .w.on{color:#fff;text-shadow:0 0 22px rgba(120,170,255,.25)}
+.js .lt .scrub .w.on{color:var(--ink);text-shadow:none}
+.js .scrub .w .brand,.js .scrub .w .brand-fa{opacity:.9}
+
+/* ---------- ۳. هاب ---------- */
+.hub-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:clamp(1.6rem,4vw,4rem);align-items:start;margin-top:clamp(2rem,5vw,3.4rem)}
+.hub-box{position:sticky;top:80px}
+.hub{position:relative;width:100%;max-width:470px;aspect-ratio:1;margin-inline:auto}
+.hub-svg{position:absolute;inset:0;width:100%;height:100%}
+.ring{fill:none;stroke:rgba(255,255,255,.14);stroke-width:1.5;stroke-dasharray:3 7;transform-origin:200px 200px;animation:spin 80s linear infinite}
+.ring.r2{animation-direction:reverse;animation-duration:50s;stroke:rgba(90,160,255,.28)}
+.hub-line{stroke:rgba(255,255,255,.2);stroke-width:2;stroke-dasharray:5 7;animation:flow 1.4s linear infinite;transition:stroke .4s,stroke-width .4s}
+.hub-line.on{stroke:var(--on);stroke-width:3.4;filter:drop-shadow(0 0 6px var(--on))}
+@keyframes flow{to{stroke-dashoffset:-24}}
+.hub-core{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:30%;aspect-ratio:1;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:radial-gradient(circle at 35% 30%,#2b3646,#0b0f15);border:1.5px solid rgba(255,255,255,.3);box-shadow:0 0 50px rgba(60,120,255,.35),inset 0 1px 0 rgba(255,255,255,.3);line-height:1.3;--on:#5aa0ff;--n3:#ff6367}
+.hub-core .b1{font-size:clamp(.95rem,2.6vw,1.35rem)}
+.hub-core small{font-size:.62rem;color:var(--st3)}
+.hub-node{position:absolute;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;gap:.35rem;width:92px;text-align:center;font-size:.78rem;font-weight:700;line-height:1.5;color:var(--st2);transition:transform .5s var(--ease),color .3s}
+.hub-node i{display:grid;place-items:center;width:50px;height:50px;border-radius:50%;font-size:1.3rem;color:#cfd8e6;background:linear-gradient(160deg,#222c3a,#0f141b);border:1.5px solid rgba(255,255,255,.2);transition:all .45s var(--ease)}
+.hub-node.on{transform:translate(-50%,-50%) scale(1.14);color:#fff}
+.hub-node.on i{color:#10151c;background:var(--metal);border-color:#fff;box-shadow:0 0 0 6px rgba(90,160,255,.25),0 0 30px rgba(90,160,255,.6)}
+.step{margin-bottom:1.2rem;padding:1.3rem 1.4rem}
+.step h3{font-size:1.08rem;margin-bottom:.5rem}
+.step.active{border-color:var(--on);box-shadow:0 0 0 1px var(--on),0 26px 50px -26px rgba(60,120,255,.6)}
+@media (max-width:991px){.hub-grid{grid-template-columns:1fr}.hub-box{position:static}.hub{max-width:400px}}
+@media (max-width:575px){.hub-node{width:74px;font-size:.68rem}.hub-node i{width:40px;height:40px;font-size:1.05rem}}
+
+/* ---------- ۴. مقایسه و جریان ---------- */
+.cmp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1.4rem}
+.cmp{padding:1.3rem}
+.cmp h4{font-size:1.02rem;font-weight:700;color:var(--ink);display:flex;gap:.6rem;align-items:center;margin:0 0 .35rem}
+.cmp h4 i{color:var(--on);font-size:1.3rem}
+.cmp p{font-size:.92rem;line-height:1.85}
+.bar{display:grid;grid-template-columns:62px 1fr;gap:.6rem;align-items:center;margin-top:.7rem;font-size:.78rem;font-weight:700;color:#4b5666}
+.bar b{display:block;height:11px;border-radius:11px;background:#d9e0ea;overflow:hidden}
+.bar b i{display:block;height:100%;width:0;border-radius:11px;transition:width 1.5s var(--ease) var(--dl,0s)}
+.bar.s b i{background:linear-gradient(90deg,#8b97a9,#c4ccd8)}
+.bar.r b i{background:linear-gradient(90deg,var(--on),#6aa6ff)}
+.bar.r.over b i{background:linear-gradient(90deg,#c61f26,#ff6a6f)}
+.seen .bar b i{width:var(--w)}
+.batch-bars{display:flex;align-items:flex-end;gap:.7rem;height:150px;padding:1rem;border-radius:18px;background:linear-gradient(180deg,#fff,#eef1f6);border:1px solid #cfd7e3}
+.batch-bars span{flex:1;height:0;border-radius:8px 8px 3px 3px;background:linear-gradient(180deg,#6aa6ff,#1c5ed6);transition:height 1.2s var(--ease) var(--dl,0s);position:relative}
+.batch-bars span:nth-child(even){background:linear-gradient(180deg,#ff8b8f,#d3262c)}
+.seen .batch-bars span{height:var(--h)}
+.fl{display:grid;grid-template-columns:repeat(3,1fr);gap:.4rem;position:relative;margin-top:1.4rem;counter-reset:f}
+.fl li{position:relative;text-align:center;padding:0 .4rem;font-size:.9rem;font-weight:700;line-height:1.7;color:var(--ink)}
+.dk .fl li{color:#fff}
+.fl li .nd{display:grid;place-items:center;width:58px;height:58px;margin:0 auto .7rem;border-radius:50%;font-size:1.35rem;background:#fff;border:3px solid var(--on);color:var(--on);position:relative;z-index:1;transform:scale(0);transition:transform .6s cubic-bezier(.3,1.6,.5,1) var(--dl,0s)}
+.dk .fl li .nd{background:#10151c}
+.seen .fl li .nd{transform:scale(1)}
+.fl li:not(:last-child)::after{content:"";position:absolute;top:28px;inset-inline-start:calc(50% + 34px);width:calc(100% - 68px);height:3px;background:linear-gradient(90deg,var(--on),var(--n3));transform:scaleX(0);transform-origin:right;transition:transform .8s var(--ease) calc(var(--dl,0s) + .3s)}
+.seen .fl li:not(:last-child)::after{transform:scaleX(1)}
+.fl li:last-child .nd{border-color:var(--n3);color:var(--n3)}
+.sim{display:flex;flex-wrap:wrap;align-items:center;gap:.7rem;margin-top:1.3rem}
+.sim .op{font-size:1.4rem;font-weight:700;color:var(--n3);opacity:0;transition:opacity .5s calc(var(--dl,0s))}
+.seen .sim .op{opacity:1}
+.sim .chip{opacity:0;transform:translateY(14px);transition:all .6s var(--ease) var(--dl,0s)}
+.seen .sim .chip{opacity:1;transform:none}
+.sim .res{background:var(--metal);color:#10151c;border-color:#fff;box-shadow:0 0 0 0 rgba(28,94,214,.5);animation:ring2 2.6s 1.2s infinite}
+@keyframes ring2{0%{box-shadow:0 0 0 0 rgba(28,94,214,.5)}100%{box-shadow:0 0 0 20px rgba(28,94,214,0)}}
+@media (max-width:991px){.cmp-grid{grid-template-columns:1fr}}
+@media (max-width:575px){
+  .fl{grid-template-columns:1fr;gap:1.4rem}
+  .fl li{display:flex;gap:1rem;text-align:start;align-items:center}
+  .fl li .nd{margin:0;flex:none}
+  .fl li:not(:last-child)::after{top:auto;bottom:-1.4rem;inset-inline-start:27px;width:3px;height:1.4rem;transform:scaleY(0);transform-origin:top}
+  .seen .fl li:not(:last-child)::after{transform:scaleY(1)}
+}
+
+/* ---------- ۵. ردیابی ---------- */
+.rail{position:relative;display:grid;grid-template-columns:repeat(5,1fr);gap:.4rem;margin:clamp(1.8rem,4vw,3rem) 0 0;padding:1.6rem 1rem 1.2rem;border-radius:24px;border:1px solid rgba(255,255,255,.12);background:linear-gradient(160deg,rgba(255,255,255,.05),rgba(255,255,255,.01))}
+.rail::before{content:"";position:absolute;top:2.95rem;inset-inline:10%;height:3px;background:rgba(255,255,255,.14);border-radius:3px}
+.rail li{position:relative;z-index:1;text-align:center;font-size:.82rem;font-weight:700;line-height:1.6;color:var(--st1)}
+.rail li i{display:grid;place-items:center;width:54px;height:54px;margin:0 auto .6rem;border-radius:50%;font-size:1.3rem;background:#0f141b;border:2px solid rgba(255,255,255,.3);color:#d6deea}
+.pulse{position:absolute;top:2.95rem;margin-top:-5px;width:13px;height:13px;border-radius:50%;z-index:2;inset-inline-start:10%}
+.pulse.f{background:var(--on);box-shadow:0 0 16px var(--on),0 0 40px var(--on);animation:pf 5s ease-in-out infinite}
+.pulse.r{background:var(--n3);box-shadow:0 0 16px var(--n3),0 0 40px var(--n3);animation:pr 5s ease-in-out infinite;animation-delay:2.5s}
+@keyframes pf{0%{inset-inline-start:10%;opacity:0}8%{opacity:1}45%,100%{inset-inline-start:calc(90% - 13px);opacity:0}}
+@keyframes pr{0%{inset-inline-start:calc(90% - 13px);opacity:0}8%{opacity:1}45%,100%{inset-inline-start:10%;opacity:0}}
+.rail-legend{display:flex;gap:1.4rem;justify-content:center;margin-top:.9rem;font-size:.8rem;color:var(--st3)}
+.rail-legend span{display:inline-flex;align-items:center;gap:.45rem}
+.rail-legend em{width:10px;height:10px;border-radius:50%;display:inline-block}
+.chips-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem;margin:1.2rem 0}
+.chips-grid li{display:flex;align-items:center;gap:.8rem;padding:.9rem 1rem;border-radius:16px;font-size:.93rem;line-height:1.7;color:var(--st1);border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);opacity:0;transform:scale(.92);transition:all .6s var(--ease) var(--dl,0s)}
+.seen .chips-grid li{opacity:1;transform:none}
+.chips-grid li i{flex:none;display:grid;place-items:center;width:38px;height:38px;border-radius:11px;background:var(--metal);color:#10151c;font-size:1.05rem}
+.qc{display:flex;gap:.6rem;margin-top:1.2rem;flex-wrap:wrap}
+.qc span{display:flex;align-items:center;gap:.5rem;padding:.5rem .9rem;border-radius:12px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14);font-size:.82rem;font-weight:700;color:var(--st1)}
+.qc span i{color:#4ade80;opacity:0;transform:scale(0);transition:all .5s cubic-bezier(.3,1.6,.5,1) var(--dl,0s)}
+.seen .qc span i{opacity:1;transform:scale(1)}
+.barcode{height:84px;border-radius:16px;position:relative;overflow:hidden;background:#f1f4f8;display:flex;align-items:stretch;gap:3px;padding:12px 16px}
+.barcode i{flex:1;background:#10151c;border-radius:1px}
+.barcode i:nth-child(3n){flex:2}.barcode i:nth-child(5n){flex:.6}.barcode i:nth-child(7n){background:transparent}
+.barcode::after{content:"";position:absolute;top:0;bottom:0;width:3px;background:var(--n3);box-shadow:0 0 14px var(--n3);inset-inline-start:0;animation:scan 2.4s ease-in-out infinite alternate}
+@keyframes scan{to{inset-inline-start:calc(100% - 3px)}}
+@media (max-width:991px){.chips-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:575px){
+  .chips-grid{grid-template-columns:1fr}
+  .rail{grid-template-columns:1fr;padding:1.2rem 1rem}
+  .rail::before{top:2rem;bottom:2rem;inset-inline:auto;inset-inline-start:2.1rem;width:3px;height:auto}
+  .rail li{display:flex;align-items:center;gap:1rem;text-align:start;margin-bottom:.9rem}
+  .rail li i{margin:0}
+  .pulse{inset-inline-start:calc(2.1rem - 5px);top:1rem;animation:none;display:none}
+}
+
+/* ---------- ۶. گانت ---------- */
+.seg{display:inline-flex;gap:.3rem;padding:.3rem;border-radius:14px;background:#dde3ec;border:1px solid #c3ceDD;flex-wrap:wrap}
+.seg button{border:0;background:transparent;padding:.45rem 1rem;border-radius:10px;font-weight:700;font-size:.88rem;color:#2b3547;cursor:pointer;transition:all .3s}
+.seg button.on{background:#fff;color:#1c5ed6;box-shadow:0 6px 14px -8px rgba(16,21,28,.6)}
+.gantt{position:relative;margin-top:1rem;padding:1.2rem 1.2rem .8rem;border-radius:22px;background:#fff;border:1px solid #cfd7e3;box-shadow:0 20px 40px -28px rgba(16,21,28,.5)}
+.grid-l{position:absolute;inset:1.2rem;border-radius:8px;background-image:linear-gradient(90deg,#e3e8ef 1px,transparent 1px);background-size:calc(100%/var(--cols,7)) 100%;transition:background-size .6s var(--ease)}
+.g-row{position:relative;height:34px;margin-bottom:.7rem}
+.gb{position:absolute;top:3px;bottom:3px;border-radius:9px;background:linear-gradient(90deg,#1c5ed6,#5aa0ff);transform:scaleX(0);transform-origin:right;transition:transform 1s var(--ease) var(--dl,0s),inset-inline-start .8s var(--ease),width .8s var(--ease);inset-inline-start:var(--s);width:var(--l)}
+.gb.alt{background:linear-gradient(90deg,#394456,#7a879b)}
+.seen .gb{transform:scaleX(1)}
+.gm{position:absolute;top:0;bottom:0;border-radius:6px;background:repeating-linear-gradient(135deg,rgba(211,38,44,.85) 0 6px,rgba(211,38,44,.35) 6px 12px);inset-inline-start:var(--s);width:var(--l);opacity:0;transition:opacity .6s 1.2s,inset-inline-start .8s var(--ease),width .8s var(--ease)}
+.seen .gm{opacity:1}
+.legend{display:flex;gap:1.2rem;flex-wrap:wrap;margin-top:.8rem;font-size:.8rem;color:#4b5666;font-weight:700}
+.legend span{display:inline-flex;gap:.45rem;align-items:center}
+.legend em{width:14px;height:14px;border-radius:4px;display:inline-block}
+.fieldchips{display:flex;flex-wrap:wrap;gap:.5rem;margin:1rem 0}
+.bom{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;margin-top:1rem}
+.bom .arrow{color:var(--n3);font-size:1.3rem}
+.bom .chip,.fieldchips .chip{opacity:0;transform:translateY(12px);transition:all .55s var(--ease) var(--dl,0s)}
+.seen .bom .chip,.seen .fieldchips .chip{opacity:1;transform:none}
+
+/* ---------- ۷. تقویم و گیج ---------- */
+.cal{padding:1.2rem;border-radius:22px;border:1px solid rgba(255,255,255,.12);background:linear-gradient(160deg,rgba(255,255,255,.06),rgba(255,255,255,.01))}
+.cal-h,.cal-b{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.cal-h span{text-align:center;font-size:.72rem;font-weight:700;color:var(--st3);padding-bottom:.4rem}
+.cal-b i{aspect-ratio:1.25;border-radius:9px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.06);transform:scale(.6);opacity:0;transition:all .5s var(--ease) calc(var(--i)*22ms)}
+.seen .cal-b i{transform:scale(1);opacity:1}
+.cal-b i.p{background:linear-gradient(135deg,rgba(28,94,214,.75),rgba(90,160,255,.55));border-color:rgba(120,170,255,.5)}
+.cal-b i.m{background:repeating-linear-gradient(135deg,rgba(255,99,103,.85) 0 5px,rgba(255,99,103,.35) 5px 10px);border-color:rgba(255,99,103,.7);animation:blink 2.6s calc(var(--i)*40ms) ease-in-out infinite}
+@keyframes blink{0%,100%{filter:brightness(1)}50%{filter:brightness(1.45)}}
+.cal .legend{color:var(--st3)}
+.gauge{max-width:360px;margin-inline:auto;text-align:center}
+.gauge svg{width:100%;height:auto;overflow:visible}
+.g-bg{fill:none;stroke:rgba(255,255,255,.12);stroke-width:16;stroke-linecap:round}
+.g-nom{fill:none;stroke:#8e9aac;stroke-width:16;stroke-linecap:round;stroke-dasharray:283;stroke-dashoffset:283;transition:stroke-dashoffset 1.8s var(--ease)}
+.g-real{fill:none;stroke:url(#gg);stroke-width:16;stroke-linecap:round;stroke-dasharray:283;stroke-dashoffset:283;transition:stroke-dashoffset 2.2s var(--ease) .5s}
+.seen .g-nom{stroke-dashoffset:0}
+.seen .g-real{stroke-dashoffset:96}
+.g-needle{transform-origin:110px 110px;transform:rotate(-90deg);transition:transform 2.2s cubic-bezier(.3,1.4,.5,1) .5s}
+.seen .g-needle{transform:rotate(26deg)}
+.gauge .legend{justify-content:center;color:var(--st3)}
+@media (max-width:575px){.cal-b{gap:4px}.cal-h span{font-size:.62rem}}
+
+/* ---------- ۸. فاکتور ---------- */
+.basis{display:flex;flex-wrap:wrap;gap:.5rem;margin:1rem 0}
+.basis button{border:1px solid #b9c5d6;background:#fff;color:var(--ink);padding:.5rem 1rem;border-radius:99px;font-weight:700;font-size:.88rem;cursor:pointer;transition:all .3s}
+.basis button:hover{border-color:#1c5ed6}
+.basis button.on{background:linear-gradient(180deg,#2a6df0,#1747b8);color:#fff;border-color:#1747b8;box-shadow:0 10px 20px -10px rgba(28,94,214,.8)}
+.inv{padding:1.2rem;border-radius:22px;background:#fff;border:1px solid #cfd7e3;box-shadow:0 24px 44px -28px rgba(16,21,28,.5)}
+.inv-h{display:flex;justify-content:space-between;align-items:center;font-size:.8rem;font-weight:700;color:#4b5666;padding-bottom:.7rem;border-bottom:1px dashed #c6d0de;margin-bottom:.7rem}
+.inv-r{display:grid;grid-template-columns:1fr 1.2fr;gap:1rem;align-items:center;padding:.5rem 0}
+.sk{height:11px;border-radius:11px;background:linear-gradient(90deg,#dfe5ee,#eef1f6,#dfe5ee);background-size:200% 100%;animation:shimmer 2.4s linear infinite}
+.pl{display:flex;align-items:center;gap:.5rem}
+.pl b{display:block;height:12px;border-radius:12px;width:0;transition:width 1s var(--ease)}
+.pl.pos b{background:linear-gradient(90deg,#16a34a,#4ade80)}
+.pl.neg b{background:linear-gradient(90deg,#c61f26,#ff6a6f)}
+.pl i{font-size:1rem}.pl.pos i{color:#15803d}.pl.neg i{color:#c61f26}
+.inv-t{margin-top:.5rem;padding-top:.7rem;border-top:2px solid #10151c}
+.sc-box{padding:1.3rem;border-radius:20px}
+
+/* ---------- ۹. ماژول‌ها ---------- */
+.mods{display:grid;grid-template-columns:260px 1fr;gap:clamp(1.4rem,3vw,3rem);align-items:start;margin-top:clamp(2rem,4vw,3rem)}
+.mod-nav{position:sticky;top:90px;padding:.8rem;border-radius:20px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04)}
+.mod-nav a{display:flex;align-items:center;gap:.7rem;padding:.65rem .8rem;border-radius:12px;font-size:.9rem;font-weight:700;color:var(--st3);transition:all .3s}
+.mod-nav a i{font-size:1.1rem}
+.mod-nav a.on{background:var(--metal);color:#10151c;transform:translateX(-6px)}
+.mod{padding:1.5rem 1.5rem 1.6rem;margin-bottom:1.2rem;scroll-margin-top:90px}
+.mod-h{display:flex;align-items:center;gap:1rem;margin-bottom:.9rem}
+.mod h3{font-size:1.2rem}
+.mod.active{border-color:var(--on);box-shadow:0 0 0 1px var(--on),0 30px 60px -30px rgba(60,120,255,.6)}
+@media (max-width:991px){
+  .mods{grid-template-columns:1fr}
+  .mod-nav{position:sticky;top:0;z-index:20;display:flex;gap:.3rem;overflow-x:auto;padding:.5rem;border-radius:0 0 18px 18px;background:rgba(11,14,19,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);scrollbar-width:none;margin-inline:-20px;padding-inline:20px}
+  .mod-nav::-webkit-scrollbar{display:none}
+  .mod-nav a{flex:none;padding:.5rem .8rem;font-size:.82rem}
+  .mod-nav a.on{transform:none}
+}
+
+/* ---------- ۱۰. گزارش‌ها ---------- */
+.rep-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem;margin-top:clamp(1.8rem,4vw,3rem)}
+.rep{display:flex;flex-direction:column;gap:.7rem}
+.rep h3{font-size:1.1rem}
+.rep p{font-size:.95rem}
+.viz{height:86px;border-radius:14px;background:#eaeef4;border:1px solid #d3dbe7;display:flex;align-items:flex-end;gap:6px;padding:10px;overflow:hidden;position:relative}
+.viz.eq i{flex:1;height:0;border-radius:4px 4px 0 0;background:linear-gradient(180deg,#5aa0ff,#1c5ed6);transition:height 1s var(--ease) calc(var(--i)*90ms)}
+.seen .viz.eq i{height:var(--h)}
+.viz svg{width:100%;height:100%}
+.viz .ln{fill:none;stroke:#1c5ed6;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:300;stroke-dashoffset:300;transition:stroke-dashoffset 2s var(--ease)}
+.viz .ln2{stroke:#d3262c;transition-delay:.4s}
+.seen .viz .ln{stroke-dashoffset:0}
+.viz.blk{align-items:stretch}
+.viz.blk i{flex:1;border-radius:5px;background:#cdd6e3;transition:background .4s calc(var(--i)*110ms)}
+.seen .viz.blk i{background:linear-gradient(180deg,#8b97a9,#5b6779)}
+.seen .viz.blk i.hl{background:linear-gradient(180deg,#5aa0ff,#1c5ed6)}
+.viz.don{justify-content:center;align-items:center}
+.viz.don svg{width:auto;height:100%}
+.don-c{fill:none;stroke-width:10;transform:rotate(-90deg);transform-origin:50% 50%;stroke-dasharray:0 200;transition:stroke-dasharray 1.6s var(--ease)}
+.seen .don-c.a{stroke-dasharray:104 200}.seen .don-c.b{stroke-dasharray:52 200}
+.viz.lock{justify-content:center;align-items:center;color:#1c5ed6;font-size:2.2rem}
+.viz.lock::before,.viz.lock::after{content:"";position:absolute;width:50px;height:50px;border:2px solid #1c5ed6;border-radius:50%;opacity:0;animation:ping 2.8s infinite}
+.viz.lock::after{animation-delay:1.4s}
+@keyframes ping{0%{transform:scale(.5);opacity:.7}100%{transform:scale(2.2);opacity:0}}
+.dash-fig{--ar:21/8;margin-bottom:0}
+@media (max-width:991px){.rep-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:640px){.rep-grid{grid-template-columns:1fr}.dash-fig{--ar:16/10}}
+
+/* ---------- ۱۱. کارت‌های پشته‌ای ---------- */
+.stack{margin-top:clamp(1.8rem,4vw,3rem)}
+.scard{display:grid;grid-template-columns:auto 1fr;gap:1.4rem;padding:1.8rem;margin-bottom:1.2rem;background:linear-gradient(165deg,#1b2430,#0e1319)}
+.scard .big{font-size:4rem;font-weight:700;line-height:1;background:var(--metal);-webkit-background-clip:text;background-clip:text;color:transparent;min-width:3.4rem;text-align:center}
+.scard h3{font-size:1.25rem;margin-bottom:.6rem}
+@media (min-width:768px){
+  .scard{position:sticky;top:calc(80px + var(--k)*22px);box-shadow:0 -20px 40px -20px rgba(0,0,0,.8),inset 0 1px 0 rgba(255,255,255,.14)}
+}
+@media (max-width:575px){.scard{grid-template-columns:1fr;gap:.2rem}.scard .big{text-align:start;font-size:2.6rem}}
+.fit{margin-top:clamp(2rem,5vw,3.4rem);padding:clamp(1.4rem,3vw,2.4rem);border-radius:28px;border:1px solid rgba(255,255,255,.14);background:radial-gradient(500px 240px at 90% 0%,rgba(90,160,255,.16),transparent 70%),linear-gradient(160deg,#18202a,#0d1218);position:relative;overflow:hidden}
+.fit::before{content:"";position:absolute;inset:0;border-radius:28px;padding:1.5px;background:conic-gradient(from var(--ang,0deg),transparent 0 70%,#5aa0ff 80%,#ff6367 90%,transparent);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:rot 6s linear infinite;pointer-events:none}
+@property --ang{syntax:"<angle>";initial-value:0deg;inherits:false}
+@keyframes rot{to{--ang:360deg}}
+.fit h3{font-size:1.3rem;margin-bottom:.9rem}
+.fit .statement{margin-top:1.4rem;font-size:1.15rem}
+
+/* ---------- ۱۲. تایم‌لاین ---------- */
+.tl-v{position:relative;margin:1.6rem 0 0;padding-inline-start:4.2rem;--p:0}
+.tl-v::before{content:"";position:absolute;top:8px;bottom:8px;inset-inline-start:1.4rem;width:3px;border-radius:3px;background:#cdd6e3}
+.tl-v::after{content:"";position:absolute;top:8px;inset-inline-start:1.4rem;width:3px;border-radius:3px;height:calc(var(--p)*(100% - 16px));background:linear-gradient(180deg,#1c5ed6,#d3262c);box-shadow:0 0 12px rgba(28,94,214,.6)}
+.tl-v li{position:relative;padding:1rem 1.2rem;margin-bottom:1rem;border-radius:18px;background:#fff;border:1px solid #cfd7e3;opacity:.45;transform:translateX(18px);transition:all .6s var(--ease)}
+.tl-v li.on{opacity:1;transform:none;border-color:#1c5ed6;box-shadow:0 20px 36px -24px rgba(28,94,214,.6)}
+.tl-v li::before{content:"";position:absolute;top:1.4rem;inset-inline-start:-3.1rem;width:18px;height:18px;border-radius:50%;background:#fff;border:3px solid #9aa8bd;transition:all .5s;z-index:1}
+.tl-v li.on::before{border-color:#1c5ed6;background:#1c5ed6;box-shadow:0 0 0 6px rgba(28,94,214,.2)}
+.tl-v .yr{display:block;font-size:1.6rem;font-weight:700;line-height:1.4;background:linear-gradient(180deg,#3a4558,#10151c);-webkit-background-clip:text;background-clip:text;color:transparent}
+.tl-v li.on .yr{background:linear-gradient(90deg,#1c5ed6,#d3262c);-webkit-background-clip:text;background-clip:text}
+.tl-v p{font-size:.97rem}
+.js .tl-v li{opacity:.45}
+.tl-v li{opacity:1}
+.js .tl-v li{opacity:.45}
+.js .tl-v li.on{opacity:1}
+@media (max-width:575px){.tl-v{padding-inline-start:3rem}.tl-v::before,.tl-v::after{inset-inline-start:.9rem}.tl-v li::before{inset-inline-start:-2.55rem}}
+
+/* ---------- ۱۳. فرم ---------- */
+.demo{background:radial-gradient(800px 500px at 15% 0%,rgba(79,152,255,.2),transparent 60%),radial-gradient(700px 500px at 100% 100%,rgba(255,99,103,.14),transparent 60%),var(--k0)}
+.check{display:grid;gap:.7rem;margin:1.2rem 0}
+.check li{display:flex;align-items:flex-start;gap:.8rem;line-height:1.8;color:var(--st1)}
+.check li i{flex:none;margin-top:.2rem;display:grid;place-items:center;width:26px;height:26px;border-radius:8px;background:var(--metal);color:#10151c;font-size:.9rem}
+.form-card{padding:clamp(1.4rem,3vw,2.2rem);border-radius:28px;background:linear-gradient(165deg,rgba(255,255,255,.09),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 40px 80px -40px rgba(0,0,0,.9)}
+.fld{margin-bottom:1rem}
+.fld label{display:block;font-weight:700;font-size:.9rem;color:var(--st1);margin-bottom:.35rem}
+.form-control{display:block;width:100%;font-family:inherit;font-size:1rem;color:#fff;background-color:rgba(255,255,255,.07);border:1.5px solid rgba(255,255,255,.2);border-radius:13px;padding:.75rem 1rem;line-height:1.7;transition:border-color .25s,box-shadow .25s,background .25s}
+textarea.form-control{min-height:110px;resize:vertical}
+.form-control::placeholder{color:#7f8da3}
+.form-control:focus{border-color:var(--on);background-color:rgba(255,255,255,.1);box-shadow:0 0 0 4px rgba(90,160,255,.25);outline:0;color:#fff}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 1rem}
+.form-grid .full{grid-column:1/-1}
+@media (max-width:575px){.form-grid{grid-template-columns:1fr}}
+.invalid-feedback{display:none;color:#ff9b9e;font-size:.82rem;margin-top:.3rem}
+.was-validated .form-control:invalid{border-color:#ff6367}
+.was-validated :invalid~.invalid-feedback{display:block}
+.form-ok{margin-top:1rem;padding:.9rem 1.1rem;border-radius:13px;background:rgba(74,222,128,.15);border:1px solid rgba(74,222,128,.5);color:#bbf7d0;font-weight:700;display:flex;gap:.6rem;align-items:center}
+.form-ok[hidden]{display:none}
+.form-card .btn-chrome{width:100%}
+.final{margin-top:clamp(2rem,4vw,3rem)}
+.glow-dot{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none;opacity:.5}
+.glow-dot.a{width:320px;height:320px;background:#2f6bff;top:-100px;inset-inline-end:-60px;animation:drift 14s ease-in-out infinite}
+.glow-dot.b{width:260px;height:260px;background:#ff4a50;bottom:-80px;inset-inline-start:-40px;animation:drift 18s ease-in-out infinite reverse;opacity:.35}
+@keyframes drift{0%,100%{transform:translate(0,0)}50%{transform:translate(40px,30px)}}
+
+/* ---------- فوتر ---------- */
+.footer{background:var(--k0);padding:2.4rem 0 1.6rem;font-size:.9rem;color:var(--st3);border-top:1px solid rgba(255,255,255,.08)}
+.footer .row-f{display:flex;flex-wrap:wrap;gap:1rem 2rem;justify-content:space-between;align-items:center}
+.footer a{color:var(--st2);font-weight:700}.footer a:hover{color:#fff}
+.footer .copy{margin-top:1.2rem;text-align:center;font-size:.82rem}
+
+/* ---------- ناوبری شناور ---------- */
+#pg{position:fixed;top:0;inset-inline:0;height:4px;z-index:2100;background:linear-gradient(90deg,var(--on),var(--n3));transform:scaleX(0);transform-origin:right}
+.dots{position:fixed;left:14px;top:50%;transform:translateY(-50%);z-index:1500;display:none;flex-direction:column;gap:.5rem}
+@media (min-width:1280px){.dots{display:flex}}
+.dots a{position:relative;display:block;width:12px;height:12px;border-radius:50%;background:rgba(150,165,190,.55);border:2px solid rgba(255,255,255,.7);transition:all .3s}
+.dots a span{position:absolute;left:24px;top:50%;transform:translateY(-50%) translateX(-6px);opacity:0;white-space:nowrap;font-size:.78rem;font-weight:700;color:#fff;background:#10151c;padding:.25rem .7rem;border-radius:8px;pointer-events:none;transition:all .3s}
+.dots a:hover span{opacity:1;transform:translateY(-50%)}
+.dots a.on{background:var(--on);transform:scale(1.5);box-shadow:0 0 12px var(--on)}
+.mbar{display:none}
+@media (max-width:767px){
+  body{padding-bottom:78px}
+  .mbar{display:flex;gap:.6rem;position:fixed;bottom:0;inset-inline:0;z-index:1800;padding:.6rem .8rem calc(.6rem + env(safe-area-inset-bottom));background:rgba(8,11,15,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top:1px solid rgba(255,255,255,.14);transition:transform .35s var(--ease)}
+  .mbar.hide{transform:translateY(110%)}
+  .mbar .btn-chrome{flex:1;padding:.7rem 1rem;font-size:.9rem}
+  .mbar .btn-ghost{padding:.7rem 1rem;font-size:.9rem}
+}
+.sheet{position:fixed;inset:0;z-index:2200;display:none}
+.sheet.open{display:block}
+.sheet-bg{position:absolute;inset:0;background:rgba(0,0,0,.6);animation:fade .3s}
+.sheet-p{position:absolute;bottom:0;inset-inline:0;max-height:82vh;overflow-y:auto;background:#0f141b;border-radius:26px 26px 0 0;border-top:1px solid rgba(255,255,255,.18);padding:1.2rem 1.2rem 2rem;animation:slideup .4s var(--ease)}
+.sheet-p h3{font-size:1rem;margin-bottom:.7rem;color:var(--st3)}
+.sheet-p a{display:flex;align-items:center;gap:.8rem;padding:.75rem .6rem;border-bottom:1px solid rgba(255,255,255,.08);color:var(--st1);font-weight:700;font-size:.95rem}
+.sheet-p a b{display:grid;place-items:center;width:28px;height:28px;border-radius:8px;background:var(--metal);color:#10151c;font-size:.78rem}
+@keyframes fade{from{opacity:0}}
+@keyframes slideup{from{transform:translateY(100%)}}
+
+/* ---------- ظاهر شدن با اسکرول ---------- */
+.js .rv{opacity:0;transform:translateY(34px);transition:opacity .85s var(--ease),transform .85s var(--ease),filter .85s var(--ease)}
+.js .rv.l{transform:translateX(-46px)}
+.js .rv.r{transform:translateX(46px)}
+.js .rv.z{transform:scale(.9)}
+.js .rv.b{filter:blur(10px);transform:translateY(16px)}
+.js .rv.in{opacity:1;transform:none;filter:none}
+@media (max-width:767px){.js .rv.l,.js .rv.r{transform:translateY(28px)}}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+  .js .rv{opacity:1;transform:none;filter:none}
+  .js .scrub .w{color:inherit}
+  .js .spot .spot-i{opacity:1}
+  .js .tl-v li{opacity:1}
+  .bar b i{width:var(--w)}.batch-bars span{height:var(--h)}.gb{transform:none}.gm{opacity:1}
+  .fl li .nd{transform:none}.fl li:not(:last-child)::after{transform:none}
+  .chips-grid li,.sim .chip,.bom .chip,.fieldchips .chip{opacity:1;transform:none}.sim .op{opacity:1}
+  .viz.eq i{height:var(--h)}.viz .ln{stroke-dashoffset:0}.g-nom{stroke-dashoffset:0}.g-real{stroke-dashoffset:96}.g-needle{transform:rotate(26deg)}
+  .cal-b i{opacity:1;transform:none}
+}
+
+.dk .statement{color:#fff}.lt .statement{color:var(--ink)}
+.hub-core .brand-fa{font-size:.56rem;color:var(--st2);display:block;white-space:normal;line-height:1.4}
+.hub-core .brand{font-size:clamp(.9rem,2.4vw,1.25rem)}
+.shot{margin-top:clamp(1.8rem,4vw,3rem)}
+.shot .ph{--ar:21/9}
+@media (max-width:640px){.shot .ph{--ar:16/10}}
+.sec .cmp p,.sec .cmp h4{color:inherit}
+.cmp p{color:var(--muted)}
+.vis-cap{font-size:.8rem;color:var(--st3);margin-top:.7rem;text-align:center}
+.lt .vis-cap{color:#5c6879}
+.lt .shot .ph::after{color:#46556b}
+.about-grid{display:grid;grid-template-columns:1fr .8fr;gap:clamp(1.6rem,4vw,3.4rem);align-items:start}
+@media (max-width:991px){.about-grid{grid-template-columns:1fr}}
+.footer address{font-style:normal;margin:0}
+.ffooter-brand{font-weight:700;color:#fff}
+.seen .pl b{width:var(--w)}@media (prefers-reduced-motion:reduce){.pl b{width:var(--w)}}
+
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "SoftwareApplication", "name": "ONYX360 (اونیکس ۳۶۰)", "alternateName": "اونیکس ۳۶۰", "applicationCategory": "BusinessApplication", "applicationSubCategory": "ERP صنعتی", "operatingSystem": "Windows", "inLanguage": "fa", "description": "ERP یکپارچه برای مدیریت فرآیندهای صنعتی؛ برنامه‌ریزی تولید، ردیابی عملیات، کنترل موجودی و تحلیل بهای تمام‌شده.", "publisher": {"@type": "Organization", "name": "دانش‌پژوهان محاسب سرزمین پارس", "alternateName": "DMS Pars", "url": "https://dmspars.com/"}}, {"@type": "Organization", "name": "دانش‌پژوهان محاسب سرزمین پارس", "url": "https://dmspars.com/"}]}</script>
+</head>
+<body>
+<a class="skip" href="#main">رفتن به محتوای اصلی</a>
+<div id="pg" aria-hidden="true"></div>
+<nav class="dots" aria-label="پیمایش صفحه"><a href="#hero" aria-label="معرفی"><span>معرفی</span></a><a href="#challenges" aria-label="چالش‌ها"><span>چالش‌ها</span></a><a href="#integrated" aria-label="یکپارچگی"><span>یکپارچگی</span></a><a href="#costing" aria-label="بهای تمام‌شده"><span>بهای تمام‌شده</span></a><a href="#tracking" aria-label="ردیابی"><span>ردیابی</span></a><a href="#planning" aria-label="برنامه‌ریزی"><span>برنامه‌ریزی</span></a><a href="#maintenance" aria-label="نگهداری و تعمیرات"><span>نگهداری و تعمیرات</span></a><a href="#economics" aria-label="سودآوری"><span>سودآوری</span></a><a href="#modules" aria-label="ماژول‌ها"><span>ماژول‌ها</span></a><a href="#reports" aria-label="گزارش‌ها"><span>گزارش‌ها</span></a><a href="#fit" aria-label="مناسب برای"><span>مناسب برای</span></a><a href="#about" aria-label="درباره ما"><span>درباره ما</span></a><a href="#demo" aria-label="دموی تخصصی"><span>دموی تخصصی</span></a></nav>
+<div class="mbar"><a class="btn-chrome" href="#demo"><i class="bi bi-calendar2-check"></i><span>درخواست دموی تخصصی</span></a><button type="button" class="btn-ghost" id="openMenu" aria-label="فهرست بخش‌ها"><i class="bi bi-list"></i><span></span></button></div><div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-label="فهرست بخش‌ها"><div class="sheet-bg"></div><div class="sheet-p"><h3>بخش‌های صفحه</h3><a href="#hero"><b>۱</b>معرفی</a><a href="#challenges"><b>۲</b>چالش‌ها</a><a href="#integrated"><b>۳</b>یکپارچگی</a><a href="#costing"><b>۴</b>بهای تمام‌شده</a><a href="#tracking"><b>۵</b>ردیابی</a><a href="#planning"><b>۶</b>برنامه‌ریزی</a><a href="#maintenance"><b>۷</b>نگهداری و تعمیرات</a><a href="#economics"><b>۸</b>سودآوری</a><a href="#modules"><b>۹</b>ماژول‌ها</a><a href="#reports"><b>۱۰</b>گزارش‌ها</a><a href="#fit"><b>۱۱</b>مناسب برای</a><a href="#about"><b>۱۲</b>درباره ما</a><a href="#demo"><b>۱۳</b>دموی تخصصی</a></div></div><main id="main">
+<header class="hero" id="hero">
+<div class="plate" aria-hidden="true"></div><div class="beam" aria-hidden="true"></div>
+<div class="container"><div class="hero-grid">
+<div>
+<span class="eyebrow rv"><i class="bi bi-gear-wide-connected"></i> ERP صنعتی</span>
+<h1 class="rv" data-d="100"><span class="h1-brand"><span class="brand" dir="ltr"><b class="bn">ONYX</b><b class="b3">360</b></span> <span class="brand-fa">(<span class="bn">اونیکس</span> <span class="b3">۳۶۰</span>)</span>؛</span><span class="h1-rest">ERP یکپارچه برای مدیریت هوشمند فرآیندهای صنعتی</span></h1>
+<p class="lead rv" data-d="200">از برنامه‌ریزی تولید و مدیریت فروش تا ردیابی عملیات، کنترل موجودی و تحلیل بهای تمام‌شده؛ <span class="brand" dir="ltr"><b class="bn">ONYX</b><b class="b3">360</b></span> <span class="brand-fa">(<span class="bn">اونیکس</span> <span class="b3">۳۶۰</span>)</span> فرآیندهای تولید، انبار، فروش و امور مالی را به هم متصل می‌کند تا مدیران بتوانند عملکرد واقعی کارخانه را بهتر بررسی کنند و تصمیم‌های مدیریتی خود را بر پایه اطلاعات یکپارچه بگیرند.</p>
+<div class="cta-row rv" data-d="300">
+<a class="btn-chrome" href="#demo"><i class="bi bi-calendar2-check"></i><span>درخواست دموی تخصصی <span class="brand" dir="ltr"><b class="bn">ONYX</b><b class="b3">360</b></span> <span class="brand-fa">(<span class="bn">اونیکس</span> <span class="b3">۳۶۰</span>)</span></span></a>
+<a class="btn-ghost" href="#modules"><i class="bi bi-grid-1x2"></i><span>مشاهده امکانات تخصصی <span class="brand" dir="ltr"><b class="bn">ONYX</b><b class="b3">360</b></span> <span class="brand-fa">(<span class="bn">اونیکس</span> <span class="b3">۳۶۰</span>)</span></span></a>
+</div></div>
+<div class="hero-vis rv z" data-d="200">
+<div class="orbit" aria-hidden="true"></div>
+<figure class="ph vid" data-label="جای ویدئوی معرفی ONYX360 (اونیکس ۳۶۰) (۱۶:۹)" style="--ar:4/3.4" role="img" aria-label="ویدئوی معرفی نرم‌افزار ERP صنعتی ONYX360 (اونیکس ۳۶۰)"><span class="play"><i class="bi bi-play-fill"></i></span><!-- ویدئو: به‌جای این بخش بگذارید: <video src="video/xxx.mp4" poster="img/xxx.jpg" autoplay muted loop playsinline preload="none"></video> --></figure>
+<span class="fchip a" aria-hidden="true"><i class="bi bi-diagram-3"></i>برنامه‌ریزی تولید</span>
+<span class="fchip b" aria-hidden="true"><i class="bi bi-qr-code-scan"></i>ردیابی عملیات</span>
+<span class="fchip c" aria-hidden="true"><i class="bi bi-calculator"></i>تحلیل بهای تمام‌شده</span>
+</div></div></div>
+<span class="cue" aria-hidden="true"></span>
+</header>
+<section class="sec lt" id="challenges" >
+<div class="container"><div class="chal-grid"><div class="stick rv l"><span class="eyebrow"><b>۱</b>چالش‌های مدیریتی</span><h2>مدیریت کارخانه، فقط مدیریت تولید نیست</h2><p class="lead" style="margin-top:1.1rem">در کارخانه‌های چندمرحله‌ای و پیچیده، تصمیم‌گیری زمانی دشوار می‌شود که اطلاعات فروش، موجودی کالا و مواد ، تولید و امور مالی در بخش‌های مختلف سازمان پراکنده باشند. در چنین شرایطی، مدیران برای به‌دست‌آوردن تصویری دقیق از وضعیت کارخانه، باید اطلاعات متعددی را کنار هم قرار دهند؛ درحالی‌که ارتباط میان اتفاقات عملیاتی و نتایج مالی همیشه روشن نیست.</p><p style="margin-top:1rem;font-weight:700">برخی از چالش‌های مهم در مدیریت این نوع کارخانه‌ها عبارت‌اند از:</p></div><div class="spot"><article class="mc chal spot-i rv" data-d="0"><div class="num" aria-hidden="true">۱</div><div><h3><i class="bi bi-shuffle" aria-hidden="true"></i>ناهماهنگی میان فروش، موجودی کالا و برنامه‌ریزی تولید</h3><p>سفارش‌های فروش، موجودی قابل‌استفاده و ظرفیت خطوط تولید باید در تصمیم‌گیری‌های تولیدی به یکدیگر مرتبط باشند. نبود دید یکپارچه می‌تواند برنامه‌ریزی تأمین مواد، زمان‌بندی تولید و تعهدات تحویل را دشوار کند.</p></div></article><article class="mc chal spot-i rv" data-d="0"><div class="num" aria-hidden="true">۲</div><div><h3><i class="bi bi-rulers" aria-hidden="true"></i>فاصله میان برنامه تولید و عملکرد واقعی</h3><p>مقادیر مواد مصرفی، زمان انجام عملیات و میزان تولید واقعی ممکن است با مقادیر پیش‌بینی‌شده تفاوت داشته باشند. بدون ثبت و بررسی این اطلاعات در مراحل مختلف تولید، شناسایی میزان و علت انحرافات دشوار خواهد بود.</p></div></article><article class="mc chal spot-i rv" data-d="0"><div class="num" aria-hidden="true">۳</div><div><h3><i class="bi bi-calculator" aria-hidden="true"></i>دشواری محاسبه و تحلیل بهای تمام‌شده واقعی</h3><p>محاسبه بهای تمام‌شده تنها به ثبت هزینه مواد محدود نیست. بررسی تفاوت مصرف استاندارد و واقعی مواد، زمان استاندارد و واقعی عملیات و هزینه‌های دستمزد و سربار، برای شناخت دقیق‌تر هزینه تولید اهمیت دارد.</p></div></article><article class="mc chal spot-i rv" data-d="0"><div class="num" aria-hidden="true">۴</div><div><h3><i class="bi bi-search" aria-hidden="true"></i>محدودیت در ردیابی مواد و محصولات</h3><p>در فرآیندهای چندمرحله‌ای، گاهی لازم است مشخص شود یک محصول از چه موادی ساخته شده، در کدام ایستگاه‌ها عملیات روی آن انجام شده و چه افرادی در مراحل تولید دخیل بوده‌اند. نبود سوابق مرتبط، پیگیری مغایرت‌ها و بررسی مسائل کیفی را دشوار می‌کند.</p></div></article><article class="mc chal spot-i rv" data-d="0"><div class="num" aria-hidden="true">۵</div><div><h3><i class="bi bi-truck" aria-hidden="true"></i>دشواری مدیریت تأمین مواد و گردش انبار</h3><p>برنامه‌ریزی خرید و تأمین مواد باید با نیاز واقعی تولید، موجودی انبار، سفارش‌های خرید و زمان تأمین کالا هماهنگ باشد. همچنین کنترل ورود و خروج مواد و ثبت دقیق مصرف و برگشت مواد، برای جلوگیری از مغایرت‌های عملیاتی و مالی ضروری است.</p></div></article><article class="mc chal spot-i rv" data-d="0"><div class="num" aria-hidden="true">۶</div><div><h3><i class="bi bi-tools" aria-hidden="true"></i>تأثیر تعمیرات و توقف ماشین‌آلات بر برنامه تولید</h3><p>ظرفیت اسمی ماشین‌آلات همیشه با ظرفیت قابل‌دستیابی آن‌ها در عمل یکسان نیست. از طرف دیگر، تعمیرات دوره‌ای و توقف‌های پیش‌بینی‌نشده می‌توانند بر برنامه تولید اثر بگذارند. هماهنگی برنامه تولید با وضعیت نگهداری و تعمیرات ماشین‌آلات اهمیت زیادی دارد.</p></div></article><article class="mc chal spot-i rv" data-d="0"><div class="num" aria-hidden="true">۷</div><div><h3><i class="bi bi-cash-stack" aria-hidden="true"></i>دشواری ارزیابی سودآوری محصولات و سفارش‌ها</h3><p>اطلاع از مبلغ فروش به‌تنهایی برای ارزیابی عملکرد کافی نیست. مدیران باید بتوانند هزینه‌ها، بهای تمام‌شده و سودآوری محصولات و سفارش‌ها را نیز بررسی کنند تا تصمیم‌های مناسب‌تری درباره ترکیب تولید و فروش بگیرند.</p></div></article><article class="mc chal spot-i rv" data-d="0"><div class="num" aria-hidden="true">۸</div><div><h3><i class="bi bi-puzzle" aria-hidden="true"></i>پراکندگی اطلاعات مدیریتی</h3><p>وقتی اطلاعات مالی، فروش، تولید، انبار و سایر واحدها در گزارش‌های جداگانه قرار داشته باشند، تهیه تصویری جامع از وضعیت سازمان زمان‌بر خواهد بود. مدیران به گزارش‌هایی نیاز دارند که اطلاعات واحدهای مختلف را در کنار یکدیگر قرار دهد و امکان بررسی عملکرد و انحرافات را فراهم کند.</p></div></article></div></div><p class="statement scrub big">در چنین شرایطی، مسئله اصلی فقط ثبت اطلاعات نیست؛ بلکه ایجاد ارتباط میان اطلاعات عملیاتی، مالی و مدیریتی برای شناخت بهتر وضعیت واقعی کارخانه است.</p></div>
+</section>
+<section class="sec dk" id="integrated" >
+<div class="container"><div class="sec-head  rv"><span class="eyebrow"><b>۲</b>یکپارچگی</span><h2><span class="brand" dir="ltr"><b class="bn">ONYX</b><b class="b3">360</b></span> <span class="brand-fa">(<span class="bn">اونیکس</span> <span class="b3">۳۶۰</span>)</span>؛ ارتباط یکپارچه میان فروش، تولید، انبار و امور مالی</h2><p class="lead"><span class="brand" dir="ltr"><b class="bn">ONYX</b><b class="b3">360</b></span> <span class="brand-fa">(<span class="bn">اونیکس</span> <span class="b3">۳۶۰</span>)</span> یک راهکار ERP صنعتی است که با ایجاد ارتباط میان فرآیندهای اصلی سازمان، به کارخانه کمک می‌کند اطلاعات و عملیات بخش‌های مختلف را در یک بستر یکپارچه مدیریت کند.</p><p>در این سیستم، اطلاعات فروش و سفارش‌های مشتریان می‌توانند مبنای برنامه‌ریزی تولید قرار گیرند. برنامه تولید با توجه به ساختار مواد و محصولات، نیازهای تأمین و موجودی انبار بررسی می‌شود و عملیات تولید نیز با ثبت اطلاعات مصرف مواد، مراحل انجام کار، زمان عملیات و نتایج کنترل کیفیت قابل پیگیری است.</p><p>از سوی دیگر، اطلاعات خرید، دریافت و مصرف مواد، گردش انبار و عملیات تولید با فرآیندهای مالی و حسابداری ارتباط دارند. این ارتباط امکان می‌دهد اطلاعات عملیاتی در کنار اطلاعات مالی بررسی شوند و مدیران دید منسجم‌تری از عملکرد سازمان داشته باشند.</p></div><div class="hub-grid"><div class="rv l" id="hubwrap"><div class="hub-box"><div class="hub" id="hub" role="img" aria-label="نمودار ارتباط فروش، تولید، انبار، مالی و گزارش‌های مدیریتی در ONYX360"><svg class="hub-svg" viewBox="0 0 400 400" aria-hidden="true"><circle class="ring" cx="200" cy="200" r="190"/><circle class="ring r2" cx="200" cy="200" r="120"/><line class="hub-line" data-i="0" x1="200" y1="200" x2="200.0" y2="52.0"/><line class="hub-line" data-i="1" x1="200" y1="200" x2="340.8" y2="154.3"/><line class="hub-line" data-i="2" x1="200" y1="200" x2="287.0" y2="319.7"/><line class="hub-line" data-i="3" x1="200" y1="200" x2="113.0" y2="319.7"/><line class="hub-line" data-i="4" x1="200" y1="200" x2="59.2" y2="154.3"/></svg><div class="hub-core"><span class="brand" dir="ltr"><b class="bn">ONYX</b><b class="b3">360</b></span> <span class="brand-fa">(<span class="bn">اونیکس</span> <span class="b3">۳۶۰</span>)</span></div><div class="hub-node" data-i="0" style="left:50.0%;top:13.0%"><i class="bi bi-cart-check" aria-hidden="true"></i>فروش</div><div class="hub-node" data-i="1" style="left:85.2%;top:38.6%"><i class="bi bi-gear-wide-connected" aria-hidden="true"></i>تولید</div><div class="hub-node" data-i="2" style="left:71.7%;top:79.9%"><i class="bi bi-box-seam" aria-hidden="true"></i>انبار و تأمین</div><div class="hub-node" data-i="3" style="left:28.3%;top:79.9%"><i class="bi bi-bank" aria-hidden="true"></i>مالی</div><div class="hub-node" data-i="4" style="left:14.8%;top:38.6%"><i class="bi bi-graph-up-arrow" aria-hidden="true"></i>گزارش مدیریتی</div></div></div></div><div class="spot" data-sync="#hub"><article class="mc step spot-i rv"><h3>ارتباط فرآیندها، از سفارش فروش تا تولید و تحویل</h3><p>در <span class="brand" dir="ltr"><b class="bn">ONYX</b><b class="b3">360</b></span> <span class="brand-fa">(<span class="bn">اونیکس</span> <span class="b3">۳۶۰</span>)</span>، فروش صرفاً به ثبت فاکتور محدود نمی‌شود. اطلاعات سفارش و وضعیت موجودی می‌توانند در بررسی نیاز به تولید و برنامه‌ریزی تأمین مورد استفاده قرار گیرند. به این ترتیب، ارتباط میان درخواست مشتری، موجودی قابل‌استفاده و فرآیند تولید بهتر قابل مدیریت خواهد بود.</p></article><article class="mc step spot-i rv"><h3>پیوند عملیات تولید با اطلاعات واقعی کارخانه</h3><p>در طول تولید، اطلاعات مربوط به مواد مصرفی، ایستگاه‌های کاری، زمان انجام عملیات، توقف‌ها و کنترل کیفیت ثبت می‌شوند. این اطلاعات، علاوه بر امکان پیگیری مراحل ساخت محصول، مبنایی برای بررسی عملکرد واقعی تولید و مقایسه آن با مقادیر و زمان‌های استاندارد فراهم می‌کنند.</p></article><article class="mc step spot-i rv"><h3>ارتباط انبار، تأمین و تولید</h3><p>فرآیندهای درخواست خرید، تأمین مواد، دریافت کالا، کنترل کیفیت ورودی، تحویل مواد به تولید و ثبت محصولات ساخته‌شده، در ارتباط با یکدیگر مدیریت می‌شوند. سوابق گردش کالا نیز امکان بررسی مسیر ورود و خروج مواد و محصولات را فراهم می‌کند.</p></article><article class="mc step spot-i rv"><h3>اتصال عملیات سازمان به اطلاعات مالی</h3><p>اطلاعات مربوط به خرید، فروش، انبار، تولید و سایر فرآیندهای سازمانی با سیستم مالی و حسابداری ارتباط دارند. این ساختار به ثبت و کنترل منسجم‌تر رویدادهای مالی کمک می‌کند و امکان تحلیل هزینه‌ها و نتایج عملکرد را در ارتباط با فعالیت‌های عملیاتی فراهم می‌سازد.</p></article><article class="mc step spot-i rv"><h3>دسترسی مدیران به تصویری جامع از عملکرد سازمان</h3><p>اطلاعات ثبت‌شده در بخش‌های مختلف <span class="brand" dir="ltr"><b class="bn">ONYX</b><b class="b3">360</b></span> <span class="brand-fa">(<span class="bn">اونیکس</span> <span class="b3">۳۶۰</span>)</span> در گزارش‌های تخصصی و مدیریتی قابل بررسی هستند. مدیران می‌توانند گزارش‌های مرتبط با فروش، تولید، موجودی، بهای تمام‌شده، انحرافات و عملکرد مالی را بدون نیاز به مراجعه مستقیم به فرم‌های عملیاتی هر زیرسیستم مشاهده کنند.</p></article></div></div><p class="statement scrub">مزیت اصلی <span class="brand" dir="ltr"><b class="bn">ONYX</b><b class="b3">360</b></span> <span class="brand-fa">(<span class="bn">اونیکس</span> <span class="b3">۳۶۰</span>)</span> صرفاً وجود مجموعه‌ای از ماژول‌های نرم‌افزاری نیست؛ بلکه ارتباط میان اطلاعات و فرآیندهاست. این ارتباط کمک می‌کند تصمیم‌های فروش، تأمین، تولید و مالی با شناخت بهتری از وضعیت واقعی کارخانه گرفته شوند.</p></div>
+</section>
+<section class="sec lt" id="costing" >
+<div class="container"><div class="sec-head  rv"><span class="eyebrow"><b>۳</b>بهای تمام‌شده</span><h2>از بهای تمام‌شده تا بررسی عوامل انحراف، با اتصال به اطلاعات عملیات تولید</h2><p class="lead">در یک کارخانه صنعتی، دانستن بهای تمام‌شده محصول به‌تنهایی کافی نیست. مدیران باید بدانند هزینه‌ها چگونه شکل گرفته‌اند، چه تفاوتی میان مقادیر استاندارد و عملکرد واقعی وجود دارد و افزایش یا کاهش هزینه تولید ناشی از کدام بخش از فرآیند بوده است.</p><p><span class="brand" dir="ltr"><b class="bn">ONYX</b><b class="b3">360</b></span> <span class="brand-fa">(<span class="bn">اونیکس</span> <span class="b3">۳۶۰</span>)</span> با ارتباط دادن اطلاعات تولید و حسابداری صنعتی، امکان بررسی بهای تمام‌شده محصولات و بچ‌های تولیدی را در کنار اطلاعات واقعی عملیات فراهم می‌کند.</p></div><div class="sub"><h3>مقایسه استانداردها با عملکرد واقعی تولید</h3><p>در فرآیند تولید، مقادیر استاندارد مواد مصرفی و زمان موردنیاز برای انجام عملیات، مبنایی برای برنامه‌ریزی و محاسبه هزینه‌ها هستند. اما عملکرد واقعی ممکن است با این مقادیر تفاوت داشته باشد.</p><p>در <span class="brand" dir="ltr"><b class="bn">ONYX</b><b class="b3">360</b></span> <span class="brand-fa">(<span class="bn">اونیکس</span> <span class="b3">۳۶۰</span>)</span> می‌توان اطلاعات استاندارد و واقعی را در محورهای مهمی مانند موارد زیر بررسی کرد:</p></div><div class="cmp-grid spot-none"><article class="mc cmp rv" data-d="0" data-seen><h4><i class="bi bi-boxes" aria-hidden="true"></i>مواد مصرفی</h4><p>مقایسه مواد پیش‌بینی‌شده در ساختار محصول با مواد مصرف‌شده در تولید</p><div class="bar s"><span>استاندارد</span><b><i style="--w:60%;--dl:.2s"></i></b></div><div class="bar r"><span>واقعی</span><b><i style="--w:68%;--dl:.5s"></i></b></div></article><article class="mc cmp rv" data-d="120" data-seen><h4><i class="bi bi-stopwatch" aria-hidden="true"></i>زمان عملیات</h4><p>مقایسه زمان استاندارد با زمان واقعی انجام عملیات در ایستگاه‌های کاری</p><div class="bar s"><span>استاندارد</span><b><i style="--w:55%;--dl:.2s"></i></b></div><div class="bar r"><span>واقعی</span><b><i style="--w:47%;--dl:.5s"></i></b></div></article><article class="mc cmp rv" data-d="240" data-seen><h4><i class="bi bi-cash-coin" aria-hidden="true"></i>دستمزد و سربار</h4><p>بررسی انحراف هزینه‌های دستمزد و سربار نسبت به مقادیر مبنا</p><div class="bar s"><span>استاندارد</span><b><i style="--w:50%;--dl:.2s"></i></b></div><div class="bar r over"><span>واقعی</span><b><i style="--w:72%;--dl:.5s"></i></b></div></article></div><div class="rv" data-d="0" ><p>این مقایسه‌ها به شناسایی تفاوت میان هزینه پیش‌بینی‌شده و هزینه واقعی تولید کمک می‌کنند.</p></div><div class="split sub"><div class="rv l"><h3>تحلیل بهای تمام‌شده در سطح محصول و بچ تولید</h3><p>در <span class="brand" dir="ltr"><b class="bn">ONYX</b><b class="b3">360</b></span> <span class="brand-fa">(<span class="bn">اونیکس</span> <span class="b3">۳۶۰</span>)</span> امکان بررسی بهای تمام‌شده در ارتباط با محصول و بچ تولیدی وجود دارد. به این ترتیب، مدیران می‌توانند هزینه تولید را در کنار اطلاعات مربوط به مواد مصرفی و عملیات انجام‌شده بررسی کنند و صرفاً به یک رقم نهایی اکتفا نکنند.</p><p>این موضوع به‌ویژه در کارخانه‌هایی اهمیت دارد که تولید آن‌ها در چند مرحله و در قالب بچ‌های مختلف انجام می‌شود و ممکن است هزینه واقعی هر بچ با بچ دیگر تفاوت داشته باشد.</p></div><div class="rv r" data-seen><div class="batch-bars" role="img" aria-label="تصویر مفهومی مقایسه بهای تمام‌شده بچ‌های مختلف"><span style="--h:45%;--dl:0.0s"></span><span style="--h:70%;--dl:0.1s"></span><span style="--h:55%;--dl:0.2s"></span><span style="--h:85%;--dl:0.4s"></span><span style="--h:60%;--dl:0.5s"></span><span style="--h:92%;--dl:0.6s"></span><span style="--h:50%;--dl:0.7s"></span></div><p class="vis-cap">تصویر مفهومی؛ مقایسه بچ‌های تولید</p></div></div><div class="sub rv" data-seen><h3>از مشاهده انحراف تا بررسی علت آن</h3><p>یکی از قابلیت‌های مهم <span class="brand" dir="ltr"><b class="bn">ONYX</b><b class="b3">360</b></span> <span class="brand-fa">(<span class="bn">اونیکس</span> <span class="b3">۳۶۰</span>)</span>، امکان پیگیری اطلاعات مرتبط با انحرافات هزینه‌ای تا سطح عملیات تولید است.</p><p>برای مثال، اگر مصرف واقعی مواد در یک بچ بیشتر از مقدار استاندارد باشد، بررسی می‌تواند از اختلاف هزینه آغاز شود و به اطلاعات مواد مصرف‌شده و عملیات ثبت‌شده در مراحل تولید برسد. همچنین در صورت افزایش زمان تولید، اطلاعات زمان انجام کار و توقف‌های ثبت‌شده در ایستگاه‌های کاری می‌توانند در بررسی علت انحراف مورد استفاده قرار گیرند.</p><p>به این ترتیب، تحلیل بهای تمام‌شده فقط به گزارش اختلاف اعداد محدود نمی‌شود؛ بلکه امکان بررسی عوامل عملیاتی مرتبط با آن نیز فراهم است.</p><ol class="fl" style="grid-template-columns:repeat(4,1fr)" aria-label="مسیر بررسی انحراف"><li style="--dl:0.0s"><span class="nd"><i class="bi bi-exclamation-triangle"></i></span>مشاهده انحراف</li><li style="--dl:0.3s"><span class="nd"><i class="bi bi-boxes"></i></span>بچ تولید</li><li style="--dl:0.7s"><span class="nd"><i class="bi bi-gear"></i></span>مرحله و عملیات</li><li style="--dl:1.0s"><span class="nd"><i class="bi bi-bullseye"></i></span>علت انحراف</li></ol></div><div class="split sub"><div class="rv l"><h3>ارزیابی صرفه اقتصادی تولید پیش از آغاز عملیات</h3><p>تصمیم‌گیری درباره تولید یک محصول جدید یا پذیرش شرایط خاص یک سفارش، به شناخت اولیه از هزینه‌های مورد انتظار نیاز دارد.</p><p><span class="brand" dir="ltr"><b class="bn">ONYX</b><b class="b3">360</b></span> <span class="brand-fa">(<span class="bn">اونیکس</span> <span class="b3">۳۶۰</span>)</span> امکان شبیه‌سازی بهای تمام‌شده و بررسی صرفه اقتصادی تولید را پیش از شروع عملیات فراهم می‌کند. با استفاده از اطلاعاتی مانند قیمت فروش، قیمت خرید مواد و ساختار مواد موردنیاز محصول، می‌توان برآوردی از بهای تمام‌شده به دست آورد و شرایط اقتصادی تولید را بررسی کرد؛ بدون آنکه لازم باشد ابتدا فرآیند واقعی خرید، فروش یا تولید انجام شده باشد.</p></div><div class="rv r" data-seen><div class="sim" aria-hidden="true"><span class="chip" style="--dl:.1s"><i class="bi bi-boxes"></i>مواد</span><span class="op" style="--dl:.3s">+</span><span class="chip" style="--dl:.4s"><i class="bi bi-people"></i>دستمزد</span><span class="op" style="--dl:.6s">+</span><span class="chip" style="--dl:.7s"><i class="bi bi-lightning-charge"></i>سربار</span><span class="op" style="--dl:.9s">=</span><span class="chip res" style="--dl:1s"><i class="bi bi-bar-chart-line"></i>صرفه اقتصادی تولید</span></div></div></div><p class="statement scrub">در <span class="brand" dir="ltr"><b class="bn">ONYX</b><b class="b3">360</b></span> <span class="brand-fa">(<span class="bn">اونیکس</span> <span class="b3">۳۶۰</span>)</span>، بهای تمام‌شده نقطه پایان تحلیل نیست؛ نقطه شروعی برای شناخت بهتر عملکرد تولید و بررسی عوامل مؤثر بر هزینه‌هاست.</p><div class="shot rv"><figure class="ph " data-label="جای تصویر: صفحه تحلیل بهای تمام‌شده و انحرافات" style="--ar:21/9"><!-- جایگزینی: src را با آدرس تصویر واقعی عوض کنید --><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1600' height='1000'%3E%3C/svg%3E" alt="نمایی از صفحه تحلیل بهای تمام‌شده و انحرافات در ONYX360 (اونیکس ۳۶۰)" width="1600" height="1000" loading="lazy"></figure></div></div>
+</section>
+<section class="sec dk" id="tracking" >
+<div class="container"><div class="sec-head  rv"><span class="eyebrow"><b>۴</b>ردیابی</span><h2>ردیابی محصول؛ از محصول نهایی تا مراحل تولید و تأمین مواد اولیه</h2><p class="lead">در تولید صنعتی، ثبت اطلاعات هر مرحله از ساخت محصول اهمیت زیادی دارد. اگر پس از تحویل محصول، مغایرتی در کیفیت یا عملکرد آن مشاهده شود، لازم است بتوان مسیر تولید را بررسی کرد؛ از ایستگاه‌هایی که محصول از آن‌ها عبور کرده تا اپراتورها، زمان انجام عملیات و مواد اولیه مصرف‌شده.</p><p><span class="brand" dir="ltr"><b class="bn">ONYX</b><b class="b3">360</b></span> <span class="brand-fa">(<span class="bn">اونیکس</span> <span class="b3">۳۶۰</span>)</span> با ثبت و ارتباط اطلاعات ردیابی در مراحل مختلف تولید، امکان پیگیری سوابق محصول را از مرحله ورود مواد به فرآیند ساخت تا تکمیل و بسته‌بندی فراهم می‌کند.</p></div><div class="rail rv" role="img" aria-label="مسیر ردیابی از مواد اولیه تا مشتری و ردیابی معکوس"><ol style="display:contents"><li><i class="bi bi-box-seam" aria-hidden="true"></i>مواد اولیه</li><li><i class="bi bi-gear-wide-connected" aria-hidden="true"></i>ایستگاه کاری</li><li><i class="bi bi-patch-check" aria-hidden="true"></i>کنترل کیفیت</li><li><i class="bi bi-box2" aria-hidden="true"></i>محصول نهایی</li><li><i class="bi bi-person-check" aria-hidden="true"></i>مشتری</li></ol><span class="pulse f" aria-hidden="true"></span><span class="pulse r" aria-hidden="true"></span></div><div class="rail-legend"><span><em style="background:var(--on)"></em>ردیابی رو به جلو</span><span><em style="background:var(--n3)"></em>ردیابی معکوس</span></div><div class="split sub"><div class="rv l" data-seen><h3>ثبت و پیگیری عملیات در ایستگاه‌های کاری</h3><p>در فرآیند تولید، اطلاعات مربوط به ورود و خروج مواد و محصولات از ایستگاه‌های کاری ثبت می‌شود. این اطلاعات می‌تواند شامل موارد زیر باشد:</p><ul class="chips-grid" style="grid-template-columns:repeat(2,1fr)"><li style="--dl:0.00s"><i class="bi bi-cpu" aria-hidden="true"></i>مشخصات ایستگاه کاری و ماشین‌آلات مرتبط</li><li style="--dl:0.10s"><i class="bi bi-person-gear" aria-hidden="true"></i>اپراتور مسئول انجام عملیات</li><li style="--dl:0.20s"><i class="bi bi-play-circle" aria-hidden="true"></i>زمان شروع و پایان فعالیت</li><li style="--dl:0.30s"><i class="bi bi-hourglass-split" aria-hidden="true"></i>مدت‌زمان انجام عملیات</li><li style="--dl:0.40s"><i class="bi bi-pause-circle" aria-hidden="true"></i>توقف‌های عادی و غیرعادی و مدت آن‌ها</li><li style="--dl:0.50s"><i class="bi bi-clipboard-check" aria-hidden="true"></i>نتایج کنترل کیفیت در مراحل مختلف تولید</li></ul><p>با ثبت این اطلاعات، سوابق انجام عملیات در مسیر تولید قابل بررسی خواهد بود و زمان واقعی تولید نیز بر اساس اطلاعات ثبت‌شده قابل محاسبه است.</p></div><div class="rv r"><figure class="ph " data-label="جای تصویر: ثبت عملیات در ایستگاه کاری" style="--ar:4/3"><!-- جایگزینی: src را با آدرس تصویر واقعی عوض کنید --><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1600' height='1000'%3E%3C/svg%3E" alt="نمایی از صفحه ثبت عملیات ایستگاه کاری در ONYX360 (اونیکس ۳۶۰)" width="1600" height="1000" loading="lazy"></figure><p class="vis-cap">جای تصویر ثبت عملیات ایستگاه کاری</p></div></div><div class="split rev sub"><div class="rv l" data-seen><h3>کنترل کیفیت در طول فرآیند تولید</h3><p>کنترل کیفیت در <span class="brand" dir="ltr"><b class="bn">ONYX</b><b class="b3">360</b></span> <span class="brand-fa">(<span class="bn">اونیکس</span> <span class="b3">۳۶۰</span>)</span> محدود به مرحله نهایی محصول نیست. امکان ثبت نتایج کنترل کیفیت در ایستگاه‌های مختلف تولید وجود دارد تا وضعیت محصول در حین ساخت نیز بررسی شود.</p><p>در صورت شناسایی ایراد، اطلاعات مربوط به محصول و نتیجه کنترل کیفیت ثبت می‌شود و امکان پیگیری وضعیت آن در همان مرحله، از جمله انجام اصلاحات موردنیاز، وجود دارد. این رویکرد کمک می‌کند سوابق کنترل کیفیت به‌عنوان بخشی از تاریخچه تولید محصول نگهداری شوند.</p><div class="qc" aria-hidden="true"><span>مرحله ۱ <i class="bi bi-check-circle-fill" style="--dl:.3s"></i></span><span>مرحله ۲ <i class="bi bi-check-circle-fill" style="--dl:.7s"></i></span><span>نهایی <i class="bi bi-check-circle-fill" style="--dl:1.1s"></i></span></div></div><div class="rv r"><div class="barcode" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><p class="vis-cap">تصویر مفهومی؛ شناسایی با بارکد</p></div></div><div class="sub rv"><h3>ردیابی مواد اولیه و سوابق تأمین</h3><p>اطلاعات مواد مصرف‌شده در تولید، در ارتباط با سوابق انبار و اطلاعات تأمین‌کننده قابل پیگیری است. با استفاده از شناسه‌ها و بارکدهای مرتبط با مواد و محصولات، می‌توان مسیر ارتباط محصول نهایی با مواد اولیه مصرف‌شده و سوابق ورود آن‌ها به انبار را بررسی کرد.</p><p>به این ترتیب، در زمان بررسی یک محصول، امکان مراجعه به اطلاعات مواد اولیه و تأمین‌کننده مرتبط با آن نیز وجود دارد.</p></div><div class="split sub"><div class="rv l"><h3>ردیابی معکوس؛ از محصول نهایی تا منشأ مواد</h3><p>فرض کنید پس از تحویل یک محصول به مشتری، ایرادی در آن گزارش شود. با استفاده از اطلاعات بارکد محصول یا بسته‌بندی، می‌توان سوابق مربوط به تاریخ بسته‌بندی، اپراتور، ایستگاه‌های کاری و مراحل تولید را بررسی کرد و سپس مسیر مواد مصرف‌شده و اطلاعات تأمین آن‌ها را دنبال کرد.</p><p>این قابلیت به واحدهای تولید، کنترل کیفیت و مدیریت کمک می‌کند به‌جای بررسی‌های پراکنده، از سوابق ثبت‌شده برای پیگیری موضوع استفاده کنند.</p></div><div class="rv r"><figure class="ph vid" data-label="جای ویدئو: نمایش ردیابی معکوس از محصول تا منشأ مواد" style="--ar:16/10" role="img" aria-label="ویدئوی نمایش ردیابی معکوس محصول در ONYX360 (اونیکس ۳۶۰)"><span class="play"><i class="bi bi-play-fill"></i></span><!-- ویدئو: به‌جای این بخش بگذارید: <video src="video/xxx.mp4" poster="img/xxx.jpg" autoplay muted loop playsinline preload="none"></video> --></figure></div></div><p class="statement scrub">در <span class="brand" dir="ltr"><b class="bn">ONYX</b><b class="b3">360</b></span> <span class="brand-fa">(<span class="bn">اونیکس</span> <span class="b3">۳۶۰</span>)</span>، ردیابی فقط به معنای دانستن محل یا شماره یک محصول نیست؛ بلکه امکان بررسی سوابق ساخت آن، عملیات انجام‌شده و ارتباط مواد مصرفی با محصول نهایی را فراهم می‌کند.</p></div>
+</section>
+<section class="sec lt" id="planning" >
+<div class="container"><div class="sec-head  rv"><span class="eyebrow"><b>۵</b>برنامه‌ریزی</span><h2>برنامه‌ریزی تولید؛ هماهنگی سفارش‌ها، مواد و ظرفیت کارخانه</h2><p class="lead">برنامه‌ریزی مؤثر تولید زمانی امکان‌پذیر است که سفارش‌های مشتریان، نیاز بازار، موجودی انبار، ساختار مواد محصولات و ظرفیت خطوط تولید در کنار یکدیگر بررسی شوند.</p><p><span class="brand" dir="ltr"><b class="bn">ONYX</b><b class="b3">360</b></span> <span class="brand-fa">(<span class="bn">اونیکس</span> <span class="b3">۳۶۰</span>)</span> با ارتباط دادن اطلاعات فروش، انبار و تولید، بستری برای برنامه‌ریزی و مدیریت تولید فراهم می‌کند؛ از بررسی سفارش‌ها و تعیین بچ‌های تولیدی تا محاسبه نیاز مواد، صدور درخواست از انبار و پیگیری عملیات تولید.</p></div><div class="split sub"><div class="rv l"><h3>برنامه‌ریزی تولید بر اساس سفارش و نیاز موجودی</h3><p>برنامه تولید می‌تواند بر اساس سفارش‌های فروش یا نیاز به تأمین موجودی محصولات شکل بگیرد. برنامه‌ریز با بررسی سفارش‌ها و وضعیت تولید، آن‌ها را برای برنامه‌ریزی در دوره‌های مختلف و در قالب بچ‌های تولیدی تنظیم می‌کند.</p><p>امکان تعریف برنامه‌های تولید در دوره‌های زمانی مختلف، از برنامه‌های روزانه و هفتگی تا برنامه‌های ماهانه، فصلی و دوره‌های بلندمدت‌تر، وجود دارد.</p></div><div class="rv r" data-seen><div class="seg" role="group" aria-label="دوره برنامه‌ریزی"><button type="button" class="on" data-m="d" aria-pressed="true">روزانه</button><button type="button" data-m="w" aria-pressed="false">هفتگی</button><button type="button" data-m="m" aria-pressed="false">ماهانه</button><button type="button" data-m="s" aria-pressed="false">فصلی</button></div><div class="gantt" id="gantt" role="img" aria-label="تصویر مفهومی برنامه تولید خطوط و تعمیرات"><div class="grid-l"></div><div class="g-row"><span class="gb" style="--dl:0.0s"></span></div><div class="g-row"><span class="gb alt" style="--dl:0.1s"></span></div><div class="g-row"><span class="gb" style="--dl:0.3s"></span><span class="gm"></span></div><div class="g-row"><span class="gb alt" style="--dl:0.4s"></span></div></div><div class="legend"><span><em style="background:#1c5ed6"></em>برنامه تولید</span><span><em style="background:repeating-linear-gradient(135deg,#d3262c 0 4px,#f19397 4px 8px)"></em>تعمیرات</span></div></div></div><div class="split rev sub"><div class="rv l" data-seen><h3>بررسی نیاز مواد پیش از شروع تولید</h3><p>برای اجرای برنامه تولید، لازم است مواد اولیه و نیمه‌ساخته موردنیاز هر محصول مشخص باشند. <span class="brand" dir="ltr"><b class="bn">ONYX</b><b class="b3">360</b></span> <span class="brand-fa">(<span class="bn">اونیکس</span> <span class="b3">۳۶۰</span>)</span> با استفاده از ساختار مواد و مقادیر موردنیاز محصولات، امکان محاسبه نیاز مواد متناسب با سفارش‌ها و برنامه تولید را فراهم می‌کند.</p><p>در این فرآیند می‌توان موجودی انبار، نقطه سفارش و زمان تأمین مواد را در بررسی نیازها لحاظ کرد و کمبودهای احتمالی را برای پیگیری فرآیند خرید و تأمین مشخص کرد.</p></div><div class="rv r" data-seen><div class="mc" style="padding:1.5rem"><div class="bom" aria-hidden="true"><span class="chip" style="--dl:.1s"><i class="bi bi-box-seam"></i>مواد اولیه</span><i class="bi bi-arrow-left arrow"></i><span class="chip" style="--dl:.4s"><i class="bi bi-layers"></i>نیمه‌ساخته</span><i class="bi bi-arrow-left arrow"></i><span class="chip" style="--dl:.7s"><i class="bi bi-box2"></i>محصول</span></div></div></div></div><div class="split sub"><div class="rv l" data-seen><h3>مدیریت بچ‌های تولید و گردش مواد</h3><p>پس از تأیید برنامه تولید، بچ‌های تولیدی با مشخصاتی مانند محصول، مقدار تولید، انبار مبدأ، خط تولید و انبار مقصد تعریف می‌شوند.</p><p>بر اساس نیاز مواد هر بچ، درخواست تحویل مواد به انبار صادر می‌شود و مقادیر تحویلی با نیاز تولید ارتباط دارند. در جریان تولید نیز امکان ثبت مصرف واقعی، مواد مازاد و برگشت مواد مصرف‌نشده یا غیرقابل‌استفاده وجود دارد.</p><p>این اطلاعات کمک می‌کنند گردش مواد میان انبار و تولید قابل پیگیری باشد و تفاوت میان مقادیر برنامه‌ریزی‌شده و مصرف واقعی در سوابق بچ تولید ثبت شود.</p><div class="fieldchips" aria-hidden="true"><span class="chip" style="--dl:0.0s"><i class="bi bi-boxes"></i>بچ ۱</span><span class="chip" style="--dl:0.1s"><i class="bi bi-boxes"></i>بچ ۲</span><span class="chip" style="--dl:0.3s"><i class="bi bi-boxes"></i>بچ ۳</span><span class="chip" style="--dl:0.4s"><i class="bi bi-arrow-left-right"></i>درخواست تحویل به انبار</span></div></div><div class="rv r"><figure class="ph " data-label="جای تصویر: صفحه برنامه‌ریزی و بچ‌های تولید" style="--ar:4/3"><!-- جایگزینی: src را با آدرس تصویر واقعی عوض کنید --><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1600' height='1000'%3E%3C/svg%3E" alt="نمایی از صفحه برنامه‌ریزی تولید و بچ‌ها در ONYX360 (اونیکس ۳۶۰)" width="1600" height="1000" loading="lazy"></figure></div></div><div class="sub rv"><h3>برنامه‌ریزی خطوط تولید و توجه به ظرفیت</h3><p><span class="brand" dir="ltr"><b class="bn">ONYX</b><b class="b3">360</b></span> <span class="brand-fa">(<span class="bn">اونیکس</span> <span class="b3">۳۶۰</span>)</span> امکان برنامه‌ریزی تولید در ارتباط با خطوط تولید و اطلاعات ظرفیت را فراهم می‌کند. همچنین با ثبت زمان استاندارد محصولات و اطلاعات واقعی عملیات در ایستگاه‌های کاری، زمینه بررسی عملکرد خطوط و مقایسه زمان و ظرفیت مورد انتظار با وضعیت واقعی تولید فراهم می‌شود.</p><p>این اطلاعات می‌توانند در ارزیابی برنامه‌های تولید و شناسایی تفاوت میان ظرفیت اسمی و عملکرد واقعی مورد استفاده قرار گیرند.</p></div><div class="sub rv"><h3>هماهنگی برنامه تولید با تعمیرات ماشین‌آلات</h3><p>برنامه تولید باید با وضعیت ماشین‌آلات و زمان‌های پیش‌بینی‌شده برای نگهداری و تعمیرات هماهنگ باشد. در <span class="brand" dir="ltr"><b class="bn">ONYX</b><b class="b3">360</b></span> <span class="brand-fa">(<span class="bn">اونیکس</span> <span class="b3">۳۶۰</span>)</span>، اطلاعات تقویم تعمیرات و برنامه‌ریزی تولید می‌توانند در کنار یکدیگر مورد استفاده قرار گیرند تا زمان‌بندی تولید با برنامه‌های نگهداری ماشین‌آلات هماهنگ‌تر شود.</p></div><p class="statement scrub">در <span class="brand" dir="ltr"><b class="bn">ONYX</b><b class="b3">360</b></span> <span class="brand-fa">(<span class="bn">اونیکس</span> <span class="b3">۳۶۰</span>)</span>، برنامه‌ریزی تولید تنها تعیین مقدار و زمان تولید نیست؛ بلکه ارتباط میان سفارش‌ها، نیاز مواد، گردش انبار، بچ‌های تولیدی و ظرفیت عملیاتی کارخانه را در بر می‌گیرد.</p></div>
+</section>
+<section class="sec dk" id="maintenance" >
+<div class="container"><div class="sec-head  rv"><span class="eyebrow"><b>۶</b>نگهداری و تعمیرات</span><h2>نگهداری و تعمیرات پیشگیرانه؛ هماهنگ با برنامه تولید کارخانه</h2><p class="lead">عملکرد ماشین‌آلات و تجهیزات، تأثیر مستقیمی بر ظرفیت تولید، زمان‌بندی سفارش‌ها و استمرار فعالیت خطوط تولید دارد. تعمیرات برنامه‌ریزی‌نشده و توقف ماشین‌آلات می‌توانند برنامه تولید را تحت تأثیر قرار دهند؛ به همین دلیل، مدیریت سوابق تعمیرات و هماهنگی فعالیت‌های نگهداری با برنامه تولید اهمیت زیادی دارد.</p><p><span class="brand" dir="ltr"><b class="bn">ONYX</b><b class="b3">360</b></span> <span class="brand-fa">(<span class="bn">اونیکس</span> <span class="b3">۳۶۰</span>)</span> با فراهم‌کردن امکانات مدیریت نگهداری و تعمیرات ماشین‌آلات، به کارخانه کمک می‌کند فعالیت‌های دوره‌ای، بازرسی‌ها و تعمیرات را ثبت و برنامه‌ریزی کند و اطلاعات مرتبط با وضعیت تجهیزات را در ارتباط با برنامه تولید مورد بررسی قرار دهد.</p></div><div class="split sub"><div class="rv l" data-seen><h3>برنامه‌ریزی و ثبت فعالیت‌های نگهداری و تعمیرات</h3><p>در این بخش می‌توان ماشین‌آلات و تجهیزات کارخانه را دسته‌بندی و اطلاعات مربوط به فعالیت‌های نگهداری و تعمیرات آن‌ها را ثبت کرد؛ از جمله:</p><ul class="chips-grid" style="grid-template-columns:repeat(2,1fr)"><li style="--dl:0.00s"><i class="bi bi-collection" aria-hidden="true"></i>تعریف و دسته‌بندی ماشین‌آلات و تجهیزات</li><li style="--dl:0.10s"><i class="bi bi-calendar-check" aria-hidden="true"></i>برنامه‌ریزی سرویس‌ها و تعمیرات دوره‌ای</li><li style="--dl:0.20s"><i class="bi bi-eye" aria-hidden="true"></i>ثبت بازرسی‌ها و بررسی‌های پیش از بروز خرابی</li><li style="--dl:0.30s"><i class="bi bi-journal-text" aria-hidden="true"></i>ثبت سوابق تعمیرات و خرابی ماشین‌آلات</li><li style="--dl:0.40s"><i class="bi bi-calendar3" aria-hidden="true"></i>تنظیم تقویم فعالیت‌های نگهداری و تعمیرات</li></ul><p>این اطلاعات به ایجاد سوابق منظم از وضعیت ماشین‌آلات و برنامه‌ریزی بهتر فعالیت‌های مرتبط با آن‌ها کمک می‌کند.</p></div><div class="rv r"><figure class="ph " data-label="جای تصویر: ثبت و برنامه‌ریزی تعمیرات" style="--ar:4/3"><!-- جایگزینی: src را با آدرس تصویر واقعی عوض کنید --><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1600' height='1000'%3E%3C/svg%3E" alt="نمایی از صفحه ثبت و برنامه‌ریزی نگهداری و تعمیرات ماشین‌آلات در ONYX360 (اونیکس ۳۶۰)" width="1600" height="1000" loading="lazy"></figure><p class="vis-cap">جای تصویر تقویم نگهداری و تعمیرات</p></div></div><div class="split rev sub"><div class="rv l"><h3>هماهنگی تقویم تعمیرات با برنامه تولید</h3><p>زمان انجام تعمیرات و سرویس‌های دوره‌ای باید با برنامه تولید هماهنگ باشد. در <span class="brand" dir="ltr"><b class="bn">ONYX</b><b class="b3">360</b></span> <span class="brand-fa">(<span class="bn">اونیکس</span> <span class="b3">۳۶۰</span>)</span>، تقویم نگهداری و تعمیرات در ارتباط با برنامه‌ریزی تولید قرار می‌گیرد تا برنامه‌های تولید با درنظرگرفتن زمان‌های پیش‌بینی‌شده برای تعمیرات و سرویس ماشین‌آلات تنظیم شوند.</p><p>این هماهنگی می‌تواند به کاهش تداخل میان فعالیت‌های تعمیراتی و برنامه‌های تولید و مدیریت بهتر زمان توقف تجهیزات کمک کند.</p></div><div class="rv r"><div class="cal" data-seen role="img" aria-label="تصویر مفهومی هماهنگی تقویم تعمیرات با برنامه تولید"><div class="cal-h" aria-hidden="true"><span>ش</span><span>ی</span><span>د</span><span>س</span><span>چ</span><span>پ</span><span>ج</span></div><div class="cal-b" aria-hidden="true"><i class="p" style="--i:0"></i><i class="p" style="--i:1"></i><i class="p" style="--i:2"></i><i class="p" style="--i:3"></i><i class="p" style="--i:4"></i><i class="m" style="--i:5"></i><i class="" style="--i:6"></i><i class="p" style="--i:7"></i><i class="p" style="--i:8"></i><i class="p" style="--i:9"></i><i class="p" style="--i:10"></i><i class="p" style="--i:11"></i><i class="m" style="--i:12"></i><i class="" style="--i:13"></i><i class="p" style="--i:14"></i><i class="p" style="--i:15"></i><i class="p" style="--i:16"></i><i class="p" style="--i:17"></i><i class="p" style="--i:18"></i><i class="m" style="--i:19"></i><i class="" style="--i:20"></i><i class="p" style="--i:21"></i><i class="p" style="--i:22"></i><i class="p" style="--i:23"></i><i class="p" style="--i:24"></i><i class="p" style="--i:25"></i><i class="m" style="--i:26"></i><i class="" style="--i:27"></i></div><div class="legend"><span><em style="background:#3d82f0"></em>تولید</span><span><em style="background:repeating-linear-gradient(135deg,#ff6367 0 4px,#ffb3b5 4px 8px)"></em>تعمیرات</span></div></div></div></div><div class="split sub"><div class="rv l"><h3>مقایسه ظرفیت اسمی و ظرفیت واقعی ماشین‌آلات</h3><p>ظرفیت اسمی یک ماشین یا خط تولید، الزاماً نشان‌دهنده میزان تولید قابل‌دستیابی در شرایط واقعی نیست. اطلاعات عملکرد واقعی ماشین‌آلات و زمان عملیات ثبت‌شده در فرآیند تولید، امکان مقایسه ظرفیت اسمی و واقعی را فراهم می‌کنند.</p><p><span class="brand" dir="ltr"><b class="bn">ONYX</b><b class="b3">360</b></span> <span class="brand-fa">(<span class="bn">اونیکس</span> <span class="b3">۳۶۰</span>)</span> با ارتباط اطلاعات ماشین‌آلات و سوابق واقعی تولید، امکان بررسی تفاوت ظرفیت اسمی و عملکرد واقعی و مشاهده گزارش‌های مرتبط با این انحرافات را فراهم می‌کند.</p><p>این اطلاعات می‌توانند در ارزیابی وضعیت تجهیزات، بررسی عملکرد خطوط و تصمیم‌گیری درباره برنامه‌های نگهداری و بهبود ظرفیت تولید مورد استفاده قرار گیرند.</p></div><div class="rv r"><div class="gauge" data-seen role="img" aria-label="تصویر مفهومی مقایسه ظرفیت اسمی و ظرفیت واقعی"><svg viewBox="0 0 220 130" aria-hidden="true"><defs><linearGradient id="gg" x1="0" x2="1"><stop offset="0" stop-color="#3d82f0"/><stop offset="1" stop-color="#ff6367"/></linearGradient></defs><path class="g-bg" d="M20 110 A90 90 0 0 1 200 110"/><path class="g-nom" d="M20 110 A90 90 0 0 1 200 110"/><path class="g-real" d="M20 110 A90 90 0 0 1 200 110" transform="translate(0 0)"/><g class="g-needle"><line x1="110" y1="110" x2="110" y2="36" stroke="#fff" stroke-width="4" stroke-linecap="round"/><circle cx="110" cy="110" r="9" fill="#fff"/></g></svg><div class="legend"><span><em style="background:#8e9aac"></em>ظرفیت اسمی</span><span><em style="background:linear-gradient(90deg,#3d82f0,#ff6367)"></em>ظرفیت واقعی</span></div></div></div></div><p class="statement scrub">در <span class="brand" dir="ltr"><b class="bn">ONYX</b><b class="b3">360</b></span> <span class="brand-fa">(<span class="bn">اونیکس</span> <span class="b3">۳۶۰</span>)</span>، نگهداری و تعمیرات در ارتباط با برنامه تولید و عملکرد واقعی ماشین‌آلات بررسی می‌شود؛ تا مدیریت تجهیزات بخشی از مدیریت یکپارچه کارخانه باشد، نه فرآیندی جدا از عملیات تولید.</p></div>
+</section>
+<section class="sec lt" id="economics" >
+<div class="container"><div class="sec-head  rv"><span class="eyebrow"><b>۷</b>سودآوری</span><h2>تصمیم‌گیری اقتصادی با شناخت دقیق‌تر از هزینه‌ها و سودآوری</h2><p class="lead">در مدیریت یک کارخانه صنعتی، افزایش فروش لزوماً به معنای افزایش سودآوری نیست. برای ارزیابی واقعی عملکرد، باید درآمد حاصل از فروش محصولات در کنار بهای تمام‌شده، هزینه‌های تولید و نتایج مالی بررسی شود.</p><p><span class="brand" dir="ltr"><b class="bn">ONYX</b><b class="b3">360</b></span> <span class="brand-fa">(<span class="bn">اونیکس</span> <span class="b3">۳۶۰</span>)</span> با ارتباط دادن اطلاعات فروش، موجودی انبار ، تولید و حسابداری، ابزارهایی برای بررسی سودآوری محصولات و سفارش‌ها و ارزیابی اقتصادی تصمیم‌های تولیدی در اختیار مدیران قرار می‌دهد.</p></div><div class="split sub"><div class="rv l"><h3>تحلیل سود و زیان در فرآیند فروش</h3><p>در <span class="brand" dir="ltr"><b class="bn">ONYX</b><b class="b3">360</b></span> <span class="brand-fa">(<span class="bn">اونیکس</span> <span class="b3">۳۶۰</span>)</span>، هنگام ثبت فاکتور فروش، امکان مشاهده سود یا زیان هر ردیف کالا و همچنین کل فاکتور وجود دارد. این اطلاعات به مدیران و کارشناسان فروش کمک می‌کند نتیجه مالی فروش را در کنار قیمت فروش و مبنای بهای کالا بررسی کنند.</p><p>برای محاسبه بهای کالا در تحلیل فروش، امکان استفاده از مبناهای مختلف قیمت‌گذاری و ارزیابی وجود دارد؛ از جمله:</p><div class="basis" role="group" aria-label="مبنای قیمت"><button type="button" class="on" aria-pressed="true">قیمت استاندارد</button><button type="button" aria-pressed="false">اولین قیمت خرید</button><button type="button" aria-pressed="false">آخرین قیمت خرید</button><button type="button" aria-pressed="false">حداقل قیمت خرید</button><button type="button" aria-pressed="false">حداکثر قیمت خرید</button><button type="button" aria-pressed="false">میانگین قیمت خرید</button></div><p>این مبناها برای کالاهای مواد اولیه، نیمه‌ساخته و ساخته‌شده قابل استفاده هستند و انتخاب مبنای مناسب، امکان بررسی سودآوری فروش از زوایای مختلف را فراهم می‌کند.</p></div><div class="rv r"><div class="inv" data-seen role="img" aria-label="تصویر مفهومی نمایش سود و زیان هر ردیف فاکتور"><div class="inv-h"><span><i class="bi bi-receipt"></i> فاکتور فروش</span><span>نمونه مفهومی</span></div><div class="inv-r"><div class="sk"></div><div class="pl pos"><i class="bi bi-arrow-up-circle-fill"></i><b style="--w:70%"></b></div></div><div class="inv-r"><div class="sk"></div><div class="pl neg"><i class="bi bi-arrow-down-circle-fill"></i><b style="--w:38%"></b></div></div><div class="inv-r"><div class="sk"></div><div class="pl pos"><i class="bi bi-arrow-up-circle-fill"></i><b style="--w:52%"></b></div></div><div class="inv-r inv-t"><div class="sk" style="height:14px"></div><div class="sk" style="height:14px"></div></div></div></div></div><div class="split rev sub"><div class="rv l"><h3>بررسی سودآوری محصولات و بچ‌های تولیدی</h3><p>برای شناخت بهتر عملکرد اقتصادی محصولات، لازم است بهای تمام‌شده آن‌ها در کنار اطلاعات تولید و فروش بررسی شود.</p><p><span class="brand" dir="ltr"><b class="bn">ONYX</b><b class="b3">360</b></span> <span class="brand-fa">(<span class="bn">اونیکس</span> <span class="b3">۳۶۰</span>)</span> امکان تحلیل بهای تمام‌شده در سطح محصول و بچ تولیدی را فراهم می‌کند. با استفاده از این اطلاعات، مدیران می‌توانند تفاوت هزینه تولید در بچ‌های مختلف را بررسی کنند و نتایج آن را در ارزیابی عملکرد و تصمیم‌های مرتبط با تولید و فروش به کار بگیرند.</p></div><div class="rv r"><figure class="ph " data-label="جای تصویر: گزارش سودآوری محصول و بچ" style="--ar:16/10"><!-- جایگزینی: src را با آدرس تصویر واقعی عوض کنید --><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1600' height='1000'%3E%3C/svg%3E" alt="نمایی از گزارش سودآوری محصولات و بچ‌های تولیدی در ONYX360 (اونیکس ۳۶۰)" width="1600" height="1000" loading="lazy"></figure></div></div><div class="split sub"><div class="rv l"><h3>شبیه‌سازی صرفه اقتصادی پیش از شروع تولید</h3><p>گاهی لازم است پیش از آغاز تولید، مشخص شود که ساخت یک محصول یا پذیرش یک سفارش با شرایط قیمتی موجود از نظر اقتصادی توجیه‌پذیر است یا خیر.</p><p><span class="brand" dir="ltr"><b class="bn">ONYX</b><b class="b3">360</b></span> <span class="brand-fa">(<span class="bn">اونیکس</span> <span class="b3">۳۶۰</span>)</span> امکان شبیه‌سازی بهای تمام‌شده محصول را پیش از انجام عملیات واقعی تولید فراهم می‌کند. در این شبیه‌سازی می‌توان با استفاده از اطلاعاتی مانند قیمت فروش، قیمت خرید مواد اولیه و ساختار مواد محصول، برآوردی از هزینه تولید به دست آورد و آن را با شرایط فروش مقایسه کرد.</p><p>این قابلیت به مدیران کمک می‌کند پیش از ورود به فرآیند واقعی خرید و تولید، ارزیابی اولیه‌ای از صرفه اقتصادی تصمیم خود داشته باشند.</p></div><div class="rv r" data-seen><div class="sim" aria-hidden="true"><span class="chip" style="--dl:.1s"><i class="bi bi-boxes"></i>مواد</span><span class="op" style="--dl:.3s">+</span><span class="chip" style="--dl:.4s"><i class="bi bi-people"></i>دستمزد</span><span class="op" style="--dl:.6s">+</span><span class="chip" style="--dl:.7s"><i class="bi bi-lightning-charge"></i>سربار</span><span class="op" style="--dl:.9s">=</span><span class="chip res" style="--dl:1s"><i class="bi bi-bar-chart-line"></i>نتیجه شبیه‌سازی</span></div></div></div><div class="sub rv"><h3>بررسی نتایج مالی و عملکرد دوره‌ای سازمان</h3><p>تحلیل سودآوری محصولات و فروش، زمانی تصویر کامل‌تری از وضعیت سازمان ارائه می‌کند که در کنار گزارش‌های مالی و عملکرد دوره‌ای قرار گیرد.</p><p><span class="brand" dir="ltr"><b class="bn">ONYX</b><b class="b3">360</b></span> <span class="brand-fa">(<span class="bn">اونیکس</span> <span class="b3">۳۶۰</span>)</span> امکان تهیه و بررسی گزارش‌های مالی و تحلیلی، از جمله سود و زیان دوره‌ای و گزارش‌های مرتبط با انحرافات هزینه را فراهم می‌کند. این گزارش‌ها به مدیران کمک می‌کنند نتایج مالی را در کنار عملکرد عملیاتی سازمان ارزیابی کنند.</p></div><p class="statement scrub">در <span class="brand" dir="ltr"><b class="bn">ONYX</b><b class="b3">360</b></span> <span class="brand-fa">(<span class="bn">اونیکس</span> <span class="b3">۳۶۰</span>)</span>، اطلاعات فروش و تولید فقط برای ثبت عملیات استفاده نمی‌شوند؛ بلکه می‌توانند مبنایی برای ارزیابی سودآوری، سنجش صرفه اقتصادی تصمیم‌ها و شناخت بهتر نتایج مالی کارخانه باشند.</p></div>
+</section>
+<section class="sec dk" id="modules" >
+<div class="container"><div class="sec-head  rv"><span class="eyebrow"><b>۸</b>ماژول‌ها</span><h2>یکپارچگی فرآیندهای سازمانی؛ ارتباط میان واحدها در یک بستر واحد</h2><p class="lead">عملکرد یک کارخانه تنها به فرآیند تولید وابسته نیست. فروش، تأمین و خرید، انبار، امور مالی، منابع انسانی و مدیریت دارایی‌ها نیز در عملکرد روزانه سازمان نقش دارند. زمانی که اطلاعات این واحدها به‌صورت جداگانه ثبت و نگهداری شوند، دستیابی به تصویری منسجم از وضعیت سازمان دشوارتر خواهد بود.</p><p><span class="brand" dir="ltr"><b class="bn">ONYX</b><b class="b3">360</b></span> <span class="brand-fa">(<span class="bn">اونیکس</span> <span class="b3">۳۶۰</span>)</span> با پوشش فرآیندهای اصلی سازمانی، ارتباط میان این واحدها را در یک بستر نرم‌افزاری برقرار می‌کند؛ به‌گونه‌ای که اطلاعات عملیاتی و مالی بتوانند در ارتباط با یکدیگر ثبت، پیگیری و بررسی شوند.</p></div><div class="shot rv"><figure class="ph vid" data-label="جای ویدئو: نگاهی کلی به ماژول‌های ONYX360 (اونیکس ۳۶۰)" style="--ar:21/9" role="img" aria-label="ویدئوی معرفی ماژول‌های سازمانی ONYX360 (اونیکس ۳۶۰)"><span class="play"><i class="bi bi-play-fill"></i></span><!-- ویدئو: به‌جای این بخش بگذارید: <video src="video/xxx.mp4" poster="img/xxx.jpg" autoplay muted loop playsinline preload="none"></video> --></figure></div><div class="mods"><nav class="mod-nav" id="modnav" aria-label="ماژول‌ها"><a href="#m1" data-i="0"><i class="bi bi-people" aria-hidden="true"></i>فروش و ارتباط با مشتری</a><a href="#m2" data-i="1"><i class="bi bi-bag" aria-hidden="true"></i>خرید و تأمین</a><a href="#m3" data-i="2"><i class="bi bi-box-seam" aria-hidden="true"></i>انبار</a><a href="#m4" data-i="3"><i class="bi bi-bank2" aria-hidden="true"></i>مالی و حسابداری</a><a href="#m5" data-i="4"><i class="bi bi-person-badge" aria-hidden="true"></i>منابع انسانی</a><a href="#m6" data-i="5"><i class="bi bi-building" aria-hidden="true"></i>دارایی‌های ثابت</a><a href="#m7" data-i="6"><i class="bi bi-diagram-3" aria-hidden="true"></i>ساختار و دسترسی</a></nav><div class="spot" data-sync="#modnav"><article class="mc mod spot-i rv" id="m1"><div class="mod-h"><span class="ico"><i class="bi bi-people" aria-hidden="true"></i></span><h3>ارتباط فروش و مدیریت ارتباط با مشتریان</h3></div><p>فرآیند فروش از شناسایی و پیگیری مشتری آغاز می‌شود و تا ثبت سفارش، هماهنگی با تولید و انبار و صدور فاکتور ادامه پیدا می‌کند.</p><p>در <span class="brand" dir="ltr"><b class="bn">ONYX</b><b class="b3">360</b></span> <span class="brand-fa">(<span class="bn">اونیکس</span> <span class="b3">۳۶۰</span>)</span>، اطلاعات مشتریان، سوابق ارتباط و پیگیری، پیش‌فاکتورها و سفارش‌های فروش در ارتباط با سایر فرآیندهای سازمان قرار می‌گیرند. این ارتباط به واحد فروش کمک می‌کند هنگام بررسی سفارش مشتری، اطلاعات مرتبط با موجودی و وضعیت تولید را نیز در نظر داشته باشد و سوابق تجاری مشتری را در کنار عملیات فروش دنبال کند.</p></article><article class="mc mod spot-i rv" id="m2"><div class="mod-h"><span class="ico"><i class="bi bi-bag" aria-hidden="true"></i></span><h3>مدیریت خرید و تأمین؛ از درخواست تا دریافت کالا</h3></div><p>تأمین مواد و کالاهای موردنیاز واحدهای سازمانی، مستلزم هماهنگی میان درخواست‌کنندگان، مدیران، واحد تدارکات، انبار و امور مالی است.</p><p>در <span class="brand" dir="ltr"><b class="bn">ONYX</b><b class="b3">360</b></span> <span class="brand-fa">(<span class="bn">اونیکس</span> <span class="b3">۳۶۰</span>)</span>، فرآیند خرید می‌تواند از ثبت درخواست توسط واحد متقاضی و تأیید مدیر مربوط آغاز شود و مراحل بررسی و انجام خرید، دریافت کالا در انبار و ثبت اطلاعات مالی را در بر بگیرد. ارتباط این مراحل کمک می‌کند سوابق درخواست و خرید در کنار اطلاعات دریافت کالا و رویدادهای مالی قابل پیگیری باشد.</p></article><article class="mc mod spot-i rv" id="m3"><div class="mod-h"><span class="ico"><i class="bi bi-box-seam" aria-hidden="true"></i></span><h3>ارتباط انبار با خرید، تولید و حسابداری</h3></div><p>اطلاعات انبار زمانی ارزش مدیریتی بیشتری پیدا می‌کنند که از فرآیندهای خرید و تولید جدا نباشند و آثار مالی گردش کالا نیز قابل بررسی باشد.</p><p>در <span class="brand" dir="ltr"><b class="bn">ONYX</b><b class="b3">360</b></span> <span class="brand-fa">(<span class="bn">اونیکس</span> <span class="b3">۳۶۰</span>)</span>، گردش کالا و اطلاعات موجودی با عملیات خرید و تأمین، مصرف مواد در تولید و ثبت‌های مالی مرتبط است. به این ترتیب، ورود کالا، مصرف مواد و سایر جابه‌جایی‌های انبار می‌توانند در ارتباط با سوابق عملیاتی و حسابداری بررسی شوند.</p></article><article class="mc mod spot-i rv" id="m4"><div class="mod-h"><span class="ico"><i class="bi bi-bank2" aria-hidden="true"></i></span><h3>حسابداری، مالی و مدیریت دریافت‌وپرداخت</h3></div><p>اطلاعات مالی سازمان از رویدادهای متعددی در واحدهای مختلف شکل می‌گیرند. خرید، فروش، دریافت و پرداخت و عملیات انبار و تولید، هرکدام بخشی از این اطلاعات را ایجاد می‌کنند.</p><p><span class="brand" dir="ltr"><b class="bn">ONYX</b><b class="b3">360</b></span> <span class="brand-fa">(<span class="bn">اونیکس</span> <span class="b3">۳۶۰</span>)</span> با ارتباط زیرسیستم‌ها با حسابداری، امکان انتقال اطلاعات و ایجاد اسناد مالی مرتبط با عملیات را فراهم می‌کند. ساختار حساب‌ها و اطلاعات تفصیلی، همراه با امکان کنترل و بررسی اسناد توسط واحد مالی، به سازمان کمک می‌کند رویدادهای مالی را در چارچوبی منسجم مدیریت کند.</p><p>همچنین فرآیندهای خزانه‌داری، دریافت‌ها، پرداخت‌ها و تعهدات مالی را پوشش می‌دهند تا اطلاعات مرتبط با جریان وجوه در کنار اسناد و اطلاعات حسابداری قابل پیگیری باشند.</p></article><article class="mc mod spot-i rv" id="m5"><div class="mod-h"><span class="ico"><i class="bi bi-person-badge" aria-hidden="true"></i></span><h3>مدیریت منابع انسانی و حقوق و دستمزد</h3></div><p>اطلاعات پرسنلی، احکام و کارکرد کارکنان از داده‌های موردنیاز برای محاسبه حقوق و دستمزد هستند.</p><p>در <span class="brand" dir="ltr"><b class="bn">ONYX</b><b class="b3">360</b></span> <span class="brand-fa">(<span class="bn">اونیکس</span> <span class="b3">۳۶۰</span>)</span>، اطلاعات پرسنلی و احکام کارکنان در ارتباط با داده‌های کارکرد و حضور و غیاب قرار می‌گیرند و فرآیند محاسبه حقوق، مزایا و کسورات را پشتیبانی می‌کنند. همچنین امکان تهیه اطلاعات و فهرست‌های مرتبط با بیمه و مالیات حقوق در سیستم پیش‌بینی شده است.</p></article><article class="mc mod spot-i rv" id="m6"><div class="mod-h"><span class="ico"><i class="bi bi-building" aria-hidden="true"></i></span><h3>مدیریت دارایی‌های ثابت</h3></div><p>دارایی‌های ثابت، بخشی از منابع و سرمایه سازمان هستند و اطلاعات مربوط به آن‌ها باید در طول دوره استفاده قابل پیگیری باشد.</p><p><span class="brand" dir="ltr"><b class="bn">ONYX</b><b class="b3">360</b></span> <span class="brand-fa">(<span class="bn">اونیکس</span> <span class="b3">۳۶۰</span>)</span> امکان ثبت مشخصات و شناسنامه دارایی‌ها، اطلاعات محل استقرار و مسئول مربوط را فراهم می‌کند. همچنین محاسبه استهلاک بر اساس نرخ‌های قانونی و ثبت اسناد حسابداری مرتبط، به مدیریت اطلاعات مالی دارایی‌ها کمک می‌کند.</p></article><article class="mc mod spot-i rv" id="m7"><div class="mod-h"><span class="ico"><i class="bi bi-diagram-3" aria-hidden="true"></i></span><h3>ساختار سازمانی، تنظیمات و کنترل دسترسی</h3></div><p>برای مدیریت یکپارچه اطلاعات، لازم است ساختار سازمان، واحدها، مراکز هزینه و سطح دسترسی کاربران نیز به‌درستی تعریف شوند.</p><p>در <span class="brand" dir="ltr"><b class="bn">ONYX</b><b class="b3">360</b></span> <span class="brand-fa">(<span class="bn">اونیکس</span> <span class="b3">۳۶۰</span>)</span>، اطلاعات پایه و تنظیمات مشترک میان بخش‌های مختلف سیستم مدیریت می‌شوند. سازمان می‌تواند کاربران و سطح دسترسی آن‌ها را متناسب با مسئولیت‌هایشان تعریف کند؛ از جمله تعیین مجوز مشاهده، ثبت، ویرایش یا حذف اطلاعات در فرم‌های مختلف.</p><p>همچنین فرآیندهایی مانند درخواست خرید و درخواست کالا از انبار می‌توانند در چارچوب تأیید مدیر واحد مربوط پیگیری شوند. این امکانات به تفکیک مسئولیت‌ها و کنترل گردش اطلاعات در سازمان کمک می‌کنند.</p></article></div></div><p class="statement scrub"><span class="brand" dir="ltr"><b class="bn">ONYX</b><b class="b3">360</b></span> <span class="brand-fa">(<span class="bn">اونیکس</span> <span class="b3">۳۶۰</span>)</span> فرآیندهای اصلی سازمان را به یکدیگر متصل می‌کند؛ از ارتباط با مشتری و فروش تا خرید، انبار، تولید، خزانه‌داری، حسابداری و مدیریت منابع انسانی. نتیجه این یکپارچگی، کاهش پراکندگی اطلاعات و فراهم شدن امکان کنترل منسجم‌تر عملیات و رویدادهای مالی در یک بستر واحد است.</p></div>
+</section>
+<section class="sec lt" id="reports" >
+<div class="container"><div class="sec-head  rv"><span class="eyebrow"><b>۹</b>گزارش‌ها</span><h2>گزارش‌های مدیریتی؛ تصویری یکپارچه از عملکرد کارخانه</h2><p class="lead">تصمیم‌گیری مدیریتی زمانی اثربخش‌تر است که اطلاعات واحدهای مختلف سازمان، در قالب گزارش‌های قابل بررسی و مقایسه در دسترس باشند. مدیران برای ارزیابی عملکرد کارخانه، به اطلاعاتی فراتر از آمار تولید یا فروش نیاز دارند؛ آن‌ها باید بتوانند ارتباط میان عملکرد عملیاتی، هزینه‌ها و نتایج مالی را نیز بررسی کنند.</p><p><span class="brand" dir="ltr"><b class="bn">ONYX</b><b class="b3">360</b></span> <span class="brand-fa">(<span class="bn">اونیکس</span> <span class="b3">۳۶۰</span>)</span> با فراهم کردن مجموعه‌ای از گزارش‌های تخصصی در حوزه‌های تولید، فروش، انبار، خرید، حسابداری و منابع انسانی، امکان بررسی عملکرد بخش‌های مختلف سازمان را در یک بستر یکپارچه فراهم می‌کند.</p></div><div class="rep-grid"><article class="mc rep rv" data-d="0" data-seen><div class="viz eq" aria-hidden="true"><i style="--h:40%;--i:0"></i><i style="--h:62%;--i:1"></i><i style="--h:50%;--i:2"></i><i style="--h:78%;--i:3"></i><i style="--h:66%;--i:4"></i><i style="--h:90%;--i:5"></i></div><h3>گزارش‌های تولید و عملکرد عملیاتی</h3><p>گزارش‌های تولید به مدیران کمک می‌کنند وضعیت برنامه‌ها و عملکرد واقعی کارخانه را بررسی کنند. اطلاعات مربوط به تولید محصولات، بچ‌های تولیدی، عملکرد خطوط و ایستگاه‌های کاری و زمان انجام عملیات، می‌توانند مبنای ارزیابی عملکرد تولید قرار گیرند.</p><p>همچنین با بررسی اطلاعات مصرف مواد، ضایعات و تفاوت میان مقادیر و زمان‌های استاندارد و واقعی، امکان شناخت بهتر انحرافات تولید و عوامل مؤثر بر آن‌ها فراهم می‌شود.</p></article><article class="mc rep rv" data-d="120" data-seen><div class="viz" aria-hidden="true"><svg viewBox="0 0 200 70" preserveAspectRatio="none"><path class="ln" d="M5 55 L40 40 L75 46 L110 22 L150 30 L195 8"/></svg></div><h3>گزارش‌های فروش و عملکرد مشتریان</h3><p>گزارش‌های فروش فقط برای مشاهده مبلغ فروش نیستند؛ بلکه می‌توانند اطلاعاتی درباره ترکیب فروش، عملکرد محصولات و وضعیت مشتریان ارائه کنند.</p><p>در <span class="brand" dir="ltr"><b class="bn">ONYX</b><b class="b3">360</b></span> <span class="brand-fa">(<span class="bn">اونیکس</span> <span class="b3">۳۶۰</span>)</span> امکان بررسی فروش بر اساس کالا، مشتری، فاکتور و فروشنده وجود دارد. گزارش‌هایی مانند محصولات پرفروش و کم‌فروش، عملکرد کارشناسان فروش، مشتریان هر محصول و تحلیل فروش بر اساس محدوده‌های جغرافیایی نیز به ارزیابی بهتر بازار و عملکرد واحد فروش کمک می‌کنند.</p></article><article class="mc rep rv" data-d="240" data-seen><div class="viz blk" aria-hidden="true"><i class="" style="--i:0"></i><i class="" style="--i:1"></i><i class="hl" style="--i:2"></i><i class="" style="--i:3"></i><i class="" style="--i:4"></i><i class="hl" style="--i:5"></i><i class="" style="--i:6"></i><i class="" style="--i:7"></i></div><h3>گزارش‌های انبار، خرید و تأمین</h3><p>برای مدیریت منابع و کنترل گردش کالا، مدیران به اطلاعاتی درباره موجودی، ورود و خروج، مصرف مواد و عملکرد فرآیند تأمین نیاز دارند.</p><p><span class="brand" dir="ltr"><b class="bn">ONYX</b><b class="b3">360</b></span> <span class="brand-fa">(<span class="bn">اونیکس</span> <span class="b3">۳۶۰</span>)</span> گزارش‌های مرتبط با گردش و موجودی کالا و همچنین اطلاعات خرید و تأمین را در اختیار کاربران قرار می‌دهد. این اطلاعات امکان بررسی وضعیت موجودی، سوابق تأمین و ارتباط میان خرید، انبار و مصرف مواد در تولید را فراهم می‌کنند.</p></article><article class="mc rep rv" data-d="0" data-seen><div class="viz don" aria-hidden="true"><svg viewBox="0 0 80 80"><circle cx="40" cy="40" r="30" fill="none" stroke="#cdd6e3" stroke-width="10"/><circle class="don-c a" cx="40" cy="40" r="30" stroke="#1c5ed6" pathLength="200"/><circle class="don-c b" cx="40" cy="40" r="30" stroke="#d3262c" pathLength="200" style="transform:rotate(100deg)"/></svg></div><h3>گزارش‌های بهای تمام‌شده و انحرافات هزینه</h3><p>یکی از مهم‌ترین نیازهای مدیریتی در کارخانه‌های تولیدی، شناخت عوامل مؤثر بر هزینه ساخت محصولات است.</p><p><span class="brand" dir="ltr"><b class="bn">ONYX</b><b class="b3">360</b></span> <span class="brand-fa">(<span class="bn">اونیکس</span> <span class="b3">۳۶۰</span>)</span> امکان بررسی بهای تمام‌شده محصولات و بچ‌های تولیدی و تحلیل تفاوت میان مقادیر و زمان‌های استاندارد و واقعی را فراهم می‌کند. مدیران می‌توانند اطلاعات مربوط به مصرف مواد، زمان عملیات، دستمزد و سربار را در چارچوب اطلاعات تولید بررسی کنند و برای شناخت دلایل انحراف هزینه، به سوابق عملیاتی مرتبط مراجعه کنند.</p><p>به این ترتیب، گزارش بهای تمام‌شده تنها یک عدد نهایی نیست؛ بلکه می‌تواند نقطه شروع بررسی دقیق‌تر عملکرد تولید باشد.</p></article><article class="mc rep rv" data-d="120" data-seen><div class="viz" aria-hidden="true"><svg viewBox="0 0 200 70" preserveAspectRatio="none"><path class="ln" d="M5 20 L45 32 L85 26 L125 45 L165 38 L195 56"/><path class="ln ln2" d="M5 58 L45 50 L85 52 L125 36 L165 40 L195 24"/></svg></div><h3>گزارش‌های مالی و سود و زیان</h3><p>گزارش‌های مالی، نمایی از نتایج اقتصادی فعالیت سازمان در اختیار مدیران قرار می‌دهند. در <span class="brand" dir="ltr"><b class="bn">ONYX</b><b class="b3">360</b></span> <span class="brand-fa">(<span class="bn">اونیکس</span> <span class="b3">۳۶۰</span>)</span> امکان تهیه و بررسی گزارش‌های مالی و سود و زیان در دوره‌های مختلف وجود دارد.</p><p>مدیران می‌توانند نتایج مالی را در کنار اطلاعات فروش، هزینه‌ها و عملکرد تولید بررسی کنند و تصویری جامع‌تر از وضعیت اقتصادی سازمان به دست آورند.</p></article><article class="mc rep rv" data-d="240" data-seen><div class="viz lock" aria-hidden="true"><i class="bi bi-shield-lock"></i></div><h3>دسترسی مدیریتی به اطلاعات قابل پیگیری</h3><p>ارزش گزارش‌های مدیریتی فقط به تنوع آن‌ها وابسته نیست؛ ارتباط گزارش‌ها با اطلاعات عملیاتی و مالی ثبت‌شده در سیستم نیز اهمیت دارد.</p><p>در <span class="brand" dir="ltr"><b class="bn">ONYX</b><b class="b3">360</b></span> <span class="brand-fa">(<span class="bn">اونیکس</span> <span class="b3">۳۶۰</span>)</span>، گزارش‌های تخصصی حوزه‌های مختلف بر پایه اطلاعات زیرسیستم‌های مرتبط تهیه می‌شوند. این یکپارچگی کمک می‌کند مدیران و کارشناسان، اطلاعات موردنیاز خود را در حوزه مسئولیتشان بررسی کنند و در صورت نیاز، برای شناخت جزئیات بیشتر به سوابق و اطلاعات مرتبط مراجعه کنند.</p></article></div><div class="shot rv"><figure class="ph dash-fig" data-label="جای تصویر: پنل گزارش‌های مدیریتی" style="--ar:21/8"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1600' height='1000'%3E%3C/svg%3E" alt="پنل گزارش‌های مدیریتی ONYX360 (اونیکس ۳۶۰)" width="1600" height="700" loading="lazy"></figure></div><p class="statement scrub">پنل گزارش‌های مدیریتی <span class="brand" dir="ltr"><b class="bn">ONYX</b><b class="b3">360</b></span> <span class="brand-fa">(<span class="bn">اونیکس</span> <span class="b3">۳۶۰</span>)</span>، اطلاعات مالی و عملیاتی کارخانه را در اختیار تصمیم‌گیرندگان قرار می‌دهد تا بتوانند عملکرد سازمان را از زوایای مختلف ارزیابی کنند؛ از میزان تولید و فروش تا بهای تمام‌شده، انحرافات هزینه و نتایج مالی.</p></div>
+</section>
+<section class="sec dk" id="fit" >
+<div class="container"><div class="sec-head  rv"><span class="eyebrow"><b>۱۰</b>مناسب برای چه کارخانه‌هایی</span><h2><span class="brand" dir="ltr"><b class="bn">ONYX</b><b class="b3">360</b></span> <span class="brand-fa">(<span class="bn">اونیکس</span> <span class="b3">۳۶۰</span>)</span>؛ مناسب کارخانه‌هایی با فرآیندهای تولید پیچیده و چندمرحله‌ای</h2><p class="lead">هر کارخانه‌ای با توجه به نوع محصول، ساختار تولید، تعداد مراحل عملیاتی و شیوه مدیریت منابع، نیازهای متفاوتی در حوزه نرم‌افزارهای سازمانی دارد. در کارخانه‌هایی که تولید چندمرحله‌ای است و کنترل مواد، عملیات، هزینه‌ها و گردش اطلاعات اهمیت بالایی دارد، استفاده از یک سیستم یکپارچه و متناسب با فرآیندهای صنعتی می‌تواند نقش مهمی در مدیریت سازمان داشته باشد.</p><p><span class="brand" dir="ltr"><b class="bn">ONYX</b><b class="b3">360</b></span> <span class="brand-fa">(<span class="bn">اونیکس</span> <span class="b3">۳۶۰</span>)</span> برای کارخانه‌هایی طراحی شده است که علاوه بر مدیریت امور مالی و اداری، به کنترل دقیق‌تر فرآیند تولید، ردیابی عملیات و تحلیل بهای تمام‌شده نیاز دارند.</p></div><div class="shot"><div class="rv"><figure class="ph " data-label="جای تصویر: خط تولید کارخانه" style="--ar:21/9"><!-- جایگزینی: src را با آدرس تصویر واقعی عوض کنید --><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1600' height='1000'%3E%3C/svg%3E" alt="تصویر خط تولید یک کارخانه صنعتی" width="1600" height="1000" loading="lazy"></figure></div></div><div class="stack"><article class="mc scard rv" style="--k:0"><div class="big" aria-hidden="true">۱</div><div><h3><i class="bi bi-layers" aria-hidden="true" style="color:var(--on);margin-inline-end:.5rem"></i>کارخانه‌هایی با فرآیند تولید چندمرحله‌ای</h3><p>اگر تولید محصول از چند مرحله، ایستگاه کاری یا عملیات متوالی تشکیل شده باشد، ثبت اطلاعات هر مرحله و ارتباط آن با مراحل بعدی اهمیت پیدا می‌کند.</p><p><span class="brand" dir="ltr"><b class="bn">ONYX</b><b class="b3">360</b></span> <span class="brand-fa">(<span class="bn">اونیکس</span> <span class="b3">۳۶۰</span>)</span> برای مدیریت چنین ساختارهایی، امکان تعریف ایستگاه‌های کاری، ثبت عملکرد اپراتورها، زمان انجام عملیات، توقف‌ها و اطلاعات کنترل کیفیت را فراهم می‌کند. این قابلیت به کارخانه کمک می‌کند سوابق تولید را از سطح محصول نهایی فراتر ببرد و عملکرد مراحل ساخت را نیز بررسی کند.</p></div></article><article class="mc scard rv" style="--k:1"><div class="big" aria-hidden="true">۲</div><div><h3><i class="bi bi-qr-code-scan" aria-hidden="true" style="color:var(--on);margin-inline-end:.5rem"></i>کارخانه‌هایی که به ردیابی مواد و محصولات نیاز دارند</h3><p>در برخی صنایع، دانستن اینکه یک محصول با چه موادی، در چه شرایطی و طی چه مراحلی ساخته شده، اهمیت ویژه‌ای دارد.</p><p><span class="brand" dir="ltr"><b class="bn">ONYX</b><b class="b3">360</b></span> <span class="brand-fa">(<span class="bn">اونیکس</span> <span class="b3">۳۶۰</span>)</span> امکان پیگیری سوابق محصول نهایی تا مراحل تولید، ایستگاه‌های کاری، اپراتورها و مواد مصرفی مرتبط را فراهم می‌کند. این ویژگی برای کارخانه‌هایی که کنترل کیفیت، بررسی سوابق ساخت و پاسخ‌گویی به مسائل مرتبط با محصول برایشان اهمیت دارد، کاربردی است.</p></div></article><article class="mc scard rv" style="--k:2"><div class="big" aria-hidden="true">۳</div><div><h3><i class="bi bi-calculator" aria-hidden="true" style="color:var(--on);margin-inline-end:.5rem"></i>کارخانه‌هایی با نیاز جدی به تحلیل بهای تمام‌شده</h3><p>برای کارخانه‌هایی که هزینه مواد، زمان عملیات، دستمزد و سربار در تصمیم‌های اقتصادی آن‌ها نقش مهمی دارد، محاسبه بهای تمام‌شده به‌تنهایی کافی نیست؛ شناخت عوامل ایجادکننده تغییرات هزینه نیز اهمیت دارد.</p><p><span class="brand" dir="ltr"><b class="bn">ONYX</b><b class="b3">360</b></span> <span class="brand-fa">(<span class="bn">اونیکس</span> <span class="b3">۳۶۰</span>)</span> اطلاعات استاندارد و واقعی تولید را در ارتباط با حسابداری صنعتی قرار می‌دهد تا امکان بررسی بهای تمام‌شده محصولات و بچ‌های تولیدی و تحلیل انحرافات هزینه فراهم شود. این موضوع به‌ویژه برای کارخانه‌هایی اهمیت دارد که می‌خواهند دلایل افزایش هزینه یا تفاوت عملکرد بچ‌های تولیدی را دقیق‌تر بررسی کنند.</p></div></article><article class="mc scard rv" style="--k:3"><div class="big" aria-hidden="true">۴</div><div><h3><i class="bi bi-diagram-3" aria-hidden="true" style="color:var(--on);margin-inline-end:.5rem"></i>کارخانه‌هایی با ارتباط گسترده میان فروش، تأمین و تولید</h3><p>در کارخانه‌هایی که سفارش‌های فروش بر برنامه تولید و نیاز مواد اثر می‌گذارند، هماهنگی میان واحدهای فروش، برنامه‌ریزی، خرید، انبار و تولید اهمیت زیادی دارد.</p><p><span class="brand" dir="ltr"><b class="bn">ONYX</b><b class="b3">360</b></span> <span class="brand-fa">(<span class="bn">اونیکس</span> <span class="b3">۳۶۰</span>)</span> این فرآیندها را در یک بستر یکپارچه پوشش می‌دهد و امکان بررسی ارتباط سفارش‌ها با موجودی، تأمین مواد و عملیات تولید را فراهم می‌کند. این یکپارچگی برای سازمان‌هایی که با سفارش‌های متنوع، چند انبار یا چند خط تولید سروکار دارند، ارزشمند است.</p></div></article><article class="mc scard rv" style="--k:4"><div class="big" aria-hidden="true">۵</div><div><h3><i class="bi bi-tools" aria-hidden="true" style="color:var(--on);margin-inline-end:.5rem"></i>کارخانه‌هایی که به کنترل و تحلیل عملکرد ماشین‌آلات نیاز دارند</h3><p>در محیط‌های تولیدی که توقف تجهیزات و برنامه تعمیرات بر ظرفیت عملیاتی اثر می‌گذارد، هماهنگی میان نگهداری و تعمیرات و برنامه تولید اهمیت دارد.</p><p><span class="brand" dir="ltr"><b class="bn">ONYX</b><b class="b3">360</b></span> <span class="brand-fa">(<span class="bn">اونیکس</span> <span class="b3">۳۶۰</span>)</span> امکان طراحی و پیاده‌سازی فرآیندهای نگهداری و تعمیرات و ارتباط آن‌ها با اطلاعات برنامه‌ریزی و عملکرد تولید را فراهم می‌کند. ساختار این بخش، متناسب با نوع ماشین‌آلات، فرآیندها و نیازهای عملیاتی هر کارخانه قابل طراحی و سفارشی‌سازی است.</p></div></article></div><div class="fit rv"><h3>آیا <span class="brand" dir="ltr"><b class="bn">ONYX</b><b class="b3">360</b></span> <span class="brand-fa">(<span class="bn">اونیکس</span> <span class="b3">۳۶۰</span>)</span> برای هر نوع کسب‌وکار مناسب است؟</h3><p><span class="brand" dir="ltr"><b class="bn">ONYX</b><b class="b3">360</b></span> <span class="brand-fa">(<span class="bn">اونیکس</span> <span class="b3">۳۶۰</span>)</span> با تمرکز بر نیازهای کارخانه‌های تولیدی و فرآیندهای صنعتی طراحی شده است. بنابراین، بیشترین تناسب را با سازمان‌هایی دارد که به مدیریت یکپارچه تولید، ردیابی عملیات، کنترل گردش مواد و تحلیل بهای تمام‌شده نیاز دارند.</p><p>میزان تناسب و دامنه پیاده‌سازی سیستم، به ساختار تولید، پیچیدگی فرآیندها و نیازهای اطلاعاتی هر سازمان بستگی دارد. به‌ویژه در بخش‌هایی مانند نگهداری و تعمیرات و برخی فرآیندهای تولید، لازم است نیازهای اختصاصی کارخانه بررسی و ساختار مناسب آن طراحی شود.</p><p class="statement scrub">اگر مدیریت تولید، ردیابی مراحل ساخت، کنترل مواد و تحلیل دقیق‌تر بهای تمام‌شده از اولویت‌های کارخانه شماست، <span class="brand" dir="ltr"><b class="bn">ONYX</b><b class="b3">360</b></span> <span class="brand-fa">(<span class="bn">اونیکس</span> <span class="b3">۳۶۰</span>)</span> می‌تواند گزینه‌ای برای بررسی و ارزیابی تخصصی باشد.</p></div></div>
+</section>
+<section class="sec lt" id="about" >
+<div class="container"><div class="sec-head  rv"><span class="eyebrow"><b>۱۱</b>درباره ما</span><h2>چرا <span class="brand" dir="ltr"><b class="bn">ONYX</b><b class="b3">360</b></span> <span class="brand-fa">(<span class="bn">اونیکس</span> <span class="b3">۳۶۰</span>)</span> از شرکت دانش‌پژوهان محاسب سرزمین پارس؟</h2><p class="lead">انتخاب یک سیستم ERP صنعتی، فقط انتخاب نرم‌افزار نیست؛ انتخاب راهکاری است که باید با فرآیندهای واقعی سازمان هماهنگ شود و در کنار نیازهای مالی، حسابداری و مدیریتی، پیچیدگی‌های عملیات تولید را نیز درک کند.</p><p>شرکت دانش‌پژوهان محاسب سرزمین پارس (DMSPars) با تکیه بر تجربه در حوزه نرم‌افزارهای مالی و حسابداری، توسعه سیستم‌های سازمانی و شناخت نیازهای واحدهای صنعتی، مسیر توسعه محصولات نرم‌افزاری خود را دنبال کرده است.</p><p><span class="brand" dir="ltr"><b class="bn">ONYX</b><b class="b3">360</b></span> <span class="brand-fa">(<span class="bn">اونیکس</span> <span class="b3">۳۶۰</span>)</span> حاصل این مسیر و تمرکز بر نیاز کارخانه‌هایی است که به ارتباط میان عملیات تولید، اطلاعات مالی و مدیریت یکپارچه سازمان نیاز دارند.</p></div><div class="about-grid"><div><div class="sub rv" style="margin-top:2rem"><h3>ترکیب تجربه مالی، حسابداری و فناوری نرم‌افزار</h3><p>یکی از پایه‌های توسعه <span class="brand" dir="ltr"><b class="bn">ONYX</b><b class="b3">360</b></span> <span class="brand-fa">(<span class="bn">اونیکس</span> <span class="b3">۳۶۰</span>)</span>، شناخت ارتباط میان عملیات سازمان و آثار مالی آن است. تجربه مدیریتی و اجرایی در حوزه مالی و حسابداری، در کنار دانش طراحی و توسعه نرم‌افزار، زمینه‌ای برای شکل‌گیری راهکاری فراهم کرده که صرفاً به ثبت اطلاعات محدود نمی‌شود و ارتباط میان فرآیندهای عملیاتی و مالی را در نظر می‌گیرد.</p></div><div class="sub rv"><h3>مسیری پیوسته از نرم‌افزار حسابداری تا ERP صنعتی</h3><p>توسعه محصولات شرکت در چند مرحله شکل گرفته است:</p><ol class="tl-v"><li><span class="yr">۱۳۷۲</span><p>طراحی و توسعه نرم‌افزار حسابداری پردیس ؛ آغاز مسیر توسعه نرم‌افزارهای مالی شرکت.</p></li><li><span class="yr">۱۳۹۰</span><p>ورود به حوزه طراحی و مشاوره ERP در پروژه پتروشیمی جم.</p></li><li><span class="yr">۱۳۹۶</span><p>توسعه پردیس از یک نرم‌افزار حسابداری به یک سیستم ERP با تمرکز بر ارتباط فرآیندهای سازمانی.</p></li><li><span class="yr">۱۴۰۲</span><p>توسعه قابلیت‌های مرتبط با تولید و شناسایی ضایعات و شکل‌گیری محصول الیت.</p></li><li><span class="yr">۱۴۰۵</span><p>توسعه دامنه قابلیت‌های صنعتی و ارائه <span class="brand" dir="ltr"><b class="bn">ONYX</b><b class="b3">360</b></span> <span class="brand-fa">(<span class="bn">اونیکس</span> <span class="b3">۳۶۰</span>)</span> با تمرکز بر مدیریت فرآیندهای پیچیده تولید، ردیابی عملیات و تحلیل بهای تمام‌شده.</p></li></ol></div><div class="sub rv"><h3>تمرکز بر نیاز واقعی کارخانه، نه صرفاً امکانات نرم‌افزاری</h3><p>در توسعه <span class="brand" dir="ltr"><b class="bn">ONYX</b><b class="b3">360</b></span> <span class="brand-fa">(<span class="bn">اونیکس</span> <span class="b3">۳۶۰</span>)</span>، ارتباط میان تولید، انبار، فروش و امور مالی اهمیت محوری دارد. هدف این است که اطلاعات عملیات تولید فقط برای ثبت عملکرد روزانه استفاده نشوند، بلکه بتوان از آن‌ها برای بررسی بهای تمام‌شده، تحلیل انحرافات و شناخت بهتر عوامل مؤثر بر هزینه‌ها نیز بهره گرفت.</p><p>همچنین ساختار برخی فرآیندها، به‌ویژه در حوزه نگهداری و تعمیرات و بخش‌هایی از مدیریت تولید، متناسب با نوع تجهیزات، مراحل ساخت و نیازهای عملیاتی هر کارخانه طراحی و سفارشی‌سازی می‌شود.</p></div></div><div class="rv r stick" style="margin-top:2rem"><figure class="ph " data-label="جای تصویر: تیم دانش‌پژوهان محاسب سرزمین پارس" style="--ar:4/5"><!-- جایگزینی: src را با آدرس تصویر واقعی عوض کنید --><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1600' height='1000'%3E%3C/svg%3E" alt="تصویر تیم شرکت دانش‌پژوهان محاسب سرزمین پارس" width="1600" height="1000" loading="lazy"></figure><p class="vis-cap">جای تصویر تیم یا دفتر شرکت</p></div></div><p class="statement scrub"><span class="brand" dir="ltr"><b class="bn">ONYX</b><b class="b3">360</b></span> <span class="brand-fa">(<span class="bn">اونیکس</span> <span class="b3">۳۶۰</span>)</span> حاصل تجربه چندساله در توسعه نرم‌افزارهای مالی و سازمانی و حرکت به سمت پاسخ‌گویی به نیازهای پیچیده‌تر کارخانه‌های تولیدی است؛ راهکاری که تلاش می‌کند میان دانش مالی، فناوری نرم‌افزار و واقعیت عملیات صنعتی ارتباط برقرار کند.</p></div>
+</section>
+<section class="sec dk demo" id="demo" >
+<div class="container"><div class="glow-dot a" aria-hidden="true"></div><div class="glow-dot b" aria-hidden="true"></div><div class="sec-head  rv"><span class="eyebrow"><b>۱۲</b>دموی تخصصی</span><h2>برای مدیریت یکپارچه‌تر کارخانه، <span class="brand" dir="ltr"><b class="bn">ONYX</b><b class="b3">360</b></span> <span class="brand-fa">(<span class="bn">اونیکس</span> <span class="b3">۳۶۰</span>)</span> را از نزدیک بررسی کنید</h2><p class="lead">هر کارخانه ساختار تولید، گردش مواد، نیازهای مالی و چالش‌های مدیریتی خاص خود را دارد. به همین دلیل، انتخاب یک سیستم ERP صنعتی باید با شناخت فرآیندهای واقعی سازمان و بررسی تناسب قابلیت‌های نرم‌افزار با نیازهای آن انجام شود.</p><p>در جلسه معرفی و دموی تخصصی <span class="brand" dir="ltr"><b class="bn">ONYX</b><b class="b3">360</b></span> <span class="brand-fa">(<span class="bn">اونیکس</span> <span class="b3">۳۶۰</span>)</span>، می‌توانید با قابلیت‌های سیستم در حوزه‌های برنامه‌ریزی تولید، ردیابی عملیات، مدیریت مواد و محصولات، تحلیل بهای تمام‌شده و یکپارچگی فرآیندهای سازمانی آشنا شوید.</p><p>همچنین فرصت خواهید داشت نیازها و چالش‌های اصلی کارخانه خود را مطرح کنید تا امکان تطبیق آن‌ها با قابلیت‌های <span class="brand" dir="ltr"><b class="bn">ONYX</b><b class="b3">360</b></span> <span class="brand-fa">(<span class="bn">اونیکس</span> <span class="b3">۳۶۰</span>)</span> و بخش‌های قابل سفارشی‌سازی بررسی شود.</p></div><div class="split" style="align-items:start"><div class="rv l"><h3>در دموی تخصصی <span class="brand" dir="ltr"><b class="bn">ONYX</b><b class="b3">360</b></span> <span class="brand-fa">(<span class="bn">اونیکس</span> <span class="b3">۳۶۰</span>)</span> چه مواردی را بررسی می‌کنیم؟</h3><ul class="check"><li><i class="bi bi-check2" aria-hidden="true"></i><span>آشنایی با ساختار کلی سیستم و ارتباط ماژول‌های مختلف</span></li><li><i class="bi bi-check2" aria-hidden="true"></i><span>بررسی فرآیندهای تولید، بچ‌های تولیدی و ایستگاه‌های کاری</span></li><li><i class="bi bi-check2" aria-hidden="true"></i><span>مشاهده مسیر ردیابی مواد و محصولات</span></li><li><i class="bi bi-check2" aria-hidden="true"></i><span>بررسی محاسبه و تحلیل بهای تمام‌شده و انحرافات هزینه</span></li><li><i class="bi bi-check2" aria-hidden="true"></i><span>آشنایی با ارتباط تولید، انبار، فروش و حسابداری</span></li><li><i class="bi bi-check2" aria-hidden="true"></i><span>بررسی نیازهای اختصاصی کارخانه و امکان طراحی یا سفارشی‌سازی فرآیندها</span></li></ul><h3>قدم بعدی را با شناخت دقیق‌تر نیازهای کارخانه بردارید</h3><p>برای دریافت اطلاعات بیشتر یا هماهنگی جلسه معرفی، درخواست خود را ثبت کنید. کارشناسان DMSPars برای بررسی اولیه نیازهای شما و هماهنگی دموی تخصصی <span class="brand" dir="ltr"><b class="bn">ONYX</b><b class="b3">360</b></span> <span class="brand-fa">(<span class="bn">اونیکس</span> <span class="b3">۳۶۰</span>)</span> با شما در ارتباط خواهند بود.</p><div class="cta-row" style="margin-top:1.4rem"><a class="btn-chrome" href="#demoForm"><i class="bi bi-calendar2-check"></i><span>درخواست دموی تخصصی <span class="brand" dir="ltr"><b class="bn">ONYX</b><b class="b3">360</b></span> <span class="brand-fa">(<span class="bn">اونیکس</span> <span class="b3">۳۶۰</span>)</span></span></a><a class="btn-ghost" href="#demoForm"><i class="bi bi-chat-dots"></i><span>مشاوره و بررسی نیازهای کارخانه</span></a></div><p style="margin-top:1.2rem"><a class="txt-link" href="#modules"><span>مشاهده امکانات تخصصی و جزئیات ماژول‌های <span class="brand" dir="ltr"><b class="bn">ONYX</b><b class="b3">360</b></span> <span class="brand-fa">(<span class="bn">اونیکس</span> <span class="b3">۳۶۰</span>)</span> <i class="bi bi-arrow-left"></i></span></a></p></div><form class="form-card rv r" id="demoForm" action="#" method="post" novalidate aria-label="فرم درخواست دمو"><div class="form-grid"><div class="fld"><label for="f-name">نام و نام خانوادگی</label><input class="form-control" id="f-name" name="name" type="text" autocomplete="name" required placeholder="مثلاً: علی رضایی"><div class="invalid-feedback">لطفاً نام خود را وارد کنید.</div></div><div class="fld"><label for="f-co">نام شرکت / کارخانه</label><input class="form-control" id="f-co" name="company" type="text" autocomplete="organization" required placeholder="نام مجموعه"><div class="invalid-feedback">لطفاً نام مجموعه را وارد کنید.</div></div><div class="fld"><label for="f-tel">شماره تماس</label><input class="form-control" id="f-tel" name="phone" type="tel" inputmode="tel" autocomplete="tel" required pattern="[0-9۰-۹+\- ]{7,}" dir="ltr" style="text-align:right" placeholder="09xxxxxxxxx"><div class="invalid-feedback">شماره تماس معتبر وارد کنید.</div></div><div class="fld"><label for="f-mail">ایمیل (اختیاری)</label><input class="form-control" id="f-mail" name="email" type="email" autocomplete="email" dir="ltr" style="text-align:right" placeholder="name@company.com"><div class="invalid-feedback">ایمیل معتبر نیست.</div></div><div class="fld full"><label for="f-need">نیازها و چالش‌های اصلی کارخانه</label><textarea class="form-control" id="f-need" name="need" rows="4" placeholder="به‌طور خلاصه توضیح دهید"></textarea></div></div><button class="btn-chrome" type="submit"><i class="bi bi-send"></i><span>درخواست دموی تخصصی <span class="brand" dir="ltr"><b class="bn">ONYX</b><b class="b3">360</b></span> <span class="brand-fa">(<span class="bn">اونیکس</span> <span class="b3">۳۶۰</span>)</span></span></button><p class="form-ok" id="formOk" role="status" hidden><i class="bi bi-check-circle-fill"></i> درخواست شما ثبت شد.</p></form></div><p class="statement scrub final"><span class="brand" dir="ltr"><b class="bn">ONYX</b><b class="b3">360</b></span> <span class="brand-fa">(<span class="bn">اونیکس</span> <span class="b3">۳۶۰</span>)</span>؛ ارتباط میان عملیات تولید، اطلاعات مالی و تصمیم‌گیری مدیریتی در یک سیستم یکپارچه.</p></div>
+</section>
+</main>
+<footer class="footer"><div class="container"><div class="row-f">
+<address><span class="ffooter-brand">دانش‌پژوهان محاسب سرزمین پارس</span><br><!-- آدرس و تلفن را اینجا بگذارید --><a href="https://dmspars.com/" rel="noopener">dmspars.com</a></address>
+<a href="#hero"><i class="bi bi-arrow-up-circle"></i> بازگشت به بالای صفحه</a></div>
+<p class="copy">© شرکت دانش‌پژوهان محاسب سرزمین پارس</p></div></footer>
+
+<noscript><style>.rv{opacity:1!important;transform:none!important}.bar b i{width:var(--w)}.batch-bars span{height:var(--h)}.gb{transform:none}.gm{opacity:1}.fl li .nd{transform:none}.chips-grid li,.sim .chip,.bom .chip,.fieldchips .chip{opacity:1;transform:none}.sim .op{opacity:1}.cal-b i{opacity:1;transform:none}</style></noscript>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script>
+jQuery(function($){
+  var $win=$(window), reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  $(document.documentElement).addClass('js');
+  var clamp=function(v,a,b){return Math.max(a,Math.min(b,v))};
+
+  /* ظاهر شدن با اسکرول */
+  function showRv(el){
+    var $el=$(el), d=parseInt($el.data('d'),10)||0;
+    setTimeout(function(){
+      $el.addClass('in');
+      setTimeout(function(){ $el.removeClass('rv in l r z b'); },1100);
+    },reduce?0:d);
+  }
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){showRv(e.target);io.unobserve(e.target);}})},{threshold:.1,rootMargin:'0px 0px -5% 0px'});
+    $('.rv').each(function(){io.observe(this)});
+    var io2=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){$(e.target).addClass('seen');io2.unobserve(e.target);}})},{threshold:.25});
+    $('[data-seen]').each(function(){io2.observe(this)});
+  }else{ $('.rv').addClass('in'); $('[data-seen]').addClass('seen'); }
+
+  /* متن پیشرونده (کلمه به کلمه) */
+  $('.scrub').each(function(){
+    var words=[];
+    (function walk(node){
+      $(node).contents().each(function(){
+        if(this.nodeType===3){
+          var frag=document.createDocumentFragment();
+          this.nodeValue.split(/(\s+)/).forEach(function(p){
+            if(!p) return;
+            if(/^\s+$/.test(p)){frag.appendChild(document.createTextNode(p));}
+            else{var s=document.createElement('span');s.className='w';s.textContent=p;frag.appendChild(s);words.push(s);}
+          });
+          this.parentNode.replaceChild(frag,this);
+        }else if(this.nodeType===1){
+          if($(this).hasClass('brand')||$(this).hasClass('brand-fa')){
+            var s=document.createElement('span');s.className='w';this.parentNode.insertBefore(s,this);s.appendChild(this);words.push(s);
+          }else walk(this);
+        }
+      });
+    })(this);
+    $(this).data('words',words);
+  });
+
+  /* درخشش متالیک دنبال‌کننده‌ی موس */
+  $(document).on('pointermove','.mc',function(e){
+    var r=this.getBoundingClientRect();
+    this.style.setProperty('--mx',(e.clientX-r.left)+'px');
+    this.style.setProperty('--my',(e.clientY-r.top)+'px');
+  });
+
+  var $secs=$('main > section[id]'), $dots=$('.dots a'), $pg=$('#pg'), $mbar=$('.mbar'), $hero=$('#hero'), $demo=$('#demo');
+  var ticking=false;
+  function update(){
+    ticking=false;
+    var vh=window.innerHeight, st=window.pageYOffset, H=document.documentElement.scrollHeight-vh;
+    $pg.css('transform','scaleX('+(H>0?clamp(st/H,0,1):0)+')');
+
+    // scrub
+    $('.scrub').each(function(){
+      var w=$(this).data('words'); if(!w||!w.length) return;
+      var r=this.getBoundingClientRect();
+      var p=clamp((vh*.86-r.top)/(vh*.3+r.height),0,1.04);
+      var n=Math.round(p*w.length);
+      for(var i=0;i<w.length;i++){ w[i].classList.toggle('on',i<n); }
+    });
+
+    // spotlight
+    $('.spot').each(function(){
+      var r=this.getBoundingClientRect(); if(r.bottom<0||r.top>vh) return;
+      var mid=vh*.46,best=-1,bd=1e9,$it=$(this).find('.spot-i');
+      $it.each(function(i){var b=this.getBoundingClientRect(),d=Math.abs((b.top+b.bottom)/2-mid);if(d<bd){bd=d;best=i;}});
+      $it.each(function(i){$(this).toggleClass('active',i===best)});
+      var sync=$(this).data('sync');
+      if(sync){
+        $(sync).find('[data-i]').each(function(){
+          var on=parseInt($(this).data('i'),10)===best; $(this).toggleClass('on',on);
+          if(on&&this.tagName==='A'&&this.parentNode.scrollWidth>this.parentNode.clientWidth+4){
+            var nav=this.parentNode,rr=this.getBoundingClientRect(),nr=nav.getBoundingClientRect();
+            if(Math.abs((rr.left+rr.width/2)-(nr.left+nr.width/2))>nr.width*.3){
+              nav.scrollTo({left:nav.scrollLeft+(rr.left+rr.width/2)-(nr.left+nr.width/2),behavior:'smooth'});
+            }
+          }
+        });
+      }
+    });
+
+    // timeline
+    $('.tl-v').each(function(){
+      var r=this.getBoundingClientRect();
+      this.style.setProperty('--p',clamp((vh*.62-r.top)/r.height,0,1));
+      $(this).children('li').each(function(){ $(this).toggleClass('on',this.getBoundingClientRect().top<vh*.68); });
+    });
+
+    // dots
+    var cur=0;
+    $secs.each(function(i){ if(this.getBoundingClientRect().top<=vh*.4) cur=i; });
+    $dots.each(function(i){$(this).toggleClass('on',i===cur)});
+
+    // mobile bar
+    if($hero.length&&$demo.length){
+      var hide=$hero[0].getBoundingClientRect().bottom>vh*.45||$demo[0].getBoundingClientRect().top<vh*.55;
+      $mbar.toggleClass('hide',hide);
+    }
+  }
+  function req(){ if(!ticking){ticking=true;requestAnimationFrame(update);} }
+  $win.on('scroll resize',req); update();
+  setTimeout(update,400);
+
+  /* گانت */
+  var modes={
+    d:{cols:7,rows:[[0,40],[14,52],[30,36],[58,38]],m:[34,14]},
+    w:{cols:4,rows:[[0,55],[20,48],[40,38],[62,38]],m:[40,18]},
+    m:{cols:6,rows:[[4,30],[16,58],[34,40],[50,46]],m:[46,16]},
+    s:{cols:4,rows:[[0,70],[12,64],[34,52],[48,50]],m:[66,12]}
+  };
+  function setMode(k){
+    var m=modes[k],$g=$('#gantt');
+    $g.find('.grid-l').css('--cols',m.cols);
+    $g.find('.gb').each(function(i){this.style.setProperty('--s',m.rows[i][0]+'%');this.style.setProperty('--l',m.rows[i][1]+'%');});
+    $g.find('.gm').each(function(){this.style.setProperty('--s',m.m[0]+'%');this.style.setProperty('--l',m.m[1]+'%');});
+  }
+  $('.seg button').on('click',function(){
+    $(this).addClass('on').attr('aria-pressed','true').siblings().removeClass('on').attr('aria-pressed','false');
+    setMode($(this).data('m'));
+  });
+  setMode('d');
+
+  /* مبنای قیمت */
+  $('.basis button').on('click',function(){
+    $(this).addClass('on').attr('aria-pressed','true').siblings().removeClass('on').attr('aria-pressed','false');
+  });
+
+  /* برگه ناوبری موبایل */
+  var $sheet=$('#sheet');
+  $('#openMenu').on('click',function(){$sheet.addClass('open');$('body').css('overflow','hidden');});
+  function closeSheet(){$sheet.removeClass('open');$('body').css('overflow','');}
+  $sheet.on('click','.sheet-bg,a',closeSheet);
+  $(document).on('keydown',function(e){if(e.key==='Escape')closeSheet();});
+
+  /* فرم */
+  $('#demoForm').on('submit',function(e){
+    e.preventDefault();
+    $(this).addClass('was-validated');
+    if(this.checkValidity()){ $('#formOk').prop('hidden',false); this.reset(); $(this).removeClass('was-validated'); }
+  });
+});
+
+</script>
+</body>
+</html>
